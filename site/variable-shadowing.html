@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+        <title>Variable Shadowing &middot; NAME OF YOUR PROJECT</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+
+        <link rel="icon" type="image/png" href="images/favicon.png" />
+    </head>
+    <body>
+<div class="page">
+  <article class="chapter">
+
+    <header>
+        <div class="number">4</div>
+        <h1>Variable Shadowing</h1>
+    </header>
+
+    <p>True to the <a href="https://selfimproving.dev/about/">nature</a> of this blog,
+this is an article about an intermediate software engineering topic.
+Nothing breathtaking if you&rsquo;re a senior developer, but hopefully useful
+to some of the self-taught programmers out there.</p>
+<p>Try to catch the bug in the following function:</p>
+<div class="codehilite"><pre>
+<span class="t">void</span> <span class="i">prepareDeliciousMeal</span>(<span class="t">Fridge</span> <span class="i">f</span>) {
+  <span class="k">final</span> <span class="i">e</span> = <span class="i">f</span>.<span class="i">getEgg</span>();
+
+  <span class="c">// ... more code ...</span>
+
+  <span class="k">final</span> <span class="i">ingredients</span> = <span class="i">f</span>.<span class="i">everything</span>
+      .<span class="i">where</span>((<span class="i">e</span>) =&gt; <span class="i">e</span>.<span class="i">goesWellWith</span>.<span class="i">contains</span>(<span class="i">e</span>.<span class="i">id</span>));
+  <span class="i">cook</span>(<span class="i">ingredients</span>);
+}
+</pre></div>
+<p>It&rsquo;s a stupid bug, but that only makes it more infuriating when you
+finally catch it. The idea of the function is to prepare a meal by
+taking an egg, and then all the ingredients in the fridge that go well
+with it. But, because of the bug, we take all the ingredients that go
+well with <em>themselves</em> (which is, presumably, everything). So, instead
+of a delicious egg platter, you get a sad heap of food.</p>
+<p>All that because we use the same <code>e</code> variable name for both the egg and
+for each to the ingredients in the fridge. And we either don&rsquo;t realize
+it&rsquo;s a problem, or we forget.</p>
+<p>(Do you want examples that are less silly? Wikipedia
+<a href="https://en.wikipedia.org/wiki/Variable_shadowing#Example">delivers</a> ---
+in Lua, Python, Rust, C++, Java and JavaScript.)</p>
+<p>If you think this could never happen to you, consider that:</p>
+<ul>
+<li>I found a variable shadowing bug in my code <em>just today</em>.</li>
+<li>Less than a week ago, someone fixed <a href="https://github.com/openbsd/src/commit/57915963662663da67aa51b4f944c93678db74ce">a pretty major variable
+shadowing
+bug</a>
+in OpenBSD (the UNIX distribution with emphasis on code quality).</li>
+</ul>
+<h3><a href="#the-name" name="the-name"><small>4&#8202;.&#8202;0&#8202;.&#8202;1</small> The name</a></h3>
+<p>The idea behind the name &ldquo;variable shadowing&rdquo; is pretty straightforward.
+The outer scope variable (the egg, in our case) is in the <em>shadow</em> of
+the inner scope variable (the element in the <code>where</code> closure, in our
+case).</p>
+<p><img src="images/variable-shadowing.jpg" alt="A drawing. You (the developer) on the left, pointing to the right. Two
+variables are standing there, each holding a sign with the letter &lsquo;e&rsquo;.
+The farther variable stands in the shadow of the closer
+one." /></p>
+<p>I see it as two people standing exactly in line, having the same
+silhouette. You think you&rsquo;re pointing at your old friend (egg) but in
+fact you&rsquo;re pointing at some new dude (element) that stands directly in
+front of him.</p>
+<h3><a href="#mitigation" name="mitigation"><small>4&#8202;.&#8202;0&#8202;.&#8202;2</small> Mitigation</a></h3>
+<p>If your language supports it, turn on a
+<a href="https://en.wikipedia.org/wiki/Lint_(software)">linter</a> that warns about
+shadowing. Shadowing is easy to detect by automated tools like that.
+You&rsquo;d think everyone would have that feature enabled.</p>
+<p>But in reality, many people don&rsquo;t. There are at least 2 reasons:</p>
+<ol>
+<li>Some people just don&rsquo;t know there are linters available for their
+programming language.</li>
+<li>Others find lints annoying and turn them off.</li>
+</ol>
+<p>Don&rsquo;t be either of those people. Yes, configuring a static analysis tool
+can take time. Yes, when a strict linter is enabled, sometimes it seems
+like you&rsquo;re not programming, you&rsquo;re just appeasing a tool. <em>&ldquo;Oh, I&rsquo;m
+sorry, Mr. Linter, I&rsquo;m going to fix all the two hundred little nits you
+just found in my code. I&rsquo;ll get right on it, sir.&rdquo;</em> Ugh. Such busywork.</p>
+<p>Well, that busywork can help you uncover nasty little bugs before you
+even write them.</p>
+<p>All that said, there are legitimate reasons to shadow identifiers. As
+always, expect exceptions. Just be on the look out for variable
+shadowing bugs. They&rsquo;re widespread and nasty.</p>
+
+
+    <footer>
+      <a href="backmatter.html" class="next">
+        Next Part: &ldquo;Backmatter&rdquo; &rarr;
+      </a>
+    </footer>
+  </article>
+</div>
+
+    </body>
+</html>

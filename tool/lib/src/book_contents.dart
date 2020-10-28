@@ -15,6 +15,7 @@ const _tableOfContents = {
   // Communication / Culture
   'Code': [
     'Guard Clauses',
+    'Variable Shadowing',
   ],
   'Backmatter': [
     'Appendix I',

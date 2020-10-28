@@ -286,3 +286,15 @@ h1 {
   letter-spacing: -0.0415625em;
   line-height: 1em;
 }
+
+aside {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: smaller;
+  margin: 2em;
+  border: 1px dashed gray;
+  padding: 0 2em 1em;
+}
+aside strong {
+  font-weight: 900;
+}

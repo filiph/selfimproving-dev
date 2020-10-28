@@ -52,6 +52,8 @@ void _buildPages({bool skipUpToDate = false}) {
     ]);
   }
 
+  _copyImages();
+
   var totalWords = 0;
   for (var page in book.pages) {
     totalWords += _buildPage(book, mustache, page,
@@ -65,6 +67,24 @@ void _buildPages({bool skipUpToDate = false}) {
     }
     var seconds = (watch.elapsedMilliseconds / 1000).toStringAsFixed(2);
     print("Built ${term.green(wordString)} words in $seconds seconds");
+  }
+}
+
+void _copyImages() {
+  for (var entry in Glob('book/images/*').listSync()) {
+    if (entry is File) {
+      var filename = p.basename(entry.path);
+
+      var copiedFile = File('site/images/$filename');
+
+      if (!copiedFile.existsSync()) {
+        copiedFile.writeAsBytesSync(entry.readAsBytesSync());
+      }
+
+      if (entry.lastModifiedSync().isAfter(copiedFile.lastModifiedSync())) {
+        copiedFile.writeAsBytesSync(entry.readAsBytesSync());
+      }
+    }
   }
 }
 

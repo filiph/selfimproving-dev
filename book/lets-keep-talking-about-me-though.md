@@ -16,7 +16,7 @@ First of all, Albert Einstein never said this. Second of all: if he did, that wo
 
 <aside>
 
-To his credit, Albert Einstein did try to make his theories more accessible. He wrote a book called <em>Relativity: The Special and the General Theory</em>, and it definitely reads better than his papers or lectures. But, great explanation it ain't.
+**Aside:** To his credit, Albert Einstein did try to make his theories more accessible. He wrote a book called <em>Relativity: The Special and the General Theory</em>, and it definitely reads better than his papers or lectures. But, great explanation it ain't.
 
 </aside>
 

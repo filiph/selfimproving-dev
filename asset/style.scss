@@ -3,3 +3,20 @@
 @use 'sass/pandoc_style';
 @use 'sass/code_style';
 @use 'sass/fonts';
+
+aside {
+  font-family: 'Inter',
+    -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", Helvetica,
+    sans-serif;
+  font-weight: 300;
+  font-size: smaller;
+
+  margin: 2em;
+  border: 1px dashed gray;
+  padding: 0 2em 1em;
+
+  strong {
+    font-weight: 900;
+  }
+}

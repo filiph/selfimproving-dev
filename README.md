@@ -80,3 +80,11 @@ browser to see the changes.
     script, but fonts, images, and JS only live here. Everything is committed,
     even the generated content.
 *   `tool/` – Dart package containing the build, test, and other scripts.
+
+## Useful hints
+
+To convert from HTML to Markdown using `pandoc`, do this:
+
+```sh
+pandoc -i some_file.html -o book/final-article-name.md 
+```
