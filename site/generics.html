@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+        <title>Generics &middot; NAME OF YOUR PROJECT</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+
+        <link rel="icon" type="image/png" href="images/favicon.png" />
+    </head>
+    <body>
+<div class="page">
+  <article class="chapter">
+
+    <header>
+        <div class="number">7</div>
+        <h1>Generics</h1>
+    </header>
+
+    <p>Generics look scary. At least they looked scary to me when I first
+started seeing them in code, not knowing what they were. All those
+<code>List&lt;int&gt;</code> and <code>Foo&lt;T&gt;</code> just don’t seem too friendly to an untrained
+eye. But they are everywhere, and they are very useful.</p>
+<p>Here’s an attempt to explain generic types in the most straightforward
+way possible, the way I would have wanted someone to explain them to me
+when I first encountered them.</p>
+<h2>Why generics</h2>
+<p>Imagine you’re working on a horse-riding app and at one point you
+realize it would be great to have a class that pairs two strings
+together. Let’s say you want to pair a rider’s name with a horse’s name.
+I know it’s a silly example, but bear with me.</p>
+<div class="codehilite"><pre>
+<span class="k">class</span> <span class="t">StringPair</span> {
+  <span class="t">String</span> <span class="i">first</span>;
+  <span class="t">String</span> <span class="i">second</span>;
+
+  <span class="c">/// The constructor. It just </span>
+  <span class="c">/// assigns to the fields above.</span>
+  <span class="t">StringPair</span>(<span class="k">this</span>.<span class="i">first</span>, <span class="k">this</span>.<span class="i">second</span>);
+
+  <span class="c">/// A handy method.</span>
+  <span class="t">void</span> <span class="i">describe</span>() {
+    <span class="i">print</span>(&#39;$<span class="i">first</span> - $<span class="i">second</span>&#39;);
+  }
+}
+</pre></div>
+<p>(This code is in Dart, but the programming language doesn’t really
+matter. Generics are in most modern languages. And Dart is
+<a href="https://selfimproving.dev/the-power-of-boring/">boring</a> enough that you
+shouldn’t have trouble reading the above code even if you haven’t seen
+the language before.)</p>
+<p>The class <code>StringPair</code> is useful. It lets you pair any two strings into
+a single object, and it gives you a nice method to boot.</p>
+<div class="codehilite"><pre>
+<span class="k">var</span> <span class="i">winningTeam</span> = <span class="t">StringPair</span>(&#39;<span class="t">Filip</span>&#39;, &#39;<span class="t">Horsey</span>&#39;);
+<span class="i">winningTeam</span>.<span class="i">describe</span>();
+</pre></div>
+<p>Mission accomplished, right?</p>
+<p>Right. Except, a few weeks later, you’re working on some other part of
+your horse-riding app, and you realize that a pair of numbers would be
+also useful. So you write this:</p>
+<div class="codehilite"><pre>
+<span class="k">class</span> <span class="t">IntPair</span> {
+  <span class="t">int</span> <span class="i">first</span>;
+  <span class="t">int</span> <span class="i">second</span>;
+
+  <span class="c">/// The constructor. It just </span>
+  <span class="c">/// assigns to the fields above.</span>
+  <span class="t">IntPair</span>(<span class="k">this</span>.<span class="i">first</span>, <span class="k">this</span>.<span class="i">second</span>);
+
+  <span class="c">/// A handy method.</span>
+  <span class="t">void</span> <span class="i">describe</span>() {
+    <span class="i">print</span>(&#39;$<span class="i">first</span> - $<span class="i">second</span>&#39;);
+  }
+}
+</pre></div>
+<p>Yes, that’s right. <code>StringPair</code> and <code>IntPair</code> are <em>exactly</em> the same,
+except for that type. And then you realize you also need a <code>PersonPair</code>,
+a <code>HorsePair</code>, and a <code>SugarCubePair</code> (or whatever).</p>
+<p>And, without generic types, you can’t really combine the classes in any
+meaningful way. <code>String</code>, <code>int</code>, <code>Person</code>, <code>Horse</code> and <code>SugarCube</code> are
+completely different types. Sure, you could abandon type safety and do
+this:</p>
+<div class="codehilite"><pre>
+<span class="k">class</span> <span class="t">DynamicPair</span> {
+  <span class="k">dynamic</span> <span class="i">first</span>;
+  <span class="k">dynamic</span> <span class="i">second</span>;
+
+  <span class="c">/// The constructor. It just </span>
+  <span class="c">/// assigns to the fields above.</span>
+  <span class="t">DynamicPair</span>(<span class="k">this</span>.<span class="i">first</span>, <span class="k">this</span>.<span class="i">second</span>);
+
+  <span class="c">/// A handy method.</span>
+  <span class="t">void</span> <span class="i">describe</span>() {
+    <span class="i">print</span>(&#39;$<span class="i">first</span> - $<span class="i">second</span>&#39;);
+  }
+}
+</pre></div>
+<p>But that sucks. Once you use <code>DynamicPair</code>, you’ll lose all type
+information. For example, nothing stops you from unwittingly creating a
+pair that combines two different types, like
+<code>DynamicPair(42, 'Horsey')</code>. You’ll make your code less secure, and your
+coding experience worse (because the IDE can’t give you good code
+completion, and because you’ll see errors only <em>after</em> you compile, not
+before).</p>
+<h2>Enter generics</h2>
+<p>Imagine creating a <em>template</em> for the compiler that says something like
+“I’m not sure what type will go here yet, but I’ll need many classes
+like this.” That’s what generics are. They are a template. (Now you also
+know why generics are called
+<a href="http://www.cplusplus.com/doc/oldtutorial/templates/">templates</a> in
+C++.)</p>
+<p>Observe:</p>
+<div class="codehilite"><pre>
+<span class="k">class</span> <span class="t">Pair</span>&lt;<span class="t">T</span>&gt; {
+  <span class="t">T</span> <span class="i">first</span>;
+  <span class="t">T</span> <span class="i">second</span>;
+
+  <span class="c">/// The constructor. It just </span>
+  <span class="c">/// assigns to the fields above.</span>
+  <span class="t">Pair</span>(<span class="k">this</span>.<span class="i">first</span>, <span class="k">this</span>.<span class="i">second</span>);
+
+  <span class="c">/// A handy method.</span>
+  <span class="t">void</span> <span class="i">describe</span>() {
+    <span class="i">print</span>(&#39;$<span class="i">first</span> - $<span class="i">second</span>&#39;);
+  }
+}
+</pre></div>
+<p>The <code>&lt;T&gt;</code> after <code>Pair</code> tells the compiler that the class is generic. It
+also tells the compiler that you’re going to use one <em>type argument</em>,
+and that you’re naming the argument <code>T</code>. The type argument is the thing
+you’ll later fill with concrete types such as <code>String</code> or <code>SugarCube</code>.
+It’s the ‘blank’ in the template. You can have more than one type
+argument with something like <code>&lt;T, S&gt;</code>, but let’s keep things simple here
+with just one.</p>
+<p>By convention, people name type arguments with single-character names
+such as <code>T</code> or <code>S</code>. Technically, you can call your type arguments
+whatever you want. But I encourage you to keep with the convention
+unless you have a strong reason not to.</p>
+<p>Most people read generics as “of”. So, you can read <code>Pair&lt;T&gt;</code> by saying
+“Pair of T”, and <code>List&lt;String&gt;</code> by saying “List of String”.</p>
+<p>Once we tell the compiler about the type argument, we can use it. In the
+<code>Pair</code> example above, it’s just used twice in the code.</p>
+<div class="codehilite"><pre>
+<span class="t">T</span> <span class="i">first</span>;
+<span class="t">T</span> <span class="i">second</span>;
+</pre></div>
+<p>But those two <code>T</code>s do a lot of work. Our constructor will only accept
+arguments that are of the same type:</p>
+<div class="codehilite"><pre>
+<span class="c">// This is okay.</span>
+<span class="k">var</span> <span class="i">winningTeam</span> = <span class="t">Pair</span>(&#39;<span class="t">Filip</span>&#39;, &#39;<span class="t">Horsey</span>&#39;);
+
+<span class="c">// The following line will not compile.</span>
+<span class="k">var</span> <span class="i">losingTeam</span> = <span class="t">Pair</span>(<span class="n">13</span>, &#39;<span class="t">Scooby</span>&#39;);
+</pre></div>
+<p>Accessing the fields will be statically type-checked.</p>
+<div class="codehilite"><pre>
+<span class="k">var</span> <span class="i">lucky</span> = <span class="t">Pair</span>(<span class="n">7</span>, <span class="n">77</span>);
+
+<span class="c">// This is okay. Compiler knows both</span>
+<span class="c">// fields are numbers.</span>
+<span class="k">var</span> <span class="i">result</span> = <span class="i">lucky</span>.<span class="i">second</span> / <span class="i">lucky</span>.<span class="i">first</span>;
+
+<span class="c">// The following line will not compile.</span>
+<span class="c">// There is no match() method on numbers.</span>
+<span class="i">print</span>(<span class="i">lucky</span>.<span class="i">first</span>.<span class="i">match</span>(&#39;<span class="i">luck</span>&#39;));
+</pre></div>
+<p>You’ll also get correct code completion. In other words, despite the
+fact there is just one generic class, it acts like it was <code>IntPair</code> for
+<code>int</code>s, <code>StringPair</code> for <code>String</code>s, and so on.</p>
+<p>You can be explicit when using a generic class, like here:</p>
+<div class="codehilite"><pre>
+<span class="k">var</span> <span class="i">riders</span> = <span class="t">Pair</span>&lt;<span class="t">Person</span>&gt;(<span class="i">filip</span>, <span class="i">someOtherFool</span>);
+</pre></div>
+<p>Normally, at least in Dart, you don’t need this because the compiler can
+<em>infer</em> the type. It sees you’re using two persons, so it knows this is
+a <code>Pair&lt;Person&gt;</code>. But sometimes it’s useful to provide the type argument
+directly.</p>
+<p>I guess it’s also more illustrative: you’re telling the compiler that,
+in case of the <code>riders</code> variable, <code>T</code> is <code>Person</code>.</p>
+<h2>Limiting the type</h2>
+<p>Imagine you have a class hierarchy like this:</p>
+<div class="codehilite"><pre>
+<span class="k">abstract</span> <span class="k">class</span> <span class="t">LivingThing</span> {
+  <span class="c">/// Returns the current heart rate.</span>
+  <span class="t">int</span> <span class="k">get</span> <span class="i">heartRate</span>;
+
+  <span class="c">/// Returns true if this thing</span>
+  <span class="c">/// is healthy.</span>
+  <span class="t">bool</span> <span class="k">get</span> <span class="i">isHealthy</span>;
+}
+
+<span class="k">class</span> <span class="t">Person</span> <span class="k">extends</span> <span class="t">LivingThing</span> {
+  <span class="c">// ...</span>
+
+  <span class="t">bool</span> <span class="k">get</span> <span class="i">isHealthy</span> {
+    <span class="k">if</span> (<span class="i">heartRate</span> &gt; <span class="n">160</span>) <span class="k">return</span> <span class="k">false</span>;
+    <span class="k">if</span> (<span class="i">heartRate</span> &lt; <span class="n">40</span>) <span class="k">return</span> <span class="k">false</span>;
+    <span class="k">return</span> <span class="k">true</span>;
+  }
+}
+
+<span class="k">class</span> <span class="t">Horse</span> <span class="k">extends</span> <span class="t">LivingThing</span> {
+  <span class="c">// ...</span>
+
+  <span class="t">bool</span> <span class="k">get</span> <span class="i">isHealthy</span> {
+    <span class="k">if</span> (<span class="i">heartRate</span> &gt; <span class="n">40</span>) <span class="k">return</span> <span class="k">false</span>;
+    <span class="k">if</span> (<span class="i">heartRate</span> &lt; <span class="n">30</span>) <span class="k">return</span> <span class="k">false</span>;
+    <span class="k">return</span> <span class="k">true</span>;
+  }
+}
+</pre></div>
+<p>Now you’d like to create a generic class for groups of living things.
+This is different from <code>Pair&lt;T&gt;</code> above, because now <code>T</code> cannot accept
+just any type. <code>T</code> must now be a subtype of <code>LivingThing</code>. This is
+something you’ll often want.</p>
+<p>The technical name for this is <em>bounded type parameters</em> (as in, there
+are bounds, limits, constrains to what the type <code>T</code> can be). This is
+what it looks like in code:</p>
+<div class="codehilite"><pre>
+<span class="k">class</span> <span class="t">Group</span>&lt;<span class="t">T</span> <span class="k">extends</span> <span class="t">LivingThing</span>&gt; {
+  <span class="t">List</span>&lt;<span class="t">T</span>&gt; <span class="i">members</span>;
+
+  <span class="t">Group</span>(<span class="k">this</span>.<span class="i">members</span>);
+
+  <span class="c">/// Returns true if everyone </span>
+  <span class="c">/// in the group is healthy.</span>
+  <span class="t">bool</span> <span class="i">performHealthCheck</span>() {
+    <span class="k">for</span> (<span class="k">var</span> <span class="i">member</span> <span class="k">in</span> <span class="i">members</span>) {
+      <span class="k">if</span> (!<span class="i">member</span>.<span class="i">isHealthy</span>) {
+        <span class="k">return</span> <span class="k">false</span>;
+      }
+    }
+    <span class="k">return</span> <span class="k">true</span>;
+  }
+}
+</pre></div>
+<p>Note how we can call <code>member.isHealthy</code>. The compiler knows the getter
+is there, because it knows <code>member</code> is of class <code>T</code>, and <code>T</code> extends
+<code>LivingThing</code>.</p>
+<p>Also, by the way, note how we can use <code>T</code> as a type parameter for fields
+inside the class:</p>
+<div class="codehilite"><pre>
+<span class="t">List</span>&lt;<span class="t">T</span>&gt; <span class="i">members</span>;
+</pre></div>
+<p>Remember, <code>T</code> is just a placeholder. It will be replaced by <code>Person</code> or
+<code>Horse</code>. So, with this line, we’re saying: our class <code>Group</code> will have a
+list of members, and that list will only include objects of whatever
+type <code>T</code> is.</p>
+<p>Now, you can use <code>Group</code>:</p>
+<div class="codehilite"><pre>
+<span class="k">var</span> <span class="i">stable</span> = <span class="t">Group</span>([<span class="i">filip</span>, <span class="i">someOtherFool</span>, <span class="i">horsey</span>]);
+<span class="k">if</span> (<span class="i">stable</span>.<span class="i">performHealthCheck</span>()) {
+  <span class="i">print</span>(&#39;<span class="t">All</span> <span class="i">good</span>!&#39;);
+} <span class="k">else</span> {
+  <span class="i">print</span>(&#39;<span class="t">Oh</span> <span class="i">no</span>!&#39;);
+}
+</pre></div>
+<p>In this scenario, <code>stable</code> is a <code>Group&lt;LivingThing&gt;</code> (because
+<code>LivingThing</code> is the only class that includes both <code>filip</code> and
+<code>someOtherFool</code> (who are persons) <em>and</em> <code>horsey</code> (who’s a horse)). You
+can also have a <code>Group&lt;Horse&gt;</code> with only horses, of course, or
+<code>Group&lt;Person&gt;</code> with only people.</p>
+<h2>Generics everywhere</h2>
+<p>You’ll find generics everywhere. Most (if not all) collections — such as
+lists, sets, maps, queues, etc. — use generics. Many libraries benefit
+from using generics, because they want to be type safe but also
+<em>generic</em> enough to support a variety of use cases. (And now you know
+why they’re called generics in Java, Dart, TypeScript, C# and many
+other programming languages.)</p>
+<p>I’ve only talked about generic classes, but you can also have generic
+methods.</p>
+<div class="codehilite"><pre>
+<span class="c">/// Toggles the existence of [attribute]</span>
+<span class="c">/// in a set of [attributes], regardless</span>
+<span class="c">/// of their type.</span>
+<span class="t">void</span> <span class="i">toggle</span>&lt;<span class="t">T</span>&gt;(<span class="t">T</span> <span class="i">attribute</span>, <span class="t">Set</span>&lt;<span class="t">T</span>&gt; <span class="i">attributes</span>) {
+  <span class="k">if</span> (<span class="i">attributes</span>.<span class="i">contains</span>(<span class="i">attribute</span>)) {
+    <span class="i">attributes</span>.<span class="i">remove</span>(<span class="i">attribute</span>);
+  } <span class="k">else</span> {
+    <span class="i">attributes</span>.<span class="i">add</span>(<span class="i">attribute</span>);
+  }
+}
+
+<span class="k">var</span> <span class="i">numbers</span> = {<span class="n">1</span>, <span class="n">4</span>, <span class="n">5</span>, <span class="n">10</span>};
+<span class="i">toggle</span>(<span class="n">4</span>, <span class="i">numbers</span>);
+
+<span class="k">var</span> <span class="i">strings</span> = {&#39;<span class="i">healthy</span>&#39;, &#39;<span class="i">fit</span>&#39;};
+<span class="i">toggle</span>(&#39;<span class="i">happy</span>&#39;, <span class="i">strings</span>);
+</pre></div>
+<p>You can also find generics inside generics, like with a
+<code>Pair&lt;Pair&lt;int&gt;&gt;</code>. I’ll let you parse what that is on your own.</p>
+<h2>Wrapping up</h2>
+<p>There you go. Generics seem very foreign at first, but they’re not
+terribly hard. <code>Pair&lt;Person&gt;</code> is just a “pair of person.” The <code>T</code> is
+just a placeholder for a type that could be anything.</p>
+<p>Generics let us keep type safety while working with a variety of
+classes, without repetition. Type safety translates directly to things
+like:</p>
+<ul>
+<li>Better code completion</li>
+<li>Faster execution</li>
+<li>Less bugs</li>
+</ul>
+<h2>Try it now</h2>
+<p>I encourage you to create a generic class or method <em>right now</em>, if you
+still have 5 minutes to spare. Research suggests that <em>doing</em> (instead
+of just <em>reading</em> about) something makes learning a lot more effective.
+If you don’t have an idea on how to apply your new knowledge, and if you
+don’t mind working in Dart, I made a small <a href="https://dartpad.dartlang.org/99f502497a3fd2d42543323945ffeaf3">example for you to fix using
+generics</a>.</p>
+
+
+    <footer>
+      <a href="variable-shadowing.html" class="next">
+        Next Chapter: &ldquo;Variable Shadowing&rdquo; &rarr;
+      </a>
+    </footer>
+  </article>
+</div>
+
+    </body>
+</html>

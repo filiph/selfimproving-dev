@@ -34,6 +34,20 @@
         </li>
         {{/ part_2 }}
 
+        {{# part_3 }}
+        <li>
+          <a href="{{ file }}.html">{{ title }}</a>
+
+          <ul>
+            {{# chapters }}
+            <li>
+              <a href="{{ file }}.html">{{ title }}</a>
+            </li>
+            {{/ chapters }}
+          </ul>
+        </li>
+        {{/ part_3 }}
+
         {{! Add more parts as needed. }}
       </ul>
     </div>

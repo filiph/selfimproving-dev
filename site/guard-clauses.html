@@ -14,7 +14,7 @@
   <article class="chapter">
 
     <header>
-        <div class="number">3</div>
+        <div class="number">6</div>
         <h1>Guard Clauses</h1>
     </header>
 
@@ -51,7 +51,7 @@ to find the <code>if</code> statement all the way above, and then mentally flip
 the Boolean logic. Once again, you can imagine it only gets worse as
 the function grows in complexity.</li>
 </ul>
-<h2><a href="#solution" name="solution"><small>3&#8202;.&#8202;1</small> Solution</a></h2>
+<h2><a href="#solution" name="solution"><small>6&#8202;.&#8202;1</small> Solution</a></h2>
 <p>In situations like this, try using a <strong>guard clause</strong>. Observe:</p>
 <div class="codehilite"><pre>
 <span class="t">void</span> <span class="i">describeEating</span>(<span class="t">Item</span> <span class="i">item</span>) {
@@ -74,7 +74,7 @@ time in a <code>describeEating</code> function. The guard clause just does what&
 necessary (in our case, it prints a disgusted message), and bails out
 from the function with a <code>return</code>.</p>
 <p>Because it bails out, there is no need for an <code>else</code> statement.</p>
-<h2><a href="#benefits" name="benefits"><small>3&#8202;.&#8202;2</small> Benefits</a></h2>
+<h2><a href="#benefits" name="benefits"><small>6&#8202;.&#8202;2</small> Benefits</a></h2>
 <ul>
 <li>Guard clauses get rid of some of the indentation in your code, and
 some of the if-else spaghetti code.</li>
@@ -91,11 +91,11 @@ missed completely by readers, causing bugs down the line).</li>
 of returning normally. That way, you take care of the invalid states
 at the top of your function.</li>
 </ul>
-<h2><a href="#the-name" name="the-name"><small>3&#8202;.&#8202;3</small> The name</a></h2>
+<h2><a href="#the-name" name="the-name"><small>6&#8202;.&#8202;3</small> The name</a></h2>
 <p>I see guard clauses as brave knights who defend the rest of the function
 from bad or irrelevant visitors. They stand at the gates (the top of the
 function) as guards. So, the name fits well.</p>
-<h2><a href="#try-it-now" name="try-it-now"><small>3&#8202;.&#8202;4</small> Try it now</a></h2>
+<h2><a href="#try-it-now" name="try-it-now"><small>6&#8202;.&#8202;4</small> Try it now</a></h2>
 <p>I encourage you to try using a guard clause <em>right now</em>, if you still
 have 5 minutes to spare. Research suggests that <em>doing</em> (instead of just
 <em>reading</em> about) something makes learning a lot more effective. If you
@@ -106,8 +106,8 @@ clauses</a>.</p>
 
 
     <footer>
-      <a href="variable-shadowing.html" class="next">
-        Next Chapter: &ldquo;Variable Shadowing&rdquo; &rarr;
+      <a href="generics.html" class="next">
+        Next Chapter: &ldquo;Generics&rdquo; &rarr;
       </a>
     </footer>
   </article>
