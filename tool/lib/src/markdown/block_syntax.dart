@@ -36,6 +36,7 @@ class BookHeaderSyntax extends BlockSyntax {
 
     var link = Element("a", [
       if (!header.isSpecial) Element("small", [Text(number)]),
+      UnparsedContent(' '),
       UnparsedContent(header.name)
     ]);
     link.attributes["href"] = "#${header.anchor}";
