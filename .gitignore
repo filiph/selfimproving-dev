@@ -11,3 +11,6 @@ xcuserdata/
 # Dart stuff.
 /tool/.dart_tool/
 /tool/.packages
+
+# Obsidian
+.obsidian

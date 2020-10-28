@@ -18,7 +18,21 @@
               {{/ chapters }}
             </ul>
           </li>
-        {{/ part_1}}
+        {{/ part_1 }}
+
+        {{# part_2 }}
+        <li>
+          <a href="{{ file }}.html">{{ title }}</a>
+
+          <ul>
+            {{# chapters }}
+            <li>
+              <a href="{{ file }}.html">{{ title }}</a>
+            </li>
+            {{/ chapters }}
+          </ul>
+        </li>
+        {{/ part_2 }}
 
         {{! Add more parts as needed. }}
       </ul>

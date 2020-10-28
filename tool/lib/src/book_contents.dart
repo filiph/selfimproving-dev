@@ -5,8 +5,16 @@ const _tableOfContents = {
     'The Self-Improving Developer',
     'Table of Contents',
   ],
-  'First Part': [
+  'Start Here': [
+    "Let’s Keep Talking About Me, Though",
     'About',
+  ],
+  // Career
+  // Concepts (generics)
+  // Craft (code)
+  // Communication / Culture
+  'Code': [
+    'Guard Clauses',
   ],
   'Backmatter': [
     'Appendix I',

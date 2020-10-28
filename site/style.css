@@ -1,0 +1,288 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;900&display=swap");
+html {
+  line-height: 1.7;
+  font-family: Georgia, serif;
+  font-size: 20px;
+  color: #1a1a1a;
+  background-color: #fdfdfd;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 35em;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  hyphens: auto;
+  word-wrap: break-word;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 0.9em;
+    padding: 1em;
+  }
+}
+@media print {
+  body {
+    background-color: transparent;
+    color: black;
+  }
+
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
+}
+p {
+  margin-top: 1.7em;
+}
+
+a {
+  color: #1a1a1a;
+}
+
+a:visited {
+  color: #1a1a1a;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.7em;
+}
+
+ol, ul {
+  padding-left: 1.7em;
+  margin-top: 1.7em;
+}
+
+li > ol, li > ul {
+  margin-top: 0;
+}
+
+blockquote {
+  margin: 1.7em 0 1.7em 1.7em;
+  padding-left: 1em;
+  border-left: 2px solid #e6e6e6;
+  font-style: italic;
+}
+
+code {
+  font-family: Menlo, Monaco, "Lucida Console", Consolas, monospace;
+  background-color: #f0f0f0;
+  font-size: 85%;
+  margin: 0;
+  padding: 0.2em 0.4em;
+}
+
+pre {
+  line-height: 1.5em;
+  padding: 1em;
+  background-color: #f0f0f0;
+  overflow: auto;
+}
+
+pre code {
+  padding: 0;
+  overflow: visible;
+}
+
+hr {
+  background-color: #1a1a1a;
+  border: none;
+  height: 1px;
+  margin-top: 1.7em;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+th, td {
+  border-bottom: 1px solid lightgray;
+  padding: 1em 3em 1em 0;
+}
+
+header {
+  margin-bottom: 6em;
+  text-align: center;
+}
+
+nav a:not(:hover) {
+  text-decoration: none;
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+span.smallcaps {
+  font-variant: small-caps;
+}
+
+span.underline {
+  text-decoration: underline;
+}
+
+div.column {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+div.hanging-indent {
+  margin-left: 1.5em;
+  text-indent: -1.5em;
+}
+
+ul.task-list {
+  list-style: none;
+}
+
+pre > code.sourceCode {
+  white-space: pre;
+  position: relative;
+}
+
+pre > code.sourceCode > span {
+  display: inline-block;
+  line-height: 1.25;
+}
+
+pre > code.sourceCode > span:empty {
+  height: 1.2em;
+}
+
+code.sourceCode > span {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+div.sourceCode {
+  margin: 1em 0;
+}
+
+pre.sourceCode {
+  margin: 0;
+}
+
+@media screen {
+  div.sourceCode {
+    overflow: auto;
+  }
+}
+@media print {
+  pre > code.sourceCode {
+    white-space: pre-wrap;
+  }
+
+  pre > code.sourceCode > span {
+    text-indent: -5em;
+    padding-left: 5em;
+  }
+}
+pre.numberSource code {
+  counter-reset: source-line 0;
+}
+
+pre.numberSource code > span {
+  position: relative;
+  left: -4em;
+  counter-increment: source-line;
+}
+
+pre.numberSource code > span > a:first-child::before {
+  content: counter(source-line);
+  position: relative;
+  left: -1em;
+  text-align: right;
+  vertical-align: baseline;
+  border: none;
+  display: inline-block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: 0 4px;
+  width: 4em;
+  color: #aaaaaa;
+}
+
+pre.numberSource {
+  margin-left: 3em;
+  border-left: 1px solid #aaaaaa;
+  padding-left: 4px;
+}
+
+@media screen {
+  pre > code.sourceCode > span > a:first-child::before {
+    text-decoration: underline;
+  }
+}
+.display.math {
+  display: block;
+  text-align: center;
+  margin: 0.5rem auto;
+}
+
+.codehilite .k {
+  color: #007020;
+  font-weight: bold;
+}
+.codehilite .n {
+  color: #40a070;
+}
+.codehilite .s {
+  color: #4070a0;
+}
+.codehilite .e {
+  color: #bb6688;
+}
+.codehilite .c {
+  color: #60a0b0;
+  font-style: italic;
+}
+.codehilite .a {
+  color: #60a0b0;
+  font-weight: bold;
+  font-style: italic;
+}
+.codehilite .i {
+  color: #19177c;
+}
+.codehilite .t {
+  color: #902000;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 900;
+}
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+  font-weight: 300;
+  margin-right: 1em;
+}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 4em;
+  letter-spacing: -0.0415625em;
+  line-height: 1em;
+}

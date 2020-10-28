@@ -3,15 +3,17 @@
 <div class="page">
   <article class="chapter">
 
-    {{# has_number }}
-      <div class="number">{{ number }}</div>
-    {{/ has_number }}
-    {{# has_part }}
-      <h1>{{title}}</h1>
-    {{/ has_part }}
-    {{^ has_part }}
-      <h1 class="part">{{title}}</h1>
-    {{/ has_part }}
+    <header>
+      {{# has_number }}
+        <div class="number">{{ number }}</div>
+      {{/ has_number }}
+      {{# has_part }}
+        <h1>{{title}}</h1>
+      {{/ has_part }}
+      {{^ has_part }}
+        <h1 class="part">{{title}}</h1>
+      {{/ has_part }}
+    </header>
 
     {{{ body }}}
 

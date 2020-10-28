@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+        <title>Guard Clauses &middot; NAME OF YOUR PROJECT</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+
+        <link rel="icon" type="image/png" href="image/favicon.png" />
+    </head>
+    <body>
+<div class="page">
+  <article class="chapter">
+
+    <header>
+        <div class="number">3</div>
+        <h1>Guard Clauses</h1>
+    </header>
+
+    <p>Here&rsquo;s a very simple idea that can make your code a lot easier to read.
+First, take in the following function:</p>
+<div class="codehilite"><pre>
+<span class="t">void</span> <span class="i">describeEating</span>(<span class="t">Item</span> <span class="i">item</span>) {
+  <span class="k">if</span> (!<span class="i">item</span>.<span class="i">isFood</span>) {
+    <span class="i">print</span>(<span class="s">&quot;Wait, that&#39;s not even food!&quot;</span>);
+  } <span class="k">else</span> {
+    <span class="k">if</span> (<span class="i">item</span>.<span class="i">isDelicious</span>) {
+      <span class="i">print</span>(<span class="s">&quot;Hmm, that was good.&quot;</span>);
+    } <span class="k">else</span> {
+      <span class="i">print</span>(<span class="s">&quot;Not bad. Nutritious.&quot;</span>);
+    }
+  }
+}
+</pre></div>
+<p><em>(Snippets on this blog are generally in Dart, but I take care that
+they&rsquo;re simple enough that you&rsquo;ll understand them even if you&rsquo;ve never
+seen a single line of Dart code. Dart being a
+<a href="https://selfimproving.dev/the-power-of-boring/">boring</a> programming
+language helps.)</em></p>
+<p>The code is not bad. There is no bug. But note how the main part of the
+function, the part that deals with food, is already indented, and
+follows an <code>else</code> keyword.</p>
+<ul>
+<li>The indentation is not a big deal now, but if the function grows in
+size, and if there are several if-statements like the one above, you
+can imagine it can become somewhat unwieldy.</li>
+<li>The fact that the &ldquo;happy path&rdquo; of the function (the case in which
+the item is edible) follows an <code>else</code> statement requires the reader
+to find the <code>if</code> statement all the way above, and then mentally flip
+the Boolean logic. Once again, you can imagine it only gets worse as
+the function grows in complexity.</li>
+</ul>
+<h2><a href="#solution" name="solution"><small>3&#8202;.&#8202;1</small> Solution</a></h2>
+<p>In situations like this, try using a <strong>guard clause</strong>. Observe:</p>
+<div class="codehilite"><pre>
+<span class="t">void</span> <span class="i">describeEating</span>(<span class="t">Item</span> <span class="i">item</span>) {
+  <span class="k">if</span> (!<span class="i">item</span>.<span class="i">isFood</span>) {
+    <span class="i">print</span>(<span class="s">&quot;Wait, that&#39;s not even food!&quot;</span>);
+    <span class="k">return</span>;
+  }
+
+  <span class="k">if</span> (<span class="i">item</span>.<span class="i">isDelicious</span>) {
+    <span class="i">print</span>(<span class="s">&quot;Hmm, that was good.&quot;</span>);
+  } <span class="k">else</span> {
+    <span class="i">print</span>(<span class="s">&quot;Not bad. Nutritious.&quot;</span>);
+  }
+}
+</pre></div>
+<p>The if-statement at the top is our guard clause. It checks for a
+condition that would make all the logic below it meaningless. If it&rsquo;s
+not food we&rsquo;re eating, then we obviously don&rsquo;t want to spend a lot of
+time in a <code>describeEating</code> function. The guard clause just does what&rsquo;s
+necessary (in our case, it prints a disgusted message), and bails out
+from the function with a <code>return</code>.</p>
+<p>Because it bails out, there is no need for an <code>else</code> statement.</p>
+<h2><a href="#benefits" name="benefits"><small>3&#8202;.&#8202;2</small> Benefits</a></h2>
+<ul>
+<li>Guard clauses get rid of some of the indentation in your code, and
+some of the if-else spaghetti code.</li>
+<li>They make it clear to the reader what the invalid values and edge
+cases are.</li>
+<li>They can get rid of some very, very long if-statements (think <code>if</code>
+at the top of a function, and then twenty lines of code inside that
+conditional block).</li>
+<li>By having guard clauses at the beginning of the function, you avoid
+having <code>return</code> statements and <code>throw</code> statements in the middle of
+functions (those are really hard to reason about, and are often
+missed completely by readers, causing bugs down the line).</li>
+<li>As hinted above, you can also use guard clauses to <code>throw</code> instead
+of returning normally. That way, you take care of the invalid states
+at the top of your function.</li>
+</ul>
+<h2><a href="#the-name" name="the-name"><small>3&#8202;.&#8202;3</small> The name</a></h2>
+<p>I see guard clauses as brave knights who defend the rest of the function
+from bad or irrelevant visitors. They stand at the gates (the top of the
+function) as guards. So, the name fits well.</p>
+<h2><a href="#try-it-now" name="try-it-now"><small>3&#8202;.&#8202;4</small> Try it now</a></h2>
+<p>I encourage you to try using a guard clause <em>right now</em>, if you still
+have 5 minutes to spare. Research suggests that <em>doing</em> (instead of just
+<em>reading</em> about) something makes learning a lot more effective. If you
+don&rsquo;t have an idea on how to apply your new knowledge, and if you don&rsquo;t
+mind working in Dart, I made a small <a href="https://dartpad.dartlang.org/6f56709c39c594413ed6af61d0c4f73c">example for you to refactor using
+guard
+clauses</a>.</p>
+
+
+    <footer>
+      <a href="backmatter.html" class="next">
+        Next Part: &ldquo;Backmatter&rdquo; &rarr;
+      </a>
+    </footer>
+  </article>
+</div>
+
+    </body>
+</html>
