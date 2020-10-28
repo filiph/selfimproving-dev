@@ -88,3 +88,9 @@ To convert from HTML to Markdown using `pandoc`, do this:
 ```sh
 pandoc -i some_file.html -o book/final-article-name.md 
 ```
+
+On a Mac and with some HTML in your clipboard:
+
+```sh
+pbpaste | pandoc -f html -t gfm --shift-heading-level-by=-1 -o book/final-article-name.md
+``` 
