@@ -66,7 +66,7 @@ class Page {
   List<String> get lines => _ensureFile().lines;
 
   String get template {
-    if (title == "Crafting Interpreters") return "index";
+    if (title == "The Self-Improving Developer") return "index";
     if (title == "Table of Contents") return "contents";
     return "page";
   }

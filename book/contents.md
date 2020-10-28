@@ -1,1 +1,3 @@
-This text is not used. All of the content is in the contents.html template.
+Not used. Overwritten by `mustache/contents.html`.
+
+To change contents, edit `tool/lib/src/book_contents.dart`.

@@ -2,13 +2,8 @@
 .sass-cache/
 /build/
 /gen/
-clox
 *.class
-exercises/chapter01_introduction/3/linked_list
 .idea/
-
-# I keep a scratch file at the top level to try stuff out.
-temp.lox
 
 # XCode user-specific stuff.
 xcuserdata/

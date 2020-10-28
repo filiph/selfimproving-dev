@@ -46,8 +46,10 @@ void _buildPages({bool skipUpToDate = false}) {
 
   DateTime dependenciesModified;
   if (skipUpToDate) {
-    dependenciesModified = _mostRecentlyModified(
-        ["asset/mustache/*.html", "c/*.{c,h}", "java/**.java"]);
+    dependenciesModified = _mostRecentlyModified([
+      "asset/mustache/*.html",
+      // Add other globs. For example, source files.
+    ]);
   }
 
   var totalWords = 0;

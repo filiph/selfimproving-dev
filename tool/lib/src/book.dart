@@ -1,3 +1,5 @@
+library book;
+
 import 'code_tag.dart';
 import 'location.dart';
 import 'page.dart';
@@ -8,52 +10,7 @@ import 'text.dart';
 import 'package:glob/glob.dart';
 import 'package:path/path.dart' as p;
 
-const _tableOfContents = {
-  '': [
-    'Crafting Interpreters',
-    'Table of Contents',
-  ],
-  'Welcome': [
-    'Introduction',
-    'A Map of the Territory',
-    'The Lox Language',
-  ],
-  'A Tree-Walk Interpreter': [
-    'Scanning',
-    'Representing Code',
-    'Parsing Expressions',
-    'Evaluating Expressions',
-    'Statements and State',
-    'Control Flow',
-    'Functions',
-    'Resolving and Binding',
-    'Classes',
-    'Inheritance',
-  ],
-  'A Bytecode Virtual Machine': [
-    'Chunks of Bytecode',
-    'A Virtual Machine',
-    'Scanning on Demand',
-    'Compiling Expressions',
-    'Types of Values',
-    'Strings',
-    'Hash Tables',
-    'Global Variables',
-    'Local Variables',
-    'Jumping Back and Forth',
-    'Calls and Functions',
-    'Closures',
-    'Garbage Collection',
-    'Classes and Instances',
-    'Methods and Initializers',
-    'Superclasses',
-    'Optimization',
-  ],
-  'Backmatter': [
-    'Appendix I',
-    'Appendix II',
-  ],
-};
+part 'book_contents.dart';
 
 /// The contents of the Markdown and source files for the book, loaded and
 /// parsed.
@@ -107,7 +64,7 @@ class Book {
     }
 
     // Load the source files.
-    for (var language in ["java", "c"]) {
+    for (var language in <String>[] /* ["java", "c"] */) {
       for (var file in Glob("$language/**.{c,h,java}").listSync()) {
         var shortPath = p.relative(file.path, from: language);
         var sourceFile = SourceFileParser(this, file.path, shortPath).parse();

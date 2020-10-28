@@ -17,7 +17,7 @@ String pretty(String text) {
 
 /// Converts [text] to a string suitable for use as a file or anchor name.
 String toFileName(String text) {
-  if (text == "Crafting Interpreters") return "index";
+  if (text == "The Self-Improving Developer") return "index";
   if (text == "Table of Contents") return "contents";
 
   // Hack. The introduction has a *subheader* named "Challenges" distinct from
