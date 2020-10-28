@@ -4,6 +4,7 @@ import 'rule.dart';
 final languages = {
   "c": c,
   "c++": cpp,
+  "dart": dart,
   "ebnf": ebnf,
   "java": java,
   "js": js,
@@ -27,6 +28,23 @@ final cpp = Language(
   keywords: _cKeywords,
   types: "vector string",
   rules: _cRules,
+);
+
+final dart = Language(
+  keywords: "abstract else import super as enum in switch assert export "
+      "interface sync async extends is this await extension library throw "
+      "break external mixin true case factory new try catch false null typedef "
+      "class final on var const finally operator void continue for part while "
+      "covariant Function rethrow with default get return yield deferred hide "
+      "set do if show dynamic implements static",
+  types: "bool double int num void",
+  rules: [
+    // Annotation.
+    Rule(r"@[a-zA-Z_][a-zA-Z0-9_]*", "a"),
+
+    ..._commonRules,
+    _characterRule,
+  ],
 );
 
 final ebnf = Language(
