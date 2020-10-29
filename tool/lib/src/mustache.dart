@@ -67,7 +67,6 @@ class Mustache {
       // TODO: Only need this for contents page.
       "part_1": _makePartData(book, 0),
       "part_2": _makePartData(book, 1),
-      "part_3": _makePartData(book, 2),
     };
 
     return _load(template ?? page.template).renderString(data);

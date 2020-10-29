@@ -19,16 +19,15 @@ const _tableOfContents = {
     'Technical Writing',
     'How Google Builds Web Frameworks',
     'The ‘Hello World’ Fallacy',
+    'Guard Clauses',
+    'Generics',
+    'Variable Shadowing',
   ],
   // Career
   // Concepts (generics)
   // Craft (code)
   // Communication / Culture
-  'Code': [
-    'Guard Clauses',
-    'Generics',
-    'Variable Shadowing',
-  ],
+  // Code
   'Backmatter': [
     'Appendix I',
   ],

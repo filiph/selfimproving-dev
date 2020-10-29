@@ -78,3 +78,5 @@ And at some point, someone will ask you why you’re doing what you’re
 doing. Why are you sitting in front of the computer for hours on end,
 biting your lip, staring at a screen full of gibberish? And you know
 what you’ll tell them.
+
+<!-- TODO: maybe address the "bad planning" guy? https://www.reddit.com/r/programming/comments/hia18z/programming_is_fun/fwf5hbi/?context=3 - instead of feeling superior, maybe think that you're not practicing hard enough -->

@@ -1,5 +1,17 @@
 
 #mc_embed_signup {
+  background-color: #eeeeee;
+  padding: 2em 30% 3em;
   margin-top: 5em;
   text-align: center;
+
+  font-family: 'Inter',
+    -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", Helvetica,
+    sans-serif;
+  font-weight: 300;
+
+  .form-explanation {
+    font-weight: 900;
+  }
 }
