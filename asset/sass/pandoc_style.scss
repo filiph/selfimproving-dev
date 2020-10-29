@@ -14,7 +14,8 @@ body {
   padding-right: 50px;
   padding-top: 50px;
   padding-bottom: 50px;
-  hyphens: auto;
+  // Removed auto-hyphens. It's too aggressive.
+  // hyphens: auto;
   word-wrap: break-word;
   text-rendering: optimizeLegibility;
   font-kerning: normal;

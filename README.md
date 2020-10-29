@@ -83,6 +83,17 @@ browser to see the changes.
 
 ## Useful hints
 
+### Building web scripts
+
+There are some scripts written in Dart that make the web reading experience
+a bit better. To build one, do something like this:
+
+```sh
+dart2js web/index.dart -o site/index.dart.js -m -O4 --csp
+```
+
+### Converting from HTML to Markdown
+
 To convert from HTML to Markdown using `pandoc`, do this:
 
 ```sh

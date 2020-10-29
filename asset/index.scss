@@ -2,3 +2,31 @@
 
 @use 'sass/pandoc_style';
 @use 'sass/fonts';
+
+#switcher {
+  transition: opacity 200ms;
+
+  &.invisible {
+    opacity: 0;
+  }
+}
+
+.start-here {
+  text-align: center;
+  padding: 2em;
+
+  a {
+    font-family: 'Inter',
+      -apple-system, BlinkMacSystemFont,
+      "Helvetica Neue", Helvetica,
+      sans-serif;
+    font-weight: 900;
+    font-size: larger;
+    text-decoration: none;
+
+    border: 1px dashed gray;
+    padding: 1em 2em 1em;
+
+  }
+}
+

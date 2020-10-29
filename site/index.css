@@ -14,7 +14,6 @@ body {
   padding-right: 50px;
   padding-top: 50px;
   padding-bottom: 50px;
-  hyphens: auto;
   word-wrap: break-word;
   text-rendering: optimizeLegibility;
   font-kerning: normal;
@@ -256,4 +255,24 @@ h1 {
   font-size: 4em;
   letter-spacing: -0.0415625em;
   line-height: 1em;
+}
+
+#switcher {
+  transition: opacity 200ms;
+}
+#switcher.invisible {
+  opacity: 0;
+}
+
+.start-here {
+  text-align: center;
+  padding: 2em;
+}
+.start-here a {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: larger;
+  text-decoration: none;
+  border: 1px dashed gray;
+  padding: 1em 2em 1em;
 }

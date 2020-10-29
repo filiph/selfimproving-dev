@@ -5,7 +5,16 @@
 
     <header>
       {{# has_number }}
-        <div class="number">{{ number }}</div>
+        <div class="number">
+          {{# has_part }}
+            Chapter
+          {{/ has_part }}
+          {{^ has_part }}
+            Part
+          {{/ has_part }}
+
+          {{ number }}
+        </div>
       {{/ has_number }}
       {{# has_part }}
         <h1>{{title}}</h1>
@@ -24,6 +33,9 @@
       </a>
       {{/ has_next }}
     </footer>
+
+    {{> mailchimp }}
+
   </article>
 </div>
 

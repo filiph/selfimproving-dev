@@ -37,6 +37,7 @@ class Mustache {
     }
 
     var data = <String, dynamic>{
+      "site_name": 'The Self-Improving Developer',
       "has_title": page.title != null,
       "title": page.title,
       "has_part": part != null,
