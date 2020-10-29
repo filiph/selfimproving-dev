@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+        <title>The ‘Hello World’ Fallacy &middot; The Self-Improving Developer</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+
+        <link rel="icon" type="image/png" href="images/favicon.png" />
+    </head>
+    <body>
+<div class="page">
+  <article class="chapter">
+
+    <header>
+      <div class="site-link">
+        <p><a href="/">The Self-Improving Developer</a></p>
+      </div>
+
+        <div class="number">
+            Chapter
+
+          10
+        </div>
+        <h1>The ‘Hello World’ Fallacy</h1>
+    </header>
+
+    <blockquote>
+<p>The way we present tech can lead to bad tech stack decisions</p>
+</blockquote>
+<p>Here’s how you get most people excited about a new programming language,
+framework, or SDK: you show how it makes <em>something simple</em> even
+simpler.</p>
+<p>The epitome of this is the ‘hello world’ program or the TODO app.</p>
+<p>People get excited when you show them how to go from scratch to a simple
+app in five minutes. It’s effective. It’s easy to do. It’s cool. It can
+be jaw-dropping. But it’s also dishonest. I call it the ‘Hello World’
+Fallacy.</p>
+<p>The problem with it is hopefully obvious: <strong>most developers, most of the
+time, don’t write hello world apps</strong>. The more productive and the more
+senior the developer is, the less they’re starting simple projects from
+scratch, and the more they’re maintaining huge applications.</p>
+<p>With large, ongoing software projects, a lot of the features that help
+with simple demo apps become irrelevant. Or worse, they become
+disadvantages and bottlenecks, and sometimes downright obstacles to any
+further development.</p>
+<p>A classic example of this is the sliding scale of readability versus
+writability. For a demo, it’s cool and useful to be able to express a
+lot in one line. Even better if you do it in some clever way. For a
+large software project, though, <em>that same feature</em> can have nightmarish
+consequences.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_SbOBuwRZFTi1tfh22u0lrg.gif" title="1_SbOBuwRZFTi1tfh22u0lrg.gif" width="400" height="330" alt="1 SbOBuwRZFTi1tfh22u0lrg" />
+<p>Another example is project setup. A framework that is easy to get
+started with is perfect for demos. But sometimes (sometimes!) the
+effortlessness comes with a price: there’s some weird magic going on
+that you’ll hit much later, or it’s hard to configure when you try to do
+some serious work.</p>
+<p>To clarify: I’m <em>not</em> saying that frameworks and libraries and SDKs
+shouldn’t strive for the easiest setup process possible. I’m just saying
+that they sometimes optimize for it to the detriment of more important
+considerations.</p>
+<p>I could go on with different design decisions that look one way with a
+demo, and completely opposite way with a large project.</p>
+<p>I don’t know how to fix this. I guess awareness helps. The next time you
+see someone show you something simple with a cool new tech, try and
+imagine how that feature scales in a 100KLOC+ project. (That’s
+a <em>lot</em> of imagination, to be sure.) The next time you’re furious with
+some tech that it takes <em>ages</em> to set up correctly, think about the
+number of times you’ll be setting it up, versus the time spent actually
+building your projects afterwards.</p>
+<p>But it’s not just about the audience, of course. The ‘Hello World’
+Fallacy is something that speakers/bloggers should be aware of, and
+ideally, something they will then avoid. I, for one, have been trying to
+steer clear of TODO apps and hello worlds in my presentations and
+blogposts for a few years now. When I do live coding demos, I try to
+show how to maintain (or add a feature to) an existing project.</p>
+<p>It’s less ‘sexy’, more error-prone, and generally harder. But it’s also
+more honest and, in the long run, more useful to the audience.</p>
+<p><em>(This article initially appeared on my Medium account.)</em></p>
+
+
+    <footer>
+      <a href="code.html" class="next">
+        &raquo; Continue to the Next Part (<strong>&ldquo;Code&rdquo;</strong>)
+      </a>
+    </footer>
+
+    <!-- Begin Mailchimp Signup Form -->
+    <div id="mc_embed_signup">
+        <form action="https://dev.us10.list-manage.com/subscribe/post?u=3b4bee48cadbd0a905cc17809&amp;id=72521d8f09" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+            <div id="mc_embed_signup_scroll">
+                <h3>I can send you a short email when there’s a new chapter</h3>
+                <div class="mc-field-group">
+                    <label for="mce-EMAIL">Email Address </label>
+                    <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"  placeholder="Your email address" required="">
+                </div>
+                <div id="mce-responses" class="clear">
+                    <div class="response" id="mce-error-response" style="display:none"></div>
+                    <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_3b4bee48cadbd0a905cc17809_72521d8f09" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+            </div>
+        </form>
+    </div>
+    
+    <!--End mc_embed_signup-->
+    
+    <!-- <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-36" method="post" data-id="36" data-name="Newsletter sign-up"><div class="mc4wp-form-fields"><h5> I can send you a short email when there’s a new post</h5><p> <label style="font-size: 100%" for="email-signup">Email address:</label></p><p> <input id="email-signup" type="email" name="EMAIL" placeholder="Your email address" required=""></p><p> <input type="submit" value="Okay"></p><p> (You can obviously unsubscribe at any time.)</p></div><label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off"></label><input type="hidden" name="_mc4wp_timestamp" value="1603929341"><input type="hidden" name="_mc4wp_form_id" value="36"><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1"><div class="mc4wp-response"></div></form> -->
+
+  </article>
+</div>
+
+    </body>
+</html>

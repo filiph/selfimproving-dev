@@ -9,6 +9,7 @@ html {
 }
 body {
   margin: 0 auto;
+  margin-bottom: 10em; // Adding a bit more whitespace to the bottom.
   max-width: 35em; // This was 40em in the original pandoc CSS.
   padding-left: 50px;
   padding-right: 50px;

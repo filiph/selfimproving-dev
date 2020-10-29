@@ -2,7 +2,9 @@ This book is an attempt to bridge the gap between the *“I
 can write code”* level and the *“I understand reified types”* level of
 software development.
 
-Basically, this is the intermediate developer’s book. Most content out
+The focus is on breath over depth. After reading this book, you'll have a good overview of the things that a good Software Engineer encounters in about the first 10 years of experience. You will have an intuitive understanding of these topics. You will not become an expert in fuzzy logic or backtracking, but you'll know what people mean when they say those words.
+
+Basically, this is an intermediate developer's guide. Most content out
 there is either for beginners (because that’s the largest audience),
 *or* it seems to assume you’re a senior software engineer with 20 years
 of experience (because, that’s the profile of the people who write these
@@ -17,5 +19,3 @@ machines](https://en.wikipedia.org/wiki/Self-replicating_machine),
 [self-modifying
 code](https://en.wikipedia.org/wiki/Self-modifying_code), and other cool
 self-\* stuff.
-
-I list my other projects over at [filiph.net](https://filiph.net).

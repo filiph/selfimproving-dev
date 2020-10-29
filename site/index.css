@@ -9,6 +9,7 @@ html {
 
 body {
   margin: 0 auto;
+  margin-bottom: 10em;
   max-width: 35em;
   padding-left: 50px;
   padding-right: 50px;
@@ -255,6 +256,15 @@ h1 {
   font-size: 4em;
   letter-spacing: -0.0415625em;
   line-height: 1em;
+}
+
+#mc_embed_signup {
+  margin-top: 5em;
+  text-align: center;
+}
+
+.highlight {
+  background-color: yellow;
 }
 
 #switcher {

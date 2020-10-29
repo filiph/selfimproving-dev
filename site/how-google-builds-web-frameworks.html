@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+        <title>How Google Builds Web Frameworks &middot; The Self-Improving Developer</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+
+        <link rel="icon" type="image/png" href="images/favicon.png" />
+    </head>
+    <body>
+<div class="page">
+  <article class="chapter">
+
+    <header>
+      <div class="site-link">
+        <p><a href="/">The Self-Improving Developer</a></p>
+      </div>
+
+        <div class="number">
+            Chapter
+
+          9
+        </div>
+        <h1>How Google Builds Web Frameworks</h1>
+    </header>
+
+    <p><em>(This article originally appeared on freeCodeCamp / Medium.com, in
+February 2017.)</em></p>
+<p>It’s <a href="http://cacm.acm.org/magazines/2016/7/204032-why-google-stores-billions-of-lines-of-code-in-a-single-repository/fulltext">public
+knowledge</a> that
+Google uses a single repository to share code — all 2 billion lines of
+it — and that it uses the trunk-based development paradigm.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_3hPZNDocbp68XsbsJoZ-iQ.jpg" title="1_3hPZNDocbp68XsbsJoZ-iQ.jpg" width="370" height="235" alt="1 3hPZNDocbp68XsbsJoZ iQ" />
+<p><em>(This is easily one of the largest single code repositories in the
+world. <a href="http://cacm.acm.org/magazines/2016/7/204032-why-google-stores-billions-of-lines-of-code-in-a-single-repository/fulltext">Source</a>.)</em></p>
+<p>This is easily one of the largest single code repositories in the
+world. Source. For many developers outside the company, this is
+surprising and counterintuitive, but it works really well. (The article
+linked above gives good examples, so I won’t repeat them here.)</p>
+<blockquote>
+<p>Google’s codebase is shared by more than 25,000 Google software
+developers from dozens of offices in countries around the world. On a
+typical workday, they commit 16,000 changes to the codebase. (</p>
+<p><a href="http://cacm.acm.org/magazines/2016/7/204032-why-google-stores-billions-of-lines-of-code-in-a-single-repository/fulltext">source</a></p>
+<p>)</p>
+</blockquote>
+<p>This article is about the specifics of building an open source web
+framework (<a href="https://webdev.dartlang.org/angular">AngularDart</a>) in this
+context.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_42xyxKFKI9a0j0BWuHGIHg-1.jpg" title="1_42xyxKFKI9a0j0BWuHGIHg.jpg" width="598" height="351" alt="1 42xyxKFKI9a0j0BWuHGIHg" />
+*(‘Human users’ means software engineers committing code at Google. (As
+opposed to source generation
+tools.) [Source](http://cacm.acm.org/magazines/2016/7/204032-why-google-stores-billions-of-lines-of-code-in-a-single-repository/fulltext).)*
+<h2>Only one version</h2>
+<p>When you employ trunk-based development in a single huge repo, you have
+only one version of everything. That’s kind of obvious. It’s still good
+to point it out here, though, because it means that — at Google — you
+can’t have app FooBar that’s using AngularDart 2.2.1 and another app
+BarFoo that’s on 2.3.0. Both apps must be on the same version — the
+latest one.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/06/0_vdQqatZdTxZ9CUDs.png" title="0_vdQqatZdTxZ9CUDs.png" width="597" height="179" alt="0 vdQqatZdTxZ9CUDs" /> 
+<p><em>(Illustrative image taken
+from <a href="https://trunkbaseddevelopment.com/">trunkbaseddevelopment.com</a>.)</em></p>
+<p>That’s why Googlers sometimes say that all software at Google lives on
+the bleeding edge.</p>
+<p>If your entire soul screams ‘dangerous!’ right now, that’s
+understandable. Depending on the trunk (‘master’ in git terminology) of
+a library with your production code sure sounds dangerous. But there’s a
+plot twist ahead.</p>
+<h2>74 thousand tests per commit</h2>
+<p>AngularDart defines 1601 tests
+(<a href="https://github.com/dart-lang/angular2/tree/master/test">here</a>). But
+when you’re committing a change to AngularDart code in the Google
+repository, it also runs tests for <em>everyone at Google who depends on
+the framework</em>. At the moment, that’s about 74 thousand tests (depending
+on how big your change is — a heuristic skips tests that the system
+knows you’re not affecting).</p><img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_5VjjBOiVq74495vLAKctOg.png" title="1_5VjjBOiVq74495vLAKctOg.png" width="600" height="371" alt="1 5VjjBOiVq74495vLAKctOg" />
+It’s good to have more tests.
+<p>I just made a change that only manifests itself 5% of the time,
+simulating something like a race condition in the change detection
+reinsertion verification algorithm (I
+added <code>&amp;&amp; random.nextDouble() &gt; .05</code> to <a href="https://github.com/dart-lang/angular2/blob/v2.1.0/lib/src/core/change_detection/differs/default_iterable_differ.dart#L386">this if
+statement</a>).
+It did not manifest in any of the 1601 tests when I ran them (once). But
+it did break a bunch of client tests.</p>
+<p>The real value here, though, is that those are tests of <em>actual apps</em>.
+Not only are they numerous, they’re also reflecting how the framework is
+used by developers (not just the framework authors). This is
+significant: framework owners don’t always correctly estimate how their
+framework is being used.</p>
+<p>It also helps that those apps are in production, and billions of dollars
+flow through them each month. There’s a big difference between demo apps
+that a framework author puts together in his spare time, and real
+production apps with tens or hundreds of person-years invested in them.
+If the web is to be relevant in the future, we need to better support
+development of the latter.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_DrJBfzzSTkGdmrlu6OnYfA.png" title="1_DrJBfzzSTkGdmrlu6OnYfA.png" width="597" height="245" alt="1 DrJBfzzSTkGdmrlu6OnYfA" />
+<p>So what happens if the framework breaks some of the apps that are built
+on it?</p>
+<h2>You break it, you fix it</h2>
+<p>When AngularDart authors want to introduce a breaking change, <em>they have
+to go and fix it for their users</em>. Since everything at Google lives in a
+single repo, it’s trivial to find out whom they’re breaking, and they
+can start fixing right away.</p>
+<p>Any breaking change to AngularDart also includes all the fixes to that
+change in all the Google apps that depend on it. So the breakage and the
+fix go into the repo simultaneously and — of course — after proper code
+review by all affected parties.</p>
+<p>Let’s give a concrete example. When someone from the AngularDart team
+makes a change that affects code in the AdWords app, they go to that
+app’s source code and fix it. They can run AdWords’ existing tests in
+the process, and they can add new ones. Then, they put all of that into
+their change list and ask for review. Since their change list touches
+code in both the AngularDart repo and the AdWords repo, the system
+automatically requires code review approval from both of those teams.
+Only then can the change be submitted.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_kbwhvH4lz1B-jRHBCEvAcA.png" title="1_kbwhvH4lz1B-jRHBCEvAcA.png" width="598" height="443" alt="1 kbwhvH4lz1B jRHBCEvAcA" />
+This has the obvious effect of preventing framework development in a
+vacuum. AngularDart framework developers have access to millions of
+lines of code that are built with their platform, and they regularly
+touch that code themselves. They don’t need to assume how their
+framework is used. (The obvious caveat is that they only see the Google
+code and not the code of all the Workivas, Wrikes and StableKernels of
+the world that also use AngularDart.)
+<p>Having to upgrade your users’ code also slows development down. Not as
+much as you may think (look at AngularDart’s progress since October),
+but it still slows things down. That’s both good and bad, depending on
+what you want from a framework. We’ll get back to that.</p>
+<p>Anyway. The next time someone at Google says that an alpha version of
+some library is stable and in production, now you know why.</p>
+<h2>Large scale changes</h2>
+<p>What if AngularDart needs to make a major breaking change (say, going
+from 2.x to 3.0) and that change breaks 74 thousand tests? Will the team
+go and fix all of them? Will they make changes to <em>thousands</em> of source
+files, most of which they haven’t authored?</p>
+<p>Yes.</p>
+<p>One of the cool things about having a <a href="https://dart.dev/guides/language/type-system">sound type
+system</a> is that your
+tooling can be much more useful. In sound Dart, tools can be sure that a
+variable is of a certain type, for example. For refactoring, that means
+that many changes can be completely automatic, with no need of
+confirmation from the developer.</p>
+<p>When a method on class Foo changes from bar() to baz(), you can create a
+tool that goes through the entirety of the single Google repository,
+finds all instances of <em>that</em> Foo class and its subclasses, and changes
+all mentions of bar() to baz(). With Dart’s sound type system, you can
+be sure this won’t break anything. Without sound types, even such a
+simple change can get you in trouble.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_yxqdl9CBoB48XG0avf4piQ.gif" title="1_yxqdl9CBoB48XG0avf4piQ.gif" width="500" height="549" alt="1 yxqdl9CBoB48XG0avf4piQ" />
+*(One keystroke and your code is formatted according to Dart [style
+guide](https://www.dartlang.org/guides/language/effective-dart/style#formatting).
+In fact, the guide states: “The official whitespace-handling rules for
+Dart are **whatever dart\_style produces**.”)*
+<p>Another thing that helps with large scale changes
+is <a href="https://github.com/dart-lang/dart_style">dart_style</a>, Dart’s
+default formatter. All Dart code at Google is formatted using this tool.
+By the time your code reaches reviewers, it has been auto-formatted
+using dart_style, so there are no arguments about whether to put the
+newline here or there. And that applies to large scale refactors as
+well.</p>
+<h2>Performance metrics</h2>
+<p>As I said above, AngularDart benefits from its dependents’ tests. But
+it’s not just tests. Google is very rigorous about measuring performance
+of its apps, and so most (all?) production apps have benchmark suites.</p>
+<p>So when the AngularDart team introduces a change that makes AdWords 1%
+slower to load, they know <em>before</em> landing the change. When the
+team <a href="https://www.youtube.com/watch?list=PLOU2XLYxmsILKY-A1kq4eHMcku3GMAyp2&v=8ixOkJOXdMo">said</a> in
+October that AngularDart apps got 40% smaller and 10% faster since
+August, they were not talking about some synthetic tiny TodoMVC example
+apps. They were talking about real-life, mission-critical, production
+apps with millions of users and megabytes of business logic code.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_FFPofhArfE_q-ppyTkDniA.png" title="1_FFPofhArfE_q-ppyTkDniA.png" width="600" height="270" alt="1 FFPofhArfE q ppyTkDniA" />
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<p>Side note: Hermetic build tool You may be wondering: how did this guy
+know which tests in the huge internal repository to run after
+introducing the flaky bug in AngularDart? Surely he wasn’t hand-picking
+the 74 thousand tests, and just as surely he wasn’t running <em>all</em> the
+tests at Google. The answer lies in something called Bazel.</p>
+<p>At this scale, you can’t have a series of shell scripts to build stuff.
+Things would be flaky and prohibitively slow. What you need is a
+hermetic build tool.</p>
+<p>“Hermetic” in this context is very similar to
+“<a href="https://en.wikipedia.org/wiki/Pure_function">pure</a>” in the context of
+functions. Your build steps cannot have side effects (like temp files,
+changes to PATH etc.), and they must be deterministic (same input always
+leads to the same output). When that’s the case, you can run the builds
+and the tests on any machine at any time and you’ll get consistent
+output. You don’t need to make clean. You can therefore send your
+builds/tests to build servers and parallelize them.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_sq_8UFpeBsxSIpBXpmWiSg.png" title="1_sq_8UFpeBsxSIpBXpmWiSg.png" width="446" height="284" alt="1 sq 8UFpeBsxSIpBXpmWiSg" />
+Google has spent years developing such a build tool. It was open sourced
+last year as [Bazel](https://bazel.build/).
+<p>And thanks to this piece of infrastructure, internal testing tools can
+determine which builds/tests each change affects, and run them when
+appropriate.</p>
+<h2>What does it all mean?</h2>
+<p>AngularDart’s explicit goal is to be best-in-class in productivity,
+performance and dependability for building large web applications. This
+post hopefully covers the last part — dependability — and why it’s
+important that mission-critical Google apps like AdWords and AdSense are
+using the framework. It’s not just the team boasting about their
+users — as explained above, having large internal users makes
+AngularDart less likely to introduce superficial changes. It makes the
+framework more dependable.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_BjhLEoihrMr6eRcTYL50ag-1.png" title="1_BjhLEoihrMr6eRcTYL50ag-1.png" width="598" height="232" alt="1 BjhLEoihrMr6eRcTYL50ag 1" />
+<p>If this all sounds too business-y, you could check out my
+decidedly-non-business AngularDart projects like <a href="https://filiph.github.io/markov/">Automatic Donald
+Trump</a> (Markov chain)
+or <a href="https://filiph.github.io/prime_finder/">Prime Finder</a>.</p>
+<p>If you’re looking for a framework that makes major overhauls and
+introduces major features every few months, AngularDart is definitely
+not for you. Even if the team wanted to build the framework in such a
+way, I think it’s clear from this article that they couldn’t. We
+sincerely believe, though, that there is space for a framework that is
+less trendy but dependable.</p>
+<p>In my opinion, the best prediction of long-term support of an
+open-source tech stack is that it’s a big part of the primary
+maintainer’s business. Take Android, dagger, MySQL, or git as examples.
+That’s why I’m glad that Dart finally has one preferred web framework
+(AngularDart), one preferred component library (<a href="https://pub.dartlang.org/packages/angular2_components">AngularDart
+Components</a>) and
+one preferred mobile framework (<a href="https://flutter.io/">Flutter</a>) — all of
+which are used to build business-critical Google apps.</p>
+<p><em>[<a href="https://medium.com/@matanlurey">Matan Lurey</a> and Kathy Walrath
+contributed to this article.]</em></p>
+
+
+    <footer>
+      <a href="the-hello-world-fallacy.html" class="next">
+        &raquo; Continue to the Next Chapter (<strong>&ldquo;The ‘Hello World’ Fallacy&rdquo;</strong>)
+      </a>
+    </footer>
+
+    <!-- Begin Mailchimp Signup Form -->
+    <div id="mc_embed_signup">
+        <form action="https://dev.us10.list-manage.com/subscribe/post?u=3b4bee48cadbd0a905cc17809&amp;id=72521d8f09" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+            <div id="mc_embed_signup_scroll">
+                <h3>I can send you a short email when there’s a new chapter</h3>
+                <div class="mc-field-group">
+                    <label for="mce-EMAIL">Email Address </label>
+                    <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"  placeholder="Your email address" required="">
+                </div>
+                <div id="mce-responses" class="clear">
+                    <div class="response" id="mce-error-response" style="display:none"></div>
+                    <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_3b4bee48cadbd0a905cc17809_72521d8f09" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+            </div>
+        </form>
+    </div>
+    
+    <!--End mc_embed_signup-->
+    
+    <!-- <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-36" method="post" data-id="36" data-name="Newsletter sign-up"><div class="mc4wp-form-fields"><h5> I can send you a short email when there’s a new post</h5><p> <label style="font-size: 100%" for="email-signup">Email address:</label></p><p> <input id="email-signup" type="email" name="EMAIL" placeholder="Your email address" required=""></p><p> <input type="submit" value="Okay"></p><p> (You can obviously unsubscribe at any time.)</p></div><label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off"></label><input type="hidden" name="_mc4wp_timestamp" value="1603929341"><input type="hidden" name="_mc4wp_form_id" value="36"><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1"><div class="mc4wp-response"></div></form> -->
+
+  </article>
+</div>
+
+    </body>
+</html>

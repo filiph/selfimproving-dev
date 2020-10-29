@@ -1311,7 +1311,7 @@ _.c=-1
 _.d=null},az:function az(){},aA:function aA(){}},E={
 cq:function(){var t={},s=document.querySelector("#switcher")
 t.a=0
-P.d6(C.q,new E.bl(t,s))},
+P.d6(C.p,new E.bl(t,s))},
 bl:function bl(a,b){this.a=a
 this.b=b},
 bm:function bm(a,b){this.a=a
@@ -1792,7 +1792,7 @@ gN:function(a){return new P.a6(a)}}
 E.bl.prototype={
 $1:function(a){var t=this.b
 J.bI(t).n(0,"invisible")
-P.d5(C.p,new E.bm(this.a,t))}}
+P.d5(C.q,new E.bm(this.a,t))}}
 E.bm.prototype={
 $0:function(){var t=this.a,s=(t.a+1)%22
 t.a=s
@@ -1967,8 +1967,8 @@ C.f=function(hooks) { return hooks; }
 
 C.c=new P.b7()
 C.o=new P.z(0)
-C.p=new P.z(2e5)
-C.q=new P.z(2e6)
+C.p=new P.z(15e5)
+C.q=new P.z(2e5)
 C.v=t(["reification","generics","AST","the skill of finishing","#deadbeef","computational complexity","genetic programming","pointers","fuzzy logic","Markov chains","declarative programming","DSLs","covariance","tree shaking","Map Reduce","guard clauses","variable shadowing","data mining","effective communication","intentional practice","composition","OKRs"])})();(function staticFields(){$.c4=null
 $.bP=null
 $.bO=null

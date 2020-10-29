@@ -14,10 +14,14 @@
   <article class="chapter">
 
     <header>
+      <div class="site-link">
+        <p><a href="/">The Self-Improving Developer</a></p>
+      </div>
+
         <div class="number">
             Chapter
 
-          8
+          13
         </div>
         <h1>Variable Shadowing</h1>
     </header>
@@ -58,7 +62,7 @@ shadowing
 bug</a>
 in OpenBSD (the UNIX distribution with emphasis on code quality).</li>
 </ul>
-<h3><a href="#the-name" name="the-name"><small>8&#8202;.&#8202;0&#8202;.&#8202;1</small> The name</a></h3>
+<h3><a href="#the-name" name="the-name"><small>13&#8202;.&#8202;0&#8202;.&#8202;1</small> The name</a></h3>
 <p>The idea behind the name &ldquo;variable shadowing&rdquo; is pretty straightforward.
 The outer scope variable (the egg, in our case) is in the <em>shadow</em> of
 the inner scope variable (the element in the <code>where</code> closure, in our
@@ -71,7 +75,7 @@ one." /></p>
 silhouette. You think you&rsquo;re pointing at your old friend (egg) but in
 fact you&rsquo;re pointing at some new dude (element) that stands directly in
 front of him.</p>
-<h3><a href="#mitigation" name="mitigation"><small>8&#8202;.&#8202;0&#8202;.&#8202;2</small> Mitigation</a></h3>
+<h3><a href="#mitigation" name="mitigation"><small>13&#8202;.&#8202;0&#8202;.&#8202;2</small> Mitigation</a></h3>
 <p>If your language supports it, turn on a
 <a href="https://en.wikipedia.org/wiki/Lint_(software)">linter</a> that warns about
 shadowing. Shadowing is easy to detect by automated tools like that.
@@ -96,15 +100,15 @@ shadowing bugs. They&rsquo;re widespread and nasty.</p>
 
     <footer>
       <a href="backmatter.html" class="next">
-        Next Part: &ldquo;Backmatter&rdquo; &rarr;
+        &raquo; Continue to the Next Part (<strong>&ldquo;Backmatter&rdquo;</strong>)
       </a>
     </footer>
 
     <!-- Begin Mailchimp Signup Form -->
     <div id="mc_embed_signup">
-        <form action="https://dev.us10.list-manage.com/subscribe/post?u=3b4bee48cadbd0a905cc17809&amp;id=72521d8f09" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+        <form action="https://dev.us10.list-manage.com/subscribe/post?u=3b4bee48cadbd0a905cc17809&amp;id=72521d8f09" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
             <div id="mc_embed_signup_scroll">
-                <h3>I can send you a short email when there’s a new post</h3>
+                <h3>I can send you a short email when there’s a new chapter</h3>
                 <div class="mc-field-group">
                     <label for="mce-EMAIL">Email Address </label>
                     <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"  placeholder="Your email address" required="">

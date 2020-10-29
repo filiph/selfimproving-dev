@@ -2,6 +2,8 @@
 
 @use 'sass/pandoc_style';
 @use 'sass/fonts';
+@use 'sass/mailchimp';
+@use 'sass/inline_styles';
 
 #switcher {
   transition: opacity 200ms;
@@ -29,4 +31,3 @@
 
   }
 }
-

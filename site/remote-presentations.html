@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+        <title>Remote Presentations &middot; The Self-Improving Developer</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+
+        <link rel="icon" type="image/png" href="images/favicon.png" />
+    </head>
+    <body>
+<div class="page">
+  <article class="chapter">
+
+    <header>
+      <div class="site-link">
+        <p><a href="/">The Self-Improving Developer</a></p>
+      </div>
+
+        <div class="number">
+            Chapter
+
+          6
+        </div>
+        <h1>Remote Presentations</h1>
+    </header>
+
+    <p>In 2020, if you’re giving a tech talk, chances are it’s not in person.
+You’re using something like Zoom, Hangouts, Skype, YouTube or
+StreamYard. This is generally a good thing: it allows others to learn
+from you despite a raging pandemic, and it also makes it easier for
+people in remote places to participate.</p>
+<p>But it has obvious downsides: audio/video issues, awkward interactions,
+and internet connection failures. In this blog post, I’d like to focus
+on one additional, often overlooked downside: the difficulty to maintain
+attention.</p>
+<h2><a href="#driving-into-the-future-using-only-our-rearview-mirror" name="driving-into-the-future-using-only-our-rearview-mirror"><small>6&#8202;.&#8202;1</small> Driving into the future using only our rearview mirror</a></h2>
+<p>A typical person’s view of a tech talk these days is this:</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/TypicalToday@2x.png" title="TypicalToday@2x.png" width="598" height="247" alt="TypicalToday 2x" />
+<p>A huge space taken by the presentation, and a small rectangle containing
+you, the speaker.</p>
+<p>This is great if you have a lot of writing on your slides – people can
+read it better. But, here’s the thing: you should almost <em>never</em> have
+lots of writing on your slides. Slides are not the messenger, <em>you</em> are.
+Slides are auxiliary. They should contain a phrase, a tiny piece of
+code, a simple diagram, a graph, or a picture. Something the audience
+can fully comprehend in two seconds. Otherwise, the audience will be
+trying to comprehend the slides while you talk, which will make them
+miss parts of what you’re saying. If this goes for long enough, you will
+lose them as an audience. At that point, you’re better of just sending
+them the slides to read on their own.</p>
+<p>Let’s also address the fact that you’re a small rectangle tucked away
+next to your humongous slides. It’s really hard to maintain attention
+looking at a static slide. It’s much easier to maintain attention
+looking at a <em>person</em>. We’re humans. That’s what our brains do. They
+read other people’s faces. We can’t help being mildly entertained
+looking at another person’s face (assuming it’s reasonably animated).</p>
+<p>So, basically, the current setup of online presentations is terrible.</p>
+<p>But we can’t blame the aforementioned virtual meeting services (Zoom
+etc.) for this. The problem is with our presentations.</p>
+<p>Up until now, it made perfect sense to have presentations take up the
+whole area of an average screen. This is because presentations were
+given in person, so the only thing on the screen was the presentation,
+and the speaker was next to the screen.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/TypicalInPerson@2x.png" title="TypicalInPerson@2x.png" width="599" height="248" alt="TypicalInPerson 2x" />
+<p>For this reason, most presentation software (Powerpoint, Slides,
+Keynote) defaults to 16:9 aspect ratio for slides (4:3 in the old days).</p>
+<p>Now that the screen must be <em>shared</em> between the speaker and her slides,
+that same aspect ratio is no longer a good idea. Here are some
+configurations of a sitting speaker and her presentation, as seen on
+someone’s monitor through YouTube or Zoom.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/Options@2x.png" title="Options@2x.png" width="462" height="600" alt="Options 2x" />
+<p>None of the configurations is ideal. Either the presenter is tiny, or
+the presenter is overlapping their own slides, or the presentation is
+too small. In almost all cases, much of the screen real estate is just
+padding, and the human face is way too small to hold attention.</p>
+<p>Said with Marshal McLuhan, we “drive into the future using only our
+rearview mirror”. We have all this technology but we’re using it the way
+it was used in the past. This is a time ripe for innovation.</p>
+<h2><a href="#the-ideal-remote-presentation" name="the-ideal-remote-presentation"><small>6&#8202;.&#8202;2</small> The ideal remote presentation</a></h2>
+<p>As a member of the audience, I want to have something to latch on when
+seeing a remote presentation. A mostly-static slide deck is not it. A
+miniature of the speaker is not it. Lot’s of padding — not it.</p>
+<p>How about seeing the presenter full screen? If she needs to show some
+auxiliary content (live coding, short texts, diagrams), why not overlay
+it on top of her webcam view?</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/Fullscreen@2x.png" title="Fullscreen@2x.png" width="599" height="402" alt="Fullscreen 2x" />
+<p>This is what my setup is all about. It is also close to what the people
+at <a href="https://www.mmhmm.app/">mmhmm.app</a> seem to be going for, so if any
+of the following seems a bit too much and you’re not in a hurry, you may
+want to just wait until they have a public product. (Full disclosure: I
+don’t have access to their software, so I’m only guessing what they’re
+going for through their marketing content. Most of it seems a bit
+gimmicky but I assume that’s just noise that will later be filtered
+out.)</p>
+<h2><a href="#the-basics" name="the-basics"><small>6&#8202;.&#8202;3</small> The basics</a></h2>
+<p>Before I start talking about boring stuff like chroma key settings in
+OBS, I want to give an overview. That way, even people who couldn’t care
+less about actually implementing this stuff on their end can see the
+idea.</p>
+<p>We start by making our slides way narrower than the default. Every
+presentation program lets you set up the size or aspect ratio of your
+slides. If your slides are more custom (an HTML presentation, a custom
+app, etc.), you probably have it even easier: just resize the window.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.29.26-PM.png" title="Screen Shot 2020-10-15 at 1.29.26 PM.png" width="599" height="427" alt="Screen Shot 2020 10 15 at 1 29 26 PM" />
+<p>I’m going with 1:1. In other words, square. This is, to be honest,
+completely arbitrary. I could have gone with 1:1.2 or 1.5:1. Maybe I
+will in the future. I guess, for now, a square is just easier to reason
+about.</p>
+<p>I’ve found that the narrower slide makes me think more about what to put
+on it. In other words, I’m less likely to put a bunch of random ideas on
+a slide. I think it makes the presentation more crisp.</p>
+<p>I could end here and just have a 1:1 presentation on the left, and the
+rest of the screen filled with my face. Like this:</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.39.20-PM.png" title="Screen Shot 2020-10-15 at 1.39.20 PM.png" width="599" height="339" alt="Screen Shot 2020 10 15 at 1 39 20 PM" />
+<p>But I’ve found that doesn’t really cut it. The two sections of the
+screen are not a pleasing look, especially when they’re part of an
+already-tiled screen (such as a Zoom meeting).</p>
+<p>So I go a step furter, and <em>overlay</em> the contents of the slide. I use
+the oldest trick in TV: greenscreen. My slides have a green background,
+and my streaming software is set up to make the green parts of the
+slides transparent. To make the whole thing a tiny bit nicer and
+readable, I also introduce a subtle white gradient behind the slides.
+This gradient co-incides with my window, so it looks natural.</p>
+<p>And boom:</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.58.48-PM.png" title="Screen Shot 2020-10-15 at 1.58.48 PM.png" width="598" height="339" alt="Screen Shot 2020 10 15 at 1 58 48 PM" />
+<h2><a href="#how-to-do-it" name="how-to-do-it"><small>6&#8202;.&#8202;4</small> How to do it</a></h2>
+<p>All of the following assumes you have a reasonably fast computer. Video
+conferencing in general is quite computationally intensive. (Ask my
+previous computer, a high-end MacBook Pro with some hardware cooling
+issue, which routinely went to single-digit FPS because of a simple
+video call.) The additional processing is yet another layer of CPU load,
+so think about that.</p>
+<p>I’m going to describe (and screenshot) my <a href="https://obsproject.com/">OBS</a>
+setup on MacOS, but it should be easy enough to translate all of this to
+other streaming software and other operating systems.</p>
+<h3><a href="#step-1-narrower-slides" name="step-1-narrower-slides"><small>6&#8202;.&#8202;4&#8202;.&#8202;1</small> Step 1: Narrower slides</a></h3>
+<p>This was discussed before. In Google Slides, this is a setting in File
+&gt; Page Setup.</p>
+<h3><a href="#step-2-green-background" name="step-2-green-background"><small>6&#8202;.&#8202;4&#8202;.&#8202;2</small> Step 2: Green background</a></h3>
+<p>Go to you slide software and change the background of the master slide
+to pure green (hex <code>#00FF00</code>).</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.42.23-PM.png" title="Screen Shot 2020-10-15 at 1.42.23 PM.png" width="599" height="600" alt="Screen Shot 2020 10 15 at 1 42 23 PM" />
+<p>Alternatively, do something similar with your custom presentation
+software or even your IDE. Whatever you want transparent, make it green.</p>
+<h3><a href="#step-3-create-a-new-scene" name="step-3-create-a-new-scene"><small>6&#8202;.&#8202;4&#8202;.&#8202;3</small> Step 3: Create a new scene</a></h3>
+<p>In OBS, this is as simple as clicking the <code>+</code> in the scene list, and
+naming it.</p>
+<h3><a href="#step-4-add-webcam-input" name="step-4-add-webcam-input"><small>6&#8202;.&#8202;4&#8202;.&#8202;4</small> Step 4: Add webcam input</a></h3>
+<p>Add your webcam input (“Video Capture Device”) as a source. It’s
+important that your webcome is close to where you’ll be looking when
+presenting. For example, if you have two monitors, place the webcam on
+top of the monitor that will be your primary when presenting.</p>
+<p>Fill the scene with the webcam video, but try to position yourself so
+that you’re to the side. Remember, you need some room for the slides.
+We’re trying to keep your face visible all the time, but it doesn’t need
+to be the centerpiece of your stream.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.44.02-PM.png" title="Screen Shot 2020-10-15 at 1.44.02 PM.png" width="598" height="338" alt="Screen Shot 2020 10 15 at 1 44 02 PM" />
+<h3><a href="#step-5-add-screencast" name="step-5-add-screencast"><small>6&#8202;.&#8202;4&#8202;.&#8202;5</small> Step 5: Add screencast</a></h3>
+<p>In OBS, this is called “Display Capture”. This lets you share your
+screen. I recommend sharing the screen instead of sharing a single
+window, because it’s more versatile. If you only share a single window
+(“Window Capture” in OBS), you can’t just pop over some small dialog
+that you want to show to the audience. Crucially, at least on a Mac,
+sharing a window also gets much lower framerates than sharing the whole
+screen.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.49.34-PM.png" title="Screen Shot 2020-10-15 at 1.49.34 PM.png" width="598" height="514" alt="Screen Shot 2020 10 15 at 1 49 34 PM" />
+<p>You’ll want to crop that screencast so that it only shows the area your
+slides fill.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.46.41-PM.png" title="Screen Shot 2020-10-15 at 1.46.41 PM.png" width="598" height="339" alt="Screen Shot 2020 10 15 at 1 46 41 PM" />
+<h3><a href="#step-6-apply-chroma-key" name="step-6-apply-chroma-key"><small>6&#8202;.&#8202;4&#8202;.&#8202;6</small> Step 6: Apply chroma key</a></h3>
+<p>Tap on the new “Display Capture” source and push “Filters”. Add a new
+“Chroma Key” filter.</p>
+<p>Chroma key is a fancy name for “removing pixels of a certain color”.
+Chroma means “purity or intensity of color”. Impure green won’t be
+transparent, but pure green will. This is exactly what they’ve been
+using in film and television for decades.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.51.00-PM.png" title="Screen Shot 2020-10-15 at 1.51.00 PM.png" width="599" height="530" alt="Screen Shot 2020 10 15 at 1 51 00 PM" />
+<p>As an aside, you could also use “Color Key” or “Luma Key”, but I’ve
+found “Chroma Key” to be best and most idiot-proof.</p>
+<p>You can play around with the settings on the filter until you’re happy.
+I think the default settings are decent. I think I fiddled a bit with
+the “Smoothness” and “Spill Reduction” settings. Play it by ear.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.51.51-PM.png" title="Screen Shot 2020-10-15 at 1.51.51 PM.png" width="599" height="341" alt="Screen Shot 2020 10 15 at 1 51 51 PM" />
+<h3><a href="#step-7-add-a-gradient" name="step-7-add-a-gradient"><small>6&#8202;.&#8202;4&#8202;.&#8202;7</small> Step 7: Add a gradient</a></h3>
+<p>Create a gradient in your favorite image editing software. Your goal is
+to have a PNG file that is filled with a single color (white, black, or
+whatever else you want), and gradually goes from fully (or almost fully)
+opaque on one side to fully transparent at about two thirds of the
+width.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/gradient.png" title="gradient.png" width="599" height="337" alt="Gradient" />
+<p>Put this PNG file as an image between the “Display Capture” and the
+webcam input.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.55.23-PM.png" title="Screen Shot 2020-10-15 at 1.55.23 PM.png" width="598" height="340" alt="Screen Shot 2020 10 15 at 1 55 23 PM" />
+The idea is not to be too on-the-nose about it, but still increase
+legibility of your content.
+<h3><a href="#step-8-use-it" name="step-8-use-it"><small>6&#8202;.&#8202;4&#8202;.&#8202;8</small> Step 8: Use it</a></h3><img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.29.26-PM.png" title="Screen Shot 2020-10-15 at 1.29.26 PM.png" width="599" height="427" alt="Screen Shot 2020 10 15 at 1 29 26 PM" />
+If you’re streaming to YouTube or Twitch, you’re already done. Your
+streaming software (e.g. OBS) can just send the stuff to the streaming
+service’s ingestion server.
+<p>If you want to use this setup in Zoom, Meet, StreamYard, Skype, and
+similar webcam-only software, you need to make your operating system
+think that your streaming software is a webcam. Thankfully, this is easy
+in OBS. You download and install a plugin called <a href="https://obsproject.com/forum/resources/obs-virtualcam.949/">OBS
+Virtualcam</a>
+(<a href="https://github.com/johnboiles/obs-mac-virtualcam/releases">Mac
+version</a>),
+restart OBS, and start the virtual webcam using Tools &gt; Start Virtual
+Camera.</p><img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.56.18-PM.png" title="Screen Shot 2020-10-15 at 1.56.18 PM.png" width="598" height="349" alt="Screen Shot 2020 10 15 at 1 56 18 PM" />
+<p>Next, you might need to restart your meeting software (Zoom, Skype, or
+the browser that runs Meet or StreamYard), but after that, you’re set.
+The webcam settings now have a new camera called something like “OBS”,
+and that’s the output from OBS with all those setting we just did.</p>
+<p>Congrats, you’re done! Enjoy giving more engaging presentations.</p>
+
+
+    <footer>
+      <a href="data-mining.html" class="next">
+        &raquo; Continue to the Next Chapter (<strong>&ldquo;Data Mining&rdquo;</strong>)
+      </a>
+    </footer>
+
+    <!-- Begin Mailchimp Signup Form -->
+    <div id="mc_embed_signup">
+        <form action="https://dev.us10.list-manage.com/subscribe/post?u=3b4bee48cadbd0a905cc17809&amp;id=72521d8f09" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+            <div id="mc_embed_signup_scroll">
+                <h3>I can send you a short email when there’s a new chapter</h3>
+                <div class="mc-field-group">
+                    <label for="mce-EMAIL">Email Address </label>
+                    <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"  placeholder="Your email address" required="">
+                </div>
+                <div id="mce-responses" class="clear">
+                    <div class="response" id="mce-error-response" style="display:none"></div>
+                    <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_3b4bee48cadbd0a905cc17809_72521d8f09" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+            </div>
+        </form>
+    </div>
+    
+    <!--End mc_embed_signup-->
+    
+    <!-- <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-36" method="post" data-id="36" data-name="Newsletter sign-up"><div class="mc4wp-form-fields"><h5> I can send you a short email when there’s a new post</h5><p> <label style="font-size: 100%" for="email-signup">Email address:</label></p><p> <input id="email-signup" type="email" name="EMAIL" placeholder="Your email address" required=""></p><p> <input type="submit" value="Okay"></p><p> (You can obviously unsubscribe at any time.)</p></div><label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off"></label><input type="hidden" name="_mc4wp_timestamp" value="1603929341"><input type="hidden" name="_mc4wp_form_id" value="36"><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1"><div class="mc4wp-response"></div></form> -->
+
+  </article>
+</div>
+
+    </body>
+</html>

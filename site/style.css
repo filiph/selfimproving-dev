@@ -9,6 +9,7 @@ html {
 
 body {
   margin: 0 auto;
+  margin-bottom: 10em;
   max-width: 35em;
   padding-left: 50px;
   padding-right: 50px;
@@ -286,6 +287,30 @@ h1 {
   line-height: 1em;
 }
 
+#mc_embed_signup {
+  margin-top: 5em;
+  text-align: center;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+.site-link {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 300;
+}
+.site-link a {
+  background: lightgray;
+  text-decoration: none;
+  padding: 0.5em 0.8em;
+  transition: background-color, color 100ms;
+}
+.site-link a:hover {
+  background: gray;
+  color: white;
+}
+
 aside {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 300;
@@ -296,4 +321,15 @@ aside {
 }
 aside strong {
   font-weight: 900;
+}
+
+footer {
+  margin-top: 2em;
+}
+
+.next {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: smaller;
+  text-decoration: none;
 }

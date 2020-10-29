@@ -4,7 +4,7 @@ import 'dart:html';
 void main() {
   final switcher = querySelector('#switcher');
   var index = 0;
-  Timer.periodic(const Duration(seconds: 2), (timer) {
+  Timer.periodic(const Duration(milliseconds: 1500), (timer) {
     switcher.classes.add('invisible');
 
     void doSwitch() {

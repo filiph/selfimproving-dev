@@ -4,6 +4,10 @@
   <article class="chapter">
 
     <header>
+      <div class="site-link">
+        <p><a href="/">{{ site_name }}</a></p>
+      </div>
+
       {{# has_number }}
         <div class="number">
           {{# has_part }}
@@ -29,7 +33,7 @@
     <footer>
       {{# has_next }}
       <a href="{{ next_file }}.html" class="next">
-        Next {{ next_type }}: &ldquo;{{ next }}&rdquo; &rarr;
+        &raquo; Continue to the Next {{ next_type }} (<strong>&ldquo;{{ next }}&rdquo;</strong>)
       </a>
       {{/ has_next }}
     </footer>
