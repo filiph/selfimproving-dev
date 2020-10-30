@@ -1,7 +1,18 @@
-This is the MIT-licensed tooling of Bob Nystrom's "[Crafting Interpreters][]"
-project. It can be used to write minimalist blogs or whole books.
+Bob Nystrom started this. He wrote his excellent [Game Programming Patterns][]
+book completely in the open. He showed us that it's possible to offer great
+content for free *and at the same time* become a fancy published author.
+Then he had the audacity of following it up 
+with (possibly an even better book!) [Crafting Interpreters][]. The nerve!
+ 
+I just took the open source tooling from [Bob's upstream project][] and
+started my own book, _The Self-Improving Developer_, which is based on my
+blog about intermediate software engineering topics.
 
-[crafting interpreters]: http://craftinginterpreters.com
+You can find the site here: [selfimproving.dev][].
+
+[Game Programming Patterns]: https://gameprogrammingpatterns.com/
+[Crafting Interpreters]: https://craftinginterpreters.com/
+[selfimproving.dev]: https://selfimproving.dev/
 
 ## License
 
