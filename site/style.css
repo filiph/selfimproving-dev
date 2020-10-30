@@ -319,12 +319,19 @@ img {
   margin-top: 2em;
   margin-bottom: 5em;
 }
+.page-top-nav table {
+  display: table;
+}
+.page-top-nav table, .page-top-nav tr {
+  width: 100%;
+}
 .page-top-nav table, .page-top-nav tr, .page-top-nav td, .page-top-nav th {
   border: none;
   margin: 0;
   padding: 0;
 }
 .page-top-nav th a {
+  letter-spacing: -0.0415625em;
   font-weight: 900;
   text-decoration: none;
   transition: background-color 500ms;
@@ -332,8 +339,12 @@ img {
 .page-top-nav th a:hover {
   background: yellow;
 }
+.page-top-nav .page-top-nav-arrows {
+  cursor: default;
+  text-align: right;
+}
 .page-top-nav td {
-  font-size: smaller;
+  font-size: small;
 }
 
 aside {

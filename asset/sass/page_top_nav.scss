@@ -10,6 +10,14 @@
   margin-top: 2em;
   margin-bottom: 5em;
 
+  table {
+    display: table;
+  }
+
+  table, tr {
+    width: 100%;
+  }
+
   table, tr, td, th {
     border: none;
     margin: 0;
@@ -17,6 +25,7 @@
   }
 
   th a {
+    letter-spacing: -.0415625em;
     font-weight: 900;
 
     text-decoration: none;
@@ -27,8 +36,13 @@
     }
   }
 
+  .page-top-nav-arrows {
+    cursor: default;
+    text-align: right;
+  }
+
   td {
-    font-size: smaller;
+    font-size: small;
   }
 
 }

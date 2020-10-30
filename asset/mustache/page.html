@@ -8,11 +8,23 @@
         <table>
           <tr>
             <th><a href="/">{{ site_name }}</a></th>
+            <th class="page-top-nav-arrows">
+              {{# has_prev }}
+              <a href="{{ prev_file }}.html">&nbsp;&larr;&nbsp;</a>
+              {{/ has_prev }}
+              {{# has_next }}
+              <a href="{{ next_file }}.html">&nbsp;&rarr;&nbsp;</a>
+              {{/ has_next }}
+
+            </th>
           </tr>
           <tr>
             <td>
               You’ve taught yourself variables, classes, functions, objects.
               What next?
+            </td>
+            <td>
+              {{! intentionally blank }}
             </td>
           </tr>
         </table>
