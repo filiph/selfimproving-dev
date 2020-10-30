@@ -10,6 +10,10 @@ there is either for beginners (because that’s the largest audience),
 of experience (because, that’s the profile of the people who write these
 books and articles). This book sits between those two extremes.
 
+I want this to be the kind of book that sits close to your workstation (or in your browser's bookmarks) and that you quickly flip through once in a while to look up "that one thing". I have a few of such books in various stages of disrepair.
+
+![Writers and journalists have Elements of Style](images/elements-of-style.jpg)
+
 The name of the book, if you’re curious, is a nod towards
 [self-organizing
 maps](https://en.wikipedia.org/wiki/Self-organizing_map), [self-hosting
