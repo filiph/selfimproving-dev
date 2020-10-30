@@ -5,6 +5,16 @@
 @use 'sass/mailchimp';
 @use 'sass/inline_styles';
 
+.switcher-line-1 {
+  margin-bottom: 0;
+}
+
+.switcher-line-2 {
+  margin-top: 0;
+  // Make room for the line break if we're on a smaller screen.
+  height: 2.5em;
+}
+
 #switcher {
   transition: opacity 200ms;
 

@@ -7,8 +7,9 @@
  
   -->
 
-You've taught yourself variables, classes, functions, objects.  
-Now it's time to learn about <span id="switcher">reified types.</span>
+<p class="switcher-line-1">You've taught yourself variables, classes, functions, objects.</p>
+
+<p class="switcher-line-2">Now it's time to learn about <span id="switcher">reified types.</span></p>
 
 <p class="start-here">
   <!--<a href="start-here.html">Start here.</a>-->

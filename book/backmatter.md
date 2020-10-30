@@ -1,1 +1,1 @@
-This is the end of the book, with appendices.
+This is the end of the book so far. Remember, <span class="highlight">this book is under construction</span>. You can go back to the [contents](contents.html) to see other articles that I'm working on, or to the [start](/) to learn a bit more about this whole project.

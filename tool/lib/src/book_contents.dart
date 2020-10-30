@@ -1,6 +1,6 @@
 part of book;
 
-const _tableOfContents = {
+const _tableOfContents = <String,List<String>>{
   '': [
     'The Self-Improving Developer',
     'Table of Contents',
@@ -22,6 +22,7 @@ const _tableOfContents = {
     'Guard Clauses',
     'Generics',
     'Variable Shadowing',
+    'Hashing',
   ],
   // Career
   // Concepts (generics)
@@ -29,6 +30,6 @@ const _tableOfContents = {
   // Communication / Culture
   // Code
   'Backmatter': [
-    'Appendix I',
+    // 'Appendix I',
   ],
 };

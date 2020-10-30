@@ -13,7 +13,7 @@ body {
   max-width: 35em; // This was 40em in the original pandoc CSS.
   padding-left: 50px;
   padding-right: 50px;
-  padding-top: 50px;
+  padding-top: 0px; // This was 50px in the original pandoc CSS.
   padding-bottom: 50px;
   // Removed auto-hyphens. It's too aggressive.
   // hyphens: auto;
@@ -54,6 +54,10 @@ img {
 }
 h1, h2, h3, h4, h5, h6 {
   margin-top: 1.7em;
+}
+h1 {
+  // Decreasing the top margin because we have a chapter there.
+  margin-top: 0.7em;
 }
 ol, ul {
   padding-left: 1.7em;

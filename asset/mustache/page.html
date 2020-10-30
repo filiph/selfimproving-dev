@@ -4,8 +4,18 @@
   <article class="chapter">
 
     <header>
-      <div class="site-link">
-        <p><a href="/">{{ site_name }}</a></p>
+      <div class="page-top-nav">
+        <table>
+          <tr>
+            <th><a href="/">{{ site_name }}</a></th>
+          </tr>
+          <tr>
+            <td>
+              You’ve taught yourself variables, classes, functions, objects.
+              What next?
+            </td>
+          </tr>
+        </table>
       </div>
 
       {{# has_number }}
@@ -31,13 +41,21 @@
     {{{ body }}}
 
     <footer>
-      {{# has_next }}
-      <a href="{{ next_file }}.html" class="next">
-        &raquo; Continue to the Next {{ next_type }} (<strong>&ldquo;{{ next }}&rdquo;</strong>)
-      </a>
-      {{/ has_next }}
-
       {{> mailchimp }}
+
+      <p>
+        <a href="/" class="next">
+          &raquo; Return to the <strong>Title Page</strong>
+        </a>
+
+        {{# has_next }}
+        <br/>&nbsp;&nbsp; or<br/>
+        <a href="{{ next_file }}.html" class="next">
+          &raquo; Continue to the Next {{ next_type }} (<strong>&ldquo;{{ next }}&rdquo;</strong>)
+        </a>
+        {{/ has_next }}
+      </p>
+
 
       <p class="imprint">
         This is <em>The Self-Improving Developer</em>, a book-under-construction by Filip Hráček.

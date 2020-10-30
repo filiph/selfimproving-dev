@@ -1,0 +1,34 @@
+// This is stuff at the top of every regular page.
+.page-top-nav {
+  text-align: left;
+  font-family: 'Inter',
+    -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", Helvetica,
+    sans-serif;
+  font-weight: 300;
+
+  margin-top: 2em;
+  margin-bottom: 5em;
+
+  table, tr, td, th {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  th a {
+    font-weight: 900;
+
+    text-decoration: none;
+    transition: background-color 500ms;
+
+    &:hover {
+      background: yellow;
+    }
+  }
+
+  td {
+    font-size: smaller;
+  }
+
+}

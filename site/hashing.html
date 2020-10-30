@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+        <title>Hashing &middot; The Self-Improving Developer</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+
+        <link rel="icon" type="image/png" href="images/favicon.png" />
+    </head>
+    <body>
+<div class="page">
+  <article class="chapter">
+
+    <header>
+      <div class="page-top-nav">
+        <table>
+          <tr>
+            <th><a href="/">The Self-Improving Developer</a></th>
+          </tr>
+          <tr>
+            <td>
+              You’ve taught yourself variables, classes, functions, objects.
+              What next?
+            </td>
+          </tr>
+        </table>
+      </div>
+
+        <div class="number">
+            Chapter
+
+          14
+        </div>
+        <h1>Hashing</h1>
+    </header>
+
+    <p>Let&rsquo;s say you have a string, such as <code>"SPAM"</code>, and you&rsquo;re trying to find if that string is contained in a list of a thousand other strings.</p>
+<p>To do that, you&rsquo;ll <span name="only-unordered">need</span> to compare <code>"SPAM"</code> with as many as one thousand other strings. That&rsquo;s a lot of comparing.</p>
+<aside name="only-unordered">
+<p><strong>Aside:</strong> Okay, okay, if the list of other strings is ordered in any way, then there&rsquo;s a lot less comparing to be done. Let&rsquo;s pretend that&rsquo;s not an option.</p>
+</aside>
+<p>To compare two strings without hashing, you have to go character by character. Only if each character is the same can we say the two strings are identical. </p>
+<div class="codehilite"><pre>
+<span class="c">/// Naive string comparison.</span>
+<span class="t">bool</span> <span class="i">checkIdentical</span>(<span class="t">String</span> <span class="i">a</span>, <span class="t">String</span> <span class="i">b</span>) {
+  <span class="k">if</span> (<span class="i">a</span>.<span class="i">length</span> != <span class="i">b</span>.<span class="i">length</span>) <span class="k">return</span> <span class="k">false</span>;
+  <span class="k">for</span> (<span class="k">var</span> <span class="i">i</span> = <span class="n">0</span>; <span class="i">i</span> &lt; <span class="i">a</span>.<span class="i">length</span>; <span class="i">i</span>++) {
+    <span class="k">if</span> (<span class="i">a</span>.<span class="i">codeUnits</span>[<span class="i">i</span>] != <span class="i">b</span>.<span class="i">codeUnits</span>[<span class="i">i</span>]) {
+      <span class="k">return</span> <span class="k">false</span>;
+    }
+  }
+  <span class="k">return</span> <span class="k">true</span>;
+}
+</pre></div>
+<p>That&rsquo;s a <span name="string-identity">lot of work</span>! Imagine comparing whole paragraphs of text to each other. If only we could simplify this!</p>
+<aside name="string-identity">
+<p><strong>Aside:</strong> Comparing strings in most languages is as simple as <code>a == b</code>. The code here is therefore completely gratuitous, and only useful for explanation.</p>
+</aside>
+<h2><a href="#the-idea" name="the-idea"><small>14&#8202;.&#8202;1</small> The idea</a></h2>
+<p>You know what&rsquo;s easy to compare? Numbers. In fact, comparing whether two numbers are identical is a single instruction for the CPU. That is to say, it&rsquo;s very fast. </p>
+<p>Could we represent these strings as numbers?</p>
+<p>Well, each character is a number, right? For the computer, <code>A</code> is 65, <code>B</code> is 66, <code>C</code> is 67, and <span name="unicode-numbers">so on</span>. That&rsquo;s called the &ldquo;char code&rdquo;—the internal representation of a character in the computer&rsquo;s memory.</p>
+<aside name="unicode-numbers">
+<p><strong>Aside:</strong> That&rsquo;s ASCII. The more modern encodings, like UTF-8, make this a little more complicated, but not by much. The 💩 (pile of poo) emoji is also a number — it&rsquo;s just a bit larger. (It&rsquo;s <code>0x1F4A9</code>, or 128,169 in decimal.) So it spans several bytes, but that doesn&rsquo;t really matter in our case. We&rsquo;ll just compare the bytes one by one.</p>
+</aside>
+<p>We could just take those numbers and use some mathematical formula to combine them into a single number.</p>
+<blockquote>
+<p>TODO: image of the characters &ldquo;SPAM&rdquo; on the left, their corresponding char codes, and then a calculation &ldquo;83 + 80 + 65 + 77 = 305&rdquo;</p>
+</blockquote>
+<p>And voilá: we have a way to encode a string of any length into a single number. That&rsquo;s hashing. For a given string (like <code>"SPAM"</code>), that number will always be the same (305), no matter who or when does the computation. That is to say, it&rsquo;s not a randomly assigned identification number: it can be recomputed at will.</p>
+<aside>
+<p><strong>Aside:</strong> This is a good place to mention that when I say &ldquo;numbers&rdquo; here, I mean integers. Whole numbers, like 42 or 77. If we worked with fractional numbers (like 3.14 or 0.33333), there could be an element of unpredictability between different CPUs.</p>
+</aside>
+<div class="codehilite"><pre>
+<span class="c">/// Naive hashing function.</span>
+<span class="t">int</span> <span class="i">hashString</span>(<span class="t">String</span> <span class="i">a</span>) {
+  <span class="k">var</span> <span class="i">hash</span> = <span class="n">0</span>;
+  <span class="k">for</span> (<span class="k">var</span> <span class="i">character</span> <span class="k">in</span> <span class="i">a</span>.<span class="i">codeUnits</span>) {
+    <span class="i">hash</span> += <span class="i">character</span>;
+  }
+  <span class="k">return</span> <span class="i">hash</span>;
+}
+</pre></div>
+<p>Let&rsquo;s come back to our original example of checking if a long list of strings contains <code>"SPAM"</code> in it. We can hash each of the thousand strings, and so now we have a list of numbers. A list of <em>hash codes</em>. This new list of numbers takes a lot less space in memory, is easier to sort, and faster to work with.</p>
+<p>Success!</p>
+<h2><a href="#a-small-problem" name="a-small-problem"><small>14&#8202;.&#8202;2</small> A small problem</a></h2>
+<p>Not so fast. Isn&rsquo;t it possible to have two different strings with the same hash? After all, a string can be arbitrarily long, while a simple integer cannot. </p>
+<p>In fact, with our naive hashing function above, the probability that there will be a <em>hash collision</em> is high:</p>
+<div class="codehilite"><pre>
+<span class="k">if</span> (<span class="i">hashString</span>(<span class="s">&quot;SPAM&quot;</span>) == <span class="i">hashString</span>(<span class="s">&quot;MAPS&quot;</span>)) {
+  <span class="c">// Uh oh!</span>
+}
+</pre></div>
+<p>Remember, we&rsquo;re just adding numbers together. Two plus three is the same as three plus two, which is the same as one plus four. Our program will not work as intended. It will insist that different strings are identical. Things will break.</p>
+<p>This is why real hashing functions are a lot more involved than the naive one above. Even the simple CRC32 &ldquo;checksum&rdquo; is quite a few lines of bitwise operations and table lookups. The pseudocode for the popular SHA-1 hashing function is 46 lines long. </p>
+<p>Using <em>real</em> hashing functions, the hash code of <code>"SPAM"</code> definitely isn&rsquo;t equal to the hash code of <code>"MAPS"</code>. Problem solved, right?</p><!-- source: http://home.thep.lu.se/~bjorn/crc/ --><!-- source: https://en.wikipedia.org/wiki/SHA-1#SHA-1_pseudocode -->
+<p>Not so fast. Even with non-trivial hashing functions, there can be collisions. The probability is small, but it&rsquo;s there. Look at this table from Jeff Preshing&rsquo;s <a href="https://preshing.com/20110504/hash-collision-probabilities/">blog</a>:</p>
+<p><img src="images/hash-probabilities.png" alt="A table of hash probabilities" /></p>
+<p>No matter how great your hash function is, if it only produces 32-bit hash codes, and you have a list of 77,163 unique strings, the probability that two of the strings have the same hash code is 50%. That&rsquo;s not good.</p>
+<p>Thankfully, hash functions that ship with modern programming languages use 64-bit hash values, and you&rsquo;d need a list of over 5 <em>billion</em> strings to reach the 50% chance of collision. And with cryptographic functions like the aforementioned SHA-1, you&rsquo;d need over one <em>septillion</em> (10<sup>24</sup>) strings. Which is a lot.</p>
+<h2><a href="#hashing-is-everywhere" name="hashing-is-everywhere"><small>14&#8202;.&#8202;3</small> Hashing is everywhere</a></h2>
+<p>If you&rsquo;re using a modern programming language, hashing is working for you all the time. When you compare two strings, like with <code>"spam" == "SPAM"</code>, that&rsquo;s done via hashing in the background. When you create a map (also known as &lsquo;dictionary&rsquo; in some languages), chances are it&rsquo;s really a &ldquo;hash map&rdquo;: the keys of the map are represented by their hash codes.</p>
+<p>I explained hashing on strings, but it applies to any data. You can hash vectors, sets, arbitrary classes or booleans. You can even hash numbers!</p>
+<aside>
+<p><strong>Aside:</strong> In programming languages, the hash code of 42 is just that: 42. But a hash of a huge number, like googol (10<sup>100</sup>) is something else than googol, because the hash code needs to fit into a normal-sized integer. Hash codes of fractional values (like 3.14) are different from the source number, because hash codes are whole numbers.</p>
+</aside>
+<p>If you&rsquo;ve used git, you are probably aware of git commit hashes. Like this:</p>
+<div class="codehilite"><pre>$ git log
+commit c2ae38f8a70d51dd003d137d4fff06f9eb4d1647
+Author: Filip Hracek &lt;some@example.com&gt;
+Date:   Thu Oct 29 11:46:33 2020 -0700
+
+    Fix bug
+</pre></div>
+<p>That <code>c2ae38f8...</code> value is a hash code that uniquely identifies that commit. It&rsquo;s just a very big number, written in hexadecimal. In decimal, it&rsquo;s this:</p>
+<blockquote>
+<p>1,111,429,502,104,458,606,634,325,828,610,920,458,897,444,378,183</p>
+</blockquote>
+<p>The fact that git can <span name="shattered">describe any file</span>—and any state of your project—with just one number makes it fast and powerful. Hashing enables git to be what it is: a version management powerhorse.</p>
+<aside>
+<p><strong>Aside:</strong> The reliance on hashing is of course also git&rsquo;s weakness. In 2017, a group of researchers was able to engineer two different PDF files with exactly the same SHA-1 hashcode. It took the equivalent of 6,500 years of single-CPU computations, so it wasn&rsquo;t easy. But it&rsquo;s possible, and it constitutes a security problem. (Learn more about this at <a href="https://shattered.io/">shattered.io</a>.)</p>
+</aside>
+<h2><a href="#naming" name="naming"><small>14&#8202;.&#8202;4</small> Naming</a></h2>
+<p>The reason we say &ldquo;hashing&rdquo; and &ldquo;hash function&rdquo; comes from the ordinary use of the words &ldquo;hash&rdquo;.</p>
+<p>When you hash potatoes, you chop them into tiny pieces and mix those pieces together. The structure of the original potatoes is lost, but they&rsquo;re all in that final product.</p>
+<p>When you hash strings, you chop them into bytes and mix those bytes together into a single number. The structure of the original string is lost, but the bytes are all represented in the final product.</p>
+<h2><a href="#try-it" name="try-it"><small>14&#8202;.&#8202;5</small> Try it</a></h2>
+<p>Here&rsquo;s a challenge for you, if you&rsquo;re up to it. You have a class that represents a pair of integers: (x, y). Without researching the best approach on the internet, try to come up with a hash function. You&rsquo;re trying to make sure that (2, 3) has a different hash code from (3, 2), and that (1, 0) has a different hash code from (-1, 0) or (0, -1). It&rsquo;s harder than you may think. <a href="https://dartpad.dartlang.org/d8b08bf89580620ab18ff8983f105d8e">Here</a>&rsquo;s a DartPad for you.</p>
+<p>As soon as you find a hashing function that looks promising, try to break it. Try to find two vectors that will result in the same hash code.</p>
+
+
+    <footer>
+      <!-- Begin Mailchimp Signup Form -->
+      <div id="mc_embed_signup">
+          <form action="https://dev.us10.list-manage.com/subscribe/post?u=3b4bee48cadbd0a905cc17809&amp;id=72521d8f09" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+              <div id="mc_embed_signup_scroll">
+                  <p class="form-explanation">I can send you a short email when there’s a new chapter</p>
+                  <div class="mc-field-group">
+                      <label for="mce-EMAIL">Email Address </label>
+                      <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"  placeholder="Your email address" required="">
+                  </div>
+                  <div id="mce-responses" class="clear">
+                      <div class="response" id="mce-error-response" style="display:none"></div>
+                      <div class="response" id="mce-success-response" style="display:none"></div>
+                  </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                  <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_3b4bee48cadbd0a905cc17809_72521d8f09" tabindex="-1" value=""></div>
+                  <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+      </div>
+      
+      <!--End mc_embed_signup-->
+      
+      <!-- <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-36" method="post" data-id="36" data-name="Newsletter sign-up"><div class="mc4wp-form-fields"><h5> I can send you a short email when there’s a new post</h5><p> <label style="font-size: 100%" for="email-signup">Email address:</label></p><p> <input id="email-signup" type="email" name="EMAIL" placeholder="Your email address" required=""></p><p> <input type="submit" value="Okay"></p><p> (You can obviously unsubscribe at any time.)</p></div><label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off"></label><input type="hidden" name="_mc4wp_timestamp" value="1603929341"><input type="hidden" name="_mc4wp_form_id" value="36"><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1"><div class="mc4wp-response"></div></form> -->
+
+      <p>
+        <a href="/" class="next">
+          &raquo; Return to the <strong>Title Page</strong>
+        </a>
+
+        <br/>&nbsp;&nbsp; or<br/>
+        <a href="backmatter.html" class="next">
+          &raquo; Continue to the Next Part (<strong>&ldquo;Backmatter&rdquo;</strong>)
+        </a>
+      </p>
+
+
+      <p class="imprint">
+        This is <em>The Self-Improving Developer</em>, a book-under-construction by Filip Hráček.
+        This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International">CC-BY-NC-SA 4.0</a> license.
+        The site is <a href="https://github.com/filiph/selfimproving-dev">open-source</a>: file a bug!
+      </p>
+    </footer>
+  </article>
+</div>
+
+    </body>
+</html>
