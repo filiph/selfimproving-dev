@@ -83,6 +83,14 @@ browser to see the changes.
 
 ## Useful hints
 
+### Deployment
+
+The site is deployed on Firebase Hosting.
+
+```
+make deploy
+```
+
 ### Building web scripts
 
 There are some scripts written in Dart that make the web reading experience

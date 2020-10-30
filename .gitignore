@@ -14,3 +14,6 @@ xcuserdata/
 
 # Obsidian
 .obsidian
+
+# Firebase
+.firebase/*.cache

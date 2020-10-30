@@ -26,4 +26,7 @@ $(BUILD_SNAPSHOT): $(TOOL_SOURCES)
 	@ echo "Compiling Dart snapshot..."
 	@ dart --snapshot=$@ --snapshot-kind=app-jit tool/bin/build.dart >/dev/null
 
-.PHONY: book clean default get serve
+deploy: book
+	@ firebase deploy --only hosting
+
+.PHONY: book clean default get serve deploy
