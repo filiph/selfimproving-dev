@@ -4,6 +4,20 @@
   - http://www.kkh-tapir.cz/nasi-kresliri/pavel-pata-talas/
   - http://www.kkh-tapir.cz/nasi-kresliri/vomacka-miroslav/
   - http://www.kkh-tapir.cz/nasi-kresliri/mirek-vostry/
+
+  Another idea: something a little weird
+
+  - https://www.artstation.com/artwork/wvZ55
+  - https://www.artstation.com/artwork/ZA3DZ
+  - https://www.artstation.com/artwork/rRR8zL
+  - https://www.artstation.com/artwork/W4gbJ
+  - https://www.artstation.com/artwork/lxDGVV
+  - https://www.artstation.com/artwork/005Z4
+  - https://www.artstation.com/artwork/bnGzm
+  - https://www.artstation.com/artwork/gWJkQ
+  - https://www.artstation.com/artwork/OWZb6
+  - https://www.artstation.com/artwork/qrX9e
+  - https://www.artstation.com/artwork/PwEOZ
  
   -->
 
