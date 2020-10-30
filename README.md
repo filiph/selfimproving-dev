@@ -18,12 +18,17 @@ You can find the site here: [selfimproving.dev][].
 
 [Bob's upstream project][] is double-licensed. It uses MIT for the tooling and
 CC BY-NC-ND 4.0 for the "content files" (the text files, the SCSS styling,
-and so on). This project stripped all of those content files and left only
-the tooling and the scaffold.
+and so on). 
 
 [Bob's upstream project]: https://github.com/munificent/craftinginterpreters
 
-Feel free to fork this, and add your own content.
+This project stripped all of those content files and left only
+the tooling and the scaffold. If you want that, go to [this commit][]:
+`183b7816`. _That_ code is fully MIT-licensed. You can start your own book.
+
+[this commit]: https://github.com/filiph/selfimproving-dev/commit/183b781669ab4fa59368641742a374113e84ab85
+
+After that commit, I started to add my own content, which is CC BY-NC-SA 4.0.
 
 ## Build
 
