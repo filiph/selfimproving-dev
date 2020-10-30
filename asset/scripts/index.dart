@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:html';
 
+/// This is running on index.html (the main page). It switches between
+/// different intermediate topics.
 void main() {
   final switcher = querySelector('#switcher');
   var index = 0;
@@ -37,7 +39,7 @@ const topics = [
   'variable shadowing',
   'data mining',
   'effective communication',
+  'hashing',
+  'A* search',
   'intentional practice',
-  'composition',
-  'OKRs',
 ];

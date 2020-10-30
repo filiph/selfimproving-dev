@@ -1969,7 +1969,7 @@ C.c=new P.b7()
 C.o=new P.z(0)
 C.p=new P.z(15e5)
 C.q=new P.z(2e5)
-C.v=t(["reification","generics","AST","the skill of finishing","#deadbeef","computational complexity","genetic programming","pointers","fuzzy logic","Markov chains","declarative programming","DSLs","covariance","tree shaking","Map Reduce","guard clauses","variable shadowing","data mining","effective communication","intentional practice","composition","OKRs"])})();(function staticFields(){$.c4=null
+C.v=t(["reification","generics","AST","the skill of finishing","#deadbeef","computational complexity","genetic programming","pointers","fuzzy logic","Markov chains","declarative programming","DSLs","covariance","tree shaking","Map Reduce","guard clauses","variable shadowing","data mining","effective communication","hashing","A* search","intentional practice"])})();(function staticFields(){$.c4=null
 $.bP=null
 $.bO=null
 $.cm=null
