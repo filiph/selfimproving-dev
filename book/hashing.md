@@ -47,7 +47,7 @@ Well, each character is a number, right? For the computer, `A` is 65, `B` is 66,
 
 We could just take those numbers and use some mathematical formula to combine them into a single number.
 
-> TODO: image of the characters "SPAM" on the left, their corresponding char codes, and then a calculation "83 + 80 + 65 + 77 = 305"
+![Image of the characters "SPAM" on the left, their corresponding char codes, and then a calculation "83 + 80 + 65 + 77 = 305"](images/hashing.png)
 
 And voilá: we have a way to encode a string of any length into a single number. That's hashing. For a given string (like `"SPAM"`), that number will always be the same (305), no matter who or when does the computation. That is to say, it's not a randomly assigned identification number: it can be recomputed at will.
 
@@ -137,7 +137,7 @@ The fact that git can <span name="shattered">describe any file</span>—and any 
 
 </aside>
 
-## Naming
+## The name
 
 The reason we say "hashing" and "hash function" comes from the ordinary use of the words "hash".
 

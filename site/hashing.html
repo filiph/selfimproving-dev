@@ -90,9 +90,7 @@
 <p><strong>Aside:</strong> That&rsquo;s ASCII. The more modern encodings, like UTF-8, make this a little more complicated, but not by much. The 💩 (pile of poo) emoji is also a number — it&rsquo;s just a bit larger. (It&rsquo;s <code>0x1F4A9</code>, or 128,169 in decimal.) So it spans several bytes, but that doesn&rsquo;t really matter in our case. We&rsquo;ll just compare the bytes one by one.</p>
 </aside>
 <p>We could just take those numbers and use some mathematical formula to combine them into a single number.</p>
-<blockquote>
-<p>TODO: image of the characters &ldquo;SPAM&rdquo; on the left, their corresponding char codes, and then a calculation &ldquo;83 + 80 + 65 + 77 = 305&rdquo;</p>
-</blockquote>
+<p><img src="images/hashing.png" alt="Image of the characters &ldquo;SPAM&rdquo; on the left, their corresponding char codes, and then a calculation &ldquo;83 + 80 + 65 + 77 = 305&rdquo;" /></p>
 <p>And voilá: we have a way to encode a string of any length into a single number. That&rsquo;s hashing. For a given string (like <code>"SPAM"</code>), that number will always be the same (305), no matter who or when does the computation. That is to say, it&rsquo;s not a randomly assigned identification number: it can be recomputed at will.</p>
 <aside>
 <p><strong>Aside:</strong> This is a good place to mention that when I say &ldquo;numbers&rdquo; here, I mean integers. Whole numbers, like 42 or 77. If we worked with fractional numbers (like 3.14 or 0.33333), there could be an element of unpredictability between different CPUs.</p>
@@ -146,7 +144,7 @@ Date:   Thu Oct 29 11:46:33 2020 -0700
 <aside>
 <p><strong>Aside:</strong> The reliance on hashing is of course also git&rsquo;s weakness. In 2017, a group of researchers was able to engineer two different PDF files with exactly the same SHA-1 hashcode. It took the equivalent of 6,500 years of single-CPU computations, so it wasn&rsquo;t easy. But it&rsquo;s possible, and it constitutes a security problem. (Learn more about this at <a href="https://shattered.io/">shattered.io</a>.)</p>
 </aside>
-<h2><a href="#naming" name="naming"><small>14&#8202;.&#8202;4</small> Naming</a></h2>
+<h2><a href="#the-name" name="the-name"><small>14&#8202;.&#8202;4</small> The name</a></h2>
 <p>The reason we say &ldquo;hashing&rdquo; and &ldquo;hash function&rdquo; comes from the ordinary use of the words &ldquo;hash&rdquo;.</p>
 <p>When you hash potatoes, you chop them into tiny pieces and mix those pieces together. The structure of the original potatoes is lost, but they&rsquo;re all in that final product.</p>
 <p>When you hash strings, you chop them into bytes and mix those bytes together into a single number. The structure of the original string is lost, but the bytes are all represented in the final product.</p>
@@ -201,4 +199,14 @@ Date:   Thu Oct 29 11:46:33 2020 -0700
 </div>
 
     </body>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-495778-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-495778-21');
+    </script>
+
 </html>
