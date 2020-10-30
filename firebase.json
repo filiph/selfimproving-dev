@@ -8,62 +8,62 @@
     ],
     "redirects": [
       {
-        "source": "/how-to-hold-attention-while-presenting-remotely/",
+        "source": "/how-to-hold-attention-while-presenting-remotely{,/**}",
         "destination": "/remote-presentations.html",
         "type": 301
       },
       {
-        "source": "/data-mining/",
+        "source": "/data-mining{,/**}",
         "destination": "/data-mining.html",
         "type": 301
       },
       {
-        "source": "/guard-clauses/",
+        "source": "/guard-clauses{,/**}",
         "destination": "/guard-clauses.html",
         "type": 301
       },
       {
-        "source": "/youre-not-building-a-career-youre-playing-it/",
+        "source": "/youre-not-building-a-career-youre-playing-it{,/**}",
         "destination": "/youre-not-building-a-career.html",
         "type": 301
       },
       {
-        "source": "/variable-shadowing/",
+        "source": "/variable-shadowing{,/**}",
         "destination": "/variable-shadowing.html",
         "type": 301
       },
       {
-        "source": "/programming-is-fun/",
+        "source": "/programming-is-fun{,/**}",
         "destination": "/programming-is-fun.html",
         "type": 301
       },
       {
-        "source": "/generics-for-beginners/",
+        "source": "/generics-for-beginners{,/**}",
         "destination": "/generics.html",
         "type": 301
       },
       {
-        "source": "/the-power-of-boring/",
+        "source": "/the-power-of-boring{,/**}",
         "destination": "/the-power-of-boring.html",
         "type": 301
       },
       {
-        "source": "/the-self-improving-developer/",
+        "source": "/the-self-improving-developer{,/**}",
         "destination": "/",
         "type": 301
       },
       {
-        "source": "/how-google-builds-web-frameworks/",
+        "source": "/how-google-builds-web-frameworks{,/**}",
         "destination": "/how-google-builds-web-frameworks.html",
         "type": 301
       },
       {
-        "source": "/the-hello-world-fallacy/",
+        "source": "/the-hello-world-fallacy{,/**}",
         "destination": "/the-hello-world-fallacy.html",
         "type": 301
       },
       {
-        "source": "/about/",
+        "source": "/about{,/**}",
         "destination": "/",
         "type": 301
       }
