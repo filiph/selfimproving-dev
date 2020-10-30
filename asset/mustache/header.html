@@ -1,8 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
     <head>
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-        <title>{{title}} &middot; {{ site_name }}</title>
+        <title>{{ title }} &middot; {{ site_name }}</title>
+
+        {{# has_title }}
+        <meta property="og:locale" content="en_US"/>
+        <meta property="og:site_name" content="The Self-Improving Developer"/>
+        <meta property="og:title" content="{{ title }}"/>
+        <meta property="og:url" content="https://selfimproving.dev/{{ file }}.html"/>
+        <meta property="og:type" content="article"/>
+        <!--<meta property="og:description" content="..."/>-->
+        <meta property="og:image" content="https://selfimproving.dev/images/selfimproving-og-image.png"/>
+        <meta property="og:image:url" content="https://selfimproving.dev/images/selfimproving-og-image.png"/>
+        <meta property="og:image:secure_url" content="https://selfimproving.dev/images/selfimproving-og-image.png"/>
+
+        <meta name="twitter:title" content="{{ title }}"/>
+        <meta name="twitter:url" content="https://selfimproving.dev/{{ file }}.html"/>
+        <!--<meta name="twitter:description" content="..."/>-->
+        <meta name="twitter:image" content="https://selfimproving.dev/images/selfimproving-og-image.png"/>
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:site" content="@filiphracek"/>
+        {{/ has_title }}
 
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" type="text/css" href="style.css" />

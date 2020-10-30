@@ -52,6 +52,7 @@ class Mustache {
           page.hasChallenges || page.designNote != null,
       "has_number": page.numberString != "",
       "number": page.numberString,
+      "file": page.fileName,
       // Previous page.
       "has_prev": previousPage != null,
       "prev": previousPage?.title,
