@@ -71,13 +71,14 @@ void _buildPages({bool skipUpToDate = false}) {
 }
 
 void _copyImages() {
-  for (var entry in Glob('book/images/*').listSync()) {
+  for (var entry in Glob('book/images/**.{jpg,jpeg,png,gif}').listSync()) {
     if (entry is File) {
-      var filename = p.basename(entry.path);
+      var relative = p.relative(entry.path, from: 'book/images/');
 
-      var copiedFile = File('site/images/$filename');
+      var copiedFile = File('site/images/$relative');
 
       if (!copiedFile.existsSync()) {
+        copiedFile.createSync(recursive: true);
         copiedFile.writeAsBytesSync(entry.readAsBytesSync());
       }
 
