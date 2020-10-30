@@ -2,7 +2,7 @@ Success is always a product of two things: luck and effort. Nobody
 became successful because of sheer luck and zero effort. Nobody became
 successful because of sheer effort, and no luck.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/07/effort-and-luck.png" title="effort-and-luck.png" width="597" height="108" alt="Effort and luck" />
+![Effort and luck](images/effort-and-luck.png)
 
 Remember, luck can come in many ways. My parents weren’t dirt-poor —
 luck. My parents weren’t rich — luck (I believe rich upbringing often
@@ -31,7 +31,7 @@ There’s this assumption that a career is to be “built”. As if it was a
 wall, or a tower, which you gradually work on, and which slowly but
 surely grows.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/07/building.png" title="building.png" width="600" height="240" alt="Building" />
+![Building](images/building-career.png)
 
 But that’s not what’s actually happening, and if you keep acting as if
 your career is to be built brick by brick, as if it’s a predictable
@@ -44,7 +44,7 @@ not a normal lottery (which is always stacked against you). In *this*
 lottery, you can actually come out on top. But it still involves placing
 bets, winning and losing.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/07/wheels-of-fortune.png" title="wheels-of-fortune.png" width="600" height="272" alt="Wheels of fortune" />
+![Wheels of Fortune](images/wheels-of-fortune.png)
 
 In your life, you’ll meet many risks, opportunities, downturns and
 upturns. Your job is to play them to the best of your ability.

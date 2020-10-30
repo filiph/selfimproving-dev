@@ -13,7 +13,7 @@ attention.
 
 A typical person’s view of a tech talk these days is this:
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/TypicalToday@2x.png" title="TypicalToday@2x.png" width="598" height="247" alt="TypicalToday 2x" />
+![Typical today](images/presentations-typical-today.png)
 
 A huge space taken by the presentation, and a small rectangle containing
 you, the speaker.
@@ -46,7 +46,7 @@ whole area of an average screen. This is because presentations were
 given in person, so the only thing on the screen was the presentation,
 and the speaker was next to the screen.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/TypicalInPerson@2x.png" title="TypicalInPerson@2x.png" width="599" height="248" alt="TypicalInPerson 2x" />
+![Typical in person](images/presentations-typical-in-person.png)
 
 For this reason, most presentation software (Powerpoint, Slides,
 Keynote) defaults to 16:9 aspect ratio for slides (4:3 in the old days).
@@ -56,7 +56,7 @@ that same aspect ratio is no longer a good idea. Here are some
 configurations of a sitting speaker and her presentation, as seen on
 someone’s monitor through YouTube or Zoom.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/Options@2x.png" title="Options@2x.png" width="462" height="600" alt="Options 2x" />
+![Options](images/presentations-options.png)
 
 None of the configurations is ideal. Either the presenter is tiny, or
 the presenter is overlapping their own slides, or the presentation is
@@ -77,7 +77,7 @@ How about seeing the presenter full screen? If she needs to show some
 auxiliary content (live coding, short texts, diagrams), why not overlay
 it on top of her webcam view?
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/Fullscreen@2x.png" title="Fullscreen@2x.png" width="599" height="402" alt="Fullscreen 2x" />
+![Full screen](images/presentations-fullscreen.png)
 
 This is what my setup is all about. It is also close to what the people
 at [mmhmm.app](https://www.mmhmm.app/) seem to be going for, so if any
@@ -100,7 +100,7 @@ presentation program lets you set up the size or aspect ratio of your
 slides. If your slides are more custom (an HTML presentation, a custom
 app, etc.), you probably have it even easier: just resize the window.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.29.26-PM.png" title="Screen Shot 2020-10-15 at 1.29.26 PM.png" width="599" height="427" alt="Screen Shot 2020 10 15 at 1 29 26 PM" />
+<img src="images/presentation-screenshots/Screen-Shot-2020-10-15-at-1.29.26-PM.png" title="Screen Shot 2020-10-15 at 1.29.26 PM.png" width="599" height="427" alt="Screen Shot 2020 10 15 at 1 29 26 PM" />
 
 I’m going with 1:1. In other words, square. This is, to be honest,
 completely arbitrary. I could have gone with 1:1.2 or 1.5:1. Maybe I
@@ -114,7 +114,7 @@ a slide. I think it makes the presentation more crisp.
 I could end here and just have a 1:1 presentation on the left, and the
 rest of the screen filled with my face. Like this:
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.39.20-PM.png" title="Screen Shot 2020-10-15 at 1.39.20 PM.png" width="599" height="339" alt="Screen Shot 2020 10 15 at 1 39 20 PM" />
+<img src="images/presentation-screenshots/Screen-Shot-2020-10-15-at-1.39.20-PM.png" title="Screen Shot 2020-10-15 at 1.39.20 PM.png" width="599" height="339" alt="Screen Shot 2020 10 15 at 1 39 20 PM" />
 
 But I’ve found that doesn’t really cut it. The two sections of the
 screen are not a pleasing look, especially when they’re part of an
@@ -129,7 +129,7 @@ This gradient co-incides with my window, so it looks natural.
 
 And boom:
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.58.48-PM.png" title="Screen Shot 2020-10-15 at 1.58.48 PM.png" width="598" height="339" alt="Screen Shot 2020 10 15 at 1 58 48 PM" />
+<img src="images/presentation-screenshots/Screen-Shot-2020-10-15-at-1.58.48-PM.png" title="Screen Shot 2020-10-15 at 1.58.48 PM.png" width="598" height="339" alt="Screen Shot 2020 10 15 at 1 58 48 PM" />
 
 ## How to do it
 
@@ -154,7 +154,7 @@ This was discussed before. In Google Slides, this is a setting in File
 Go to you slide software and change the background of the master slide
 to pure green (hex `#00FF00`).
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.42.23-PM.png" title="Screen Shot 2020-10-15 at 1.42.23 PM.png" width="599" height="600" alt="Screen Shot 2020 10 15 at 1 42 23 PM" />
+<img src="images/presentation-screenshots/Screen-Shot-2020-10-15-at-1.42.23-PM.png" title="Screen Shot 2020-10-15 at 1.42.23 PM.png" width="599" height="600" alt="Screen Shot 2020 10 15 at 1 42 23 PM" />
 
 Alternatively, do something similar with your custom presentation
 software or even your IDE. Whatever you want transparent, make it green.
@@ -176,7 +176,7 @@ that you’re to the side. Remember, you need some room for the slides.
 We’re trying to keep your face visible all the time, but it doesn’t need
 to be the centerpiece of your stream.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.44.02-PM.png" title="Screen Shot 2020-10-15 at 1.44.02 PM.png" width="598" height="338" alt="Screen Shot 2020 10 15 at 1 44 02 PM" />
+<img src="images/presentation-screenshots/Screen-Shot-2020-10-15-at-1.44.02-PM.png" title="Screen Shot 2020-10-15 at 1.44.02 PM.png" width="598" height="338" alt="Screen Shot 2020 10 15 at 1 44 02 PM" />
 
 ### Step 5: Add screencast
 
@@ -188,12 +188,12 @@ that you want to show to the audience. Crucially, at least on a Mac,
 sharing a window also gets much lower framerates than sharing the whole
 screen.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.49.34-PM.png" title="Screen Shot 2020-10-15 at 1.49.34 PM.png" width="598" height="514" alt="Screen Shot 2020 10 15 at 1 49 34 PM" />
+<img src="images/presentation-screenshots/Screen-Shot-2020-10-15-at-1.49.34-PM.png" title="Screen Shot 2020-10-15 at 1.49.34 PM.png" width="598" height="514" alt="Screen Shot 2020 10 15 at 1 49 34 PM" />
 
 You’ll want to crop that screencast so that it only shows the area your
 slides fill.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.46.41-PM.png" title="Screen Shot 2020-10-15 at 1.46.41 PM.png" width="598" height="339" alt="Screen Shot 2020 10 15 at 1 46 41 PM" />
+<img src="images/presentation-screenshots/Screen-Shot-2020-10-15-at-1.46.41-PM.png" title="Screen Shot 2020-10-15 at 1.46.41 PM.png" width="598" height="339" alt="Screen Shot 2020 10 15 at 1 46 41 PM" />
 
 ### Step 6: Apply chroma key
 
@@ -205,7 +205,7 @@ Chroma means “purity or intensity of color”. Impure green won’t be
 transparent, but pure green will. This is exactly what they’ve been
 using in film and television for decades.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.51.00-PM.png" title="Screen Shot 2020-10-15 at 1.51.00 PM.png" width="599" height="530" alt="Screen Shot 2020 10 15 at 1 51 00 PM" />
+<img src="images/presentation-screenshots/Screen-Shot-2020-10-15-at-1.51.00-PM.png" title="Screen Shot 2020-10-15 at 1.51.00 PM.png" width="599" height="530" alt="Screen Shot 2020 10 15 at 1 51 00 PM" />
 
 As an aside, you could also use “Color Key” or “Luma Key”, but I’ve
 found “Chroma Key” to be best and most idiot-proof.
@@ -214,7 +214,7 @@ You can play around with the settings on the filter until you’re happy.
 I think the default settings are decent. I think I fiddled a bit with
 the “Smoothness” and “Spill Reduction” settings. Play it by ear.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.51.51-PM.png" title="Screen Shot 2020-10-15 at 1.51.51 PM.png" width="599" height="341" alt="Screen Shot 2020 10 15 at 1 51 51 PM" />
+<img src="images/presentation-screenshots/Screen-Shot-2020-10-15-at-1.51.51-PM.png" title="Screen Shot 2020-10-15 at 1.51.51 PM.png" width="599" height="341" alt="Screen Shot 2020 10 15 at 1 51 51 PM" />
 
 ### Step 7: Add a gradient
 
@@ -224,18 +224,18 @@ whatever else you want), and gradually goes from fully (or almost fully)
 opaque on one side to fully transparent at about two thirds of the
 width.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/gradient.png" title="gradient.png" width="599" height="337" alt="Gradient" />
+<img src="images/presentation-screenshots/gradient.png" title="gradient.png" width="599" height="337" alt="Gradient" />
 
 Put this PNG file as an image between the “Display Capture” and the
 webcam input.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.55.23-PM.png" title="Screen Shot 2020-10-15 at 1.55.23 PM.png" width="598" height="340" alt="Screen Shot 2020 10 15 at 1 55 23 PM" />
+<img src="images/presentation-screenshots/Screen-Shot-2020-10-15-at-1.55.23-PM.png" title="Screen Shot 2020-10-15 at 1.55.23 PM.png" width="598" height="340" alt="Screen Shot 2020 10 15 at 1 55 23 PM" />
 The idea is not to be too on-the-nose about it, but still increase
 legibility of your content.
 
 ### Step 8: Use it
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.29.26-PM.png" title="Screen Shot 2020-10-15 at 1.29.26 PM.png" width="599" height="427" alt="Screen Shot 2020 10 15 at 1 29 26 PM" />
+<img src="images/presentation-screenshots/Screen-Shot-2020-10-15-at-1.29.26-PM.png" title="Screen Shot 2020-10-15 at 1.29.26 PM.png" width="599" height="427" alt="Screen Shot 2020 10 15 at 1 29 26 PM" />
 If you’re streaming to YouTube or Twitch, you’re already done. Your
 streaming software (e.g. OBS) can just send the stuff to the streaming
 service’s ingestion server.
@@ -250,7 +250,7 @@ version](https://github.com/johnboiles/obs-mac-virtualcam/releases)),
 restart OBS, and start the virtual webcam using Tools &gt; Start Virtual
 Camera.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/10/Screen-Shot-2020-10-15-at-1.56.18-PM.png" title="Screen Shot 2020-10-15 at 1.56.18 PM.png" width="598" height="349" alt="Screen Shot 2020 10 15 at 1 56 18 PM" />
+<img src="images/presentation-screenshots/Screen-Shot-2020-10-15-at-1.56.18-PM.png" title="Screen Shot 2020-10-15 at 1.56.18 PM.png" width="598" height="349" alt="Screen Shot 2020 10 15 at 1 56 18 PM" />
 
 Next, you might need to restart your meeting software (Zoom, Skype, or
 the browser that runs Meet or StreamYard), but after that, you’re set.

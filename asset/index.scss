@@ -5,6 +5,15 @@
 @use 'sass/mailchimp';
 @use 'sass/inline_styles';
 
+h1 {
+  text-align: left;
+  padding-top: 1.5em;
+}
+
+p.author {
+  text-align: left;
+}
+
 .switcher-line-1 {
   margin-bottom: 0;
 }

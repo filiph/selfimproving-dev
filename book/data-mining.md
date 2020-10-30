@@ -76,7 +76,7 @@ clusters around US Coasts, Brazil, EU, India, China, etc.) I
 [tweeted](https://twitter.com/filiphracek/status/1255743296288157696)
 the result, if you’re interested.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/08/EW1I22dUYAAK8LN.png" title="EW1I22dUYAAK8LN.png" width="599" height="277" alt="A graph of timezones" />
+<img src="images/data-mining-screenshots/EW1I22dUYAAK8LN.png" title="EW1I22dUYAAK8LN.png" width="599" height="277" alt="A graph of timezones" />
 
 Not too long ago, also this year, I had a need for a bespoke tool that
 would give me writing inspiration for sword & sorcery prose. I had a
@@ -84,7 +84,7 @@ bunch of highlights in Kindle. I paid a person to extract and lightly
 categorize those highlights, then put it all into a SQLite database, and
 wrote a tiny desktop app to access it.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/08/Screenshot-of-the-bespoke-app.png" title="Screenshot of the bespoke app.png" width="470" height="600" alt="Screen Shot 2020 08 26 at 11 11 18 PM" />
+<img src="images/data-mining-screenshots/Screenshot-of-the-bespoke-app.png" title="Screenshot of the bespoke app.png" width="470" height="600" alt="Screen Shot 2020 08 26 at 11 11 18 PM" />
 
 Now this app sits in my MacBook dock alongside such software as VS Code
 or Chrome or Evernote, and it gets more use than some of the other ones.

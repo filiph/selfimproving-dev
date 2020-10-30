@@ -6,7 +6,7 @@ knowledge](http://cacm.acm.org/magazines/2016/7/204032-why-google-stores-billion
 Google uses a single repository to share code — all 2 billion lines of
 it — and that it uses the trunk-based development paradigm.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_3hPZNDocbp68XsbsJoZ-iQ.jpg" title="1_3hPZNDocbp68XsbsJoZ-iQ.jpg" width="370" height="235" alt="1 3hPZNDocbp68XsbsJoZ iQ" />
+<img src="images/google-frameworks/1_3hPZNDocbp68XsbsJoZ-iQ.jpg" title="1_3hPZNDocbp68XsbsJoZ-iQ.jpg" width="370" height="235" alt="1 3hPZNDocbp68XsbsJoZ iQ" />
 
 *(This is easily one of the largest single code repositories in the
 world. [Source](http://cacm.acm.org/magazines/2016/7/204032-why-google-stores-billions-of-lines-of-code-in-a-single-repository/fulltext).)*
@@ -28,7 +28,7 @@ This article is about the specifics of building an open source web
 framework ([AngularDart](https://webdev.dartlang.org/angular)) in this
 context.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_42xyxKFKI9a0j0BWuHGIHg-1.jpg" title="1_42xyxKFKI9a0j0BWuHGIHg.jpg" width="598" height="351" alt="1 42xyxKFKI9a0j0BWuHGIHg" />
+<img src="images/google-frameworks/1_42xyxKFKI9a0j0BWuHGIHg-1.jpg" title="1_42xyxKFKI9a0j0BWuHGIHg.jpg" width="598" height="351" alt="1 42xyxKFKI9a0j0BWuHGIHg" />
 *(‘Human users’ means software engineers committing code at Google. (As
 opposed to source generation
 tools.) [Source](http://cacm.acm.org/magazines/2016/7/204032-why-google-stores-billions-of-lines-of-code-in-a-single-repository/fulltext).)*
@@ -43,7 +43,7 @@ can’t have app FooBar that’s using AngularDart 2.2.1 and another app
 BarFoo that’s on 2.3.0. Both apps must be on the same version — the
 latest one.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/06/0_vdQqatZdTxZ9CUDs.png" title="0_vdQqatZdTxZ9CUDs.png" width="597" height="179" alt="0 vdQqatZdTxZ9CUDs" /> 
+<img src="images/google-frameworks/0_vdQqatZdTxZ9CUDs.png" title="0_vdQqatZdTxZ9CUDs.png" width="597" height="179" alt="0 vdQqatZdTxZ9CUDs" /> 
 
 *(Illustrative image taken
 from [trunkbaseddevelopment.com](https://trunkbaseddevelopment.com/).)*
@@ -67,7 +67,7 @@ the framework*. At the moment, that’s about 74 thousand tests (depending
 on how big your change is — a heuristic skips tests that the system
 knows you’re not affecting).
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_5VjjBOiVq74495vLAKctOg.png" title="1_5VjjBOiVq74495vLAKctOg.png" width="600" height="371" alt="1 5VjjBOiVq74495vLAKctOg" />
+<img src="images/google-frameworks/1_5VjjBOiVq74495vLAKctOg.png" title="1_5VjjBOiVq74495vLAKctOg.png" width="600" height="371" alt="1 5VjjBOiVq74495vLAKctOg" />
 It’s good to have more tests.
 
 I just made a change that only manifests itself 5% of the time,
@@ -91,7 +91,7 @@ production apps with tens or hundreds of person-years invested in them.
 If the web is to be relevant in the future, we need to better support
 development of the latter.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_DrJBfzzSTkGdmrlu6OnYfA.png" title="1_DrJBfzzSTkGdmrlu6OnYfA.png" width="597" height="245" alt="1 DrJBfzzSTkGdmrlu6OnYfA" />
+<img src="images/google-frameworks/1_DrJBfzzSTkGdmrlu6OnYfA.png" title="1_DrJBfzzSTkGdmrlu6OnYfA.png" width="597" height="245" alt="1 DrJBfzzSTkGdmrlu6OnYfA" />
 
 So what happens if the framework breaks some of the apps that are built
 on it?
@@ -118,7 +118,7 @@ code in both the AngularDart repo and the AdWords repo, the system
 automatically requires code review approval from both of those teams.
 Only then can the change be submitted.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_kbwhvH4lz1B-jRHBCEvAcA.png" title="1_kbwhvH4lz1B-jRHBCEvAcA.png" width="598" height="443" alt="1 kbwhvH4lz1B jRHBCEvAcA" />
+<img src="images/google-frameworks/1_kbwhvH4lz1B-jRHBCEvAcA.png" title="1_kbwhvH4lz1B-jRHBCEvAcA.png" width="598" height="443" alt="1 kbwhvH4lz1B jRHBCEvAcA" />
 This has the obvious effect of preventing framework development in a
 vacuum. AngularDart framework developers have access to millions of
 lines of code that are built with their platform, and they regularly
@@ -159,7 +159,8 @@ all mentions of bar() to baz(). With Dart’s sound type system, you can
 be sure this won’t break anything. Without sound types, even such a
 simple change can get you in trouble.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_yxqdl9CBoB48XG0avf4piQ.gif" title="1_yxqdl9CBoB48XG0avf4piQ.gif" width="500" height="549" alt="1 yxqdl9CBoB48XG0avf4piQ" />
+<img src="images/google-frameworks/1_yxqdl9CBoB48XG0avf4piQ.gif" title="1_yxqdl9CBoB48XG0avf4piQ.gif" width="500" height="549" alt="1 yxqdl9CBoB48XG0avf4piQ" />
+
 *(One keystroke and your code is formatted according to Dart [style
 guide](https://www.dartlang.org/guides/language/effective-dart/style#formatting).
 In fact, the guide states: “The official whitespace-handling rules for
@@ -188,8 +189,7 @@ August, they were not talking about some synthetic tiny TodoMVC example
 apps. They were talking about real-life, mission-critical, production
 apps with millions of users and megabytes of business logic code.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_FFPofhArfE_q-ppyTkDniA.png" title="1_FFPofhArfE_q-ppyTkDniA.png" width="600" height="270" alt="1 FFPofhArfE q ppyTkDniA" />
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<img src="images/google-frameworks/1_FFPofhArfE_q-ppyTkDniA.png" title="1_FFPofhArfE_q-ppyTkDniA.png" width="600" height="270" alt="1 FFPofhArfE q ppyTkDniA" />
 
 Side note: Hermetic build tool You may be wondering: how did this guy
 know which tests in the huge internal repository to run after
@@ -210,7 +210,7 @@ and the tests on any machine at any time and you’ll get consistent
 output. You don’t need to make clean. You can therefore send your
 builds/tests to build servers and parallelize them.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_sq_8UFpeBsxSIpBXpmWiSg.png" title="1_sq_8UFpeBsxSIpBXpmWiSg.png" width="446" height="284" alt="1 sq 8UFpeBsxSIpBXpmWiSg" />
+<img src="images/google-frameworks/1_sq_8UFpeBsxSIpBXpmWiSg.png" title="1_sq_8UFpeBsxSIpBXpmWiSg.png" width="446" height="284" alt="1 sq 8UFpeBsxSIpBXpmWiSg" />
 Google has spent years developing such a build tool. It was open sourced
 last year as [Bazel](https://bazel.build/).
 
@@ -230,7 +230,7 @@ users — as explained above, having large internal users makes
 AngularDart less likely to introduce superficial changes. It makes the
 framework more dependable.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_BjhLEoihrMr6eRcTYL50ag-1.png" title="1_BjhLEoihrMr6eRcTYL50ag-1.png" width="598" height="232" alt="1 BjhLEoihrMr6eRcTYL50ag 1" />
+<img src="images/google-frameworks/1_BjhLEoihrMr6eRcTYL50ag-1.png" title="1_BjhLEoihrMr6eRcTYL50ag-1.png" width="598" height="232" alt="1 BjhLEoihrMr6eRcTYL50ag 1" />
 
 If this all sounds too business-y, you could check out my
 decidedly-non-business AngularDart projects like [Automatic Donald

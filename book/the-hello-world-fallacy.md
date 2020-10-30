@@ -27,7 +27,7 @@ lot in one line. Even better if you do it in some clever way. For a
 large software project, though, *that same feature* can have nightmarish
 consequences.
 
-<img src="https://selfimproving.dev/wp-content/uploads/2020/06/1_SbOBuwRZFTi1tfh22u0lrg.gif" title="1_SbOBuwRZFTi1tfh22u0lrg.gif" width="400" height="330" alt="1 SbOBuwRZFTi1tfh22u0lrg" />
+![Exploding head](images/hello-world-fallacy-explode-head.gif)
 
 Another example is project setup. A framework that is easy to get
 started with is perfect for demos. But sometimes (sometimes!) the

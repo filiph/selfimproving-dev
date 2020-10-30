@@ -278,6 +278,15 @@ h1 {
   background-color: yellow;
 }
 
+h1 {
+  text-align: left;
+  padding-top: 1.5em;
+}
+
+p.author {
+  text-align: left;
+}
+
 .switcher-line-1 {
   margin-bottom: 0;
 }
