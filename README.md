@@ -23,10 +23,11 @@ and so on).
 [Bob's upstream project]: https://github.com/munificent/craftinginterpreters
 
 This project stripped all of those content files and left only
-the tooling and the scaffold. If you want that, go to [this commit][]:
-`183b7816`. _That_ code is fully MIT-licensed. You can start your own book.
+the tooling and the scaffold. If you want that, go to the 
+[`just tooling` branch][]. _That_ code is fully MIT-licensed. 
+You can start your own book.
 
-[this commit]: https://github.com/filiph/selfimproving-dev/commit/183b781669ab4fa59368641742a374113e84ab85
+[`just tooling` branch]: https://github.com/filiph/selfimproving-dev/tree/just-tooling
 
 After that commit, I started to add my own content, which is CC BY-NC-SA 4.0.
 
