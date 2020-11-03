@@ -23,6 +23,7 @@ const _tableOfContents = <String,List<String>>{
     'Generics',
     'Variable Shadowing',
     'Hashing',
+    'Bayes’ Theorem',
   ],
   // Career
   // Concepts (generics)
