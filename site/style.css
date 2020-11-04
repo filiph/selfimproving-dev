@@ -360,8 +360,24 @@ aside strong {
   font-weight: 900;
 }
 
+.author-signage {
+  text-align: right;
+}
+
 footer {
   margin-top: 2em;
+}
+footer .tweet-this {
+  background-color: #eeeeee;
+  padding: 0.5rem 20% 0.5rem;
+  line-height: 1.2em;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 300;
+  text-align: center;
+}
+footer .tweet-this a {
+  text-decoration: none;
+  color: blue;
 }
 footer .imprint {
   margin-top: 4em;
