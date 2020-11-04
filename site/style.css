@@ -360,12 +360,8 @@ aside strong {
   font-weight: 900;
 }
 
-.author-signage {
-  text-align: right;
-}
-
 footer {
-  margin-top: 2em;
+  margin-top: 5em;
 }
 footer .tweet-this {
   background-color: #eeeeee;
