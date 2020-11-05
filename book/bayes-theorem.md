@@ -36,7 +36,13 @@ You may be tempted to blurt out 93%. But not so fast.
 
 Forget the quality of the test for a moment. What is the probability that, when you're taking a pregnancy test, you're actually pregnant? Note that we're not talking about the precision of any device here. We're talking about how likely it is you're pregnant, in reality, as you're entering the bathroom with the little testing device in your hand.
 
-Now, look, I can't find any good data on this, so I'll just go ahead and estimate. (The actual numbers don't matter at all here. We're not trying to solve a math problem, we're trying to understand Bayes.) My guess is that only 10% of women who decide to take a pregnancy test are pregnant at the time.
+Now, look, I can't find any good data on this, so I'll just go ahead and estimate. My guess is that only 10% of the women who decide to take a pregnancy test are pregnant at the time.
+
+<aside>
+
+**Aside:** The actual numbers don't matter at all here. We're not trying to solve a math problem, we're trying to understand Bayes.
+
+</aside>
 
 To find the probabilities of the four different outcomes (true positive, true negative, false positive, false negative) among all the women who take a pregnancy test, we just need to multiply:
 
@@ -125,7 +131,7 @@ Now replace `B` with "pregnancy test says YES" and `A` with "you're pregnant".
 
 ## The name
 
-The theorem is named after Reverend Thomas Bayes, an English Presbyterian minister. His work was published in 1763. This math is well over 250 years old.
+The theorem is named after Reverend Thomas Bayes, an English Presbyterian minister. His work was published in 1763, so this math is well over 250 years old.
 
 ![Thomas Bayes](images/Thomas_Bayes.jpg)
 
@@ -291,3 +297,4 @@ Another thing to look at is performance, which I chose to completely ignore here
 
 The purpose of this article was to give you an intuitive understanding of something quite unintuitive. Bayes is used everywhere from spell checking to driverless cars. Maybe you'll find a use for it in your own work.
 
+If you can compute some ratio (the test), and that ratio is indicative of something interesting (the real event), think about Reverend Bayes.

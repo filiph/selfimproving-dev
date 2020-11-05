@@ -73,7 +73,10 @@
 <p>You may be tempted to blurt out 93%. But not so fast.</p>
 <h2><a href="#prevalence-of-babies" name="prevalence-of-babies"><small>15&#8202;.&#8202;2</small> Prevalence of babies</a></h2>
 <p>Forget the quality of the test for a moment. What is the probability that, when you&rsquo;re taking a pregnancy test, you&rsquo;re actually pregnant? Note that we&rsquo;re not talking about the precision of any device here. We&rsquo;re talking about how likely it is you&rsquo;re pregnant, in reality, as you&rsquo;re entering the bathroom with the little testing device in your hand.</p>
-<p>Now, look, I can&rsquo;t find any good data on this, so I&rsquo;ll just go ahead and estimate. (The actual numbers don&rsquo;t matter at all here. We&rsquo;re not trying to solve a math problem, we&rsquo;re trying to understand Bayes.) My guess is that only 10% of women who decide to take a pregnancy test are pregnant at the time.</p>
+<p>Now, look, I can&rsquo;t find any good data on this, so I&rsquo;ll just go ahead and estimate. My guess is that only 10% of the women who decide to take a pregnancy test are pregnant at the time.</p>
+<aside>
+<p><strong>Aside:</strong> The actual numbers don&rsquo;t matter at all here. We&rsquo;re not trying to solve a math problem, we&rsquo;re trying to understand Bayes.</p>
+</aside>
 <p>To find the probabilities of the four different outcomes (true positive, true negative, false positive, false negative) among all the women who take a pregnancy test, we just need to multiply:</p><table><thead><tr><th></th><th></th><th>Test says YES</th><th>Test says NO</th></tr></thead><tbody><tr><td>Actual baby (10%)</td><td>👶</td><td>93%&nbsp;⨯&nbsp;10%&nbsp;=&nbsp;<strong>9.3%</strong></td><td>7%&nbsp;⨯&nbsp;10%&nbsp;=&nbsp;<strong>0.7%</strong></td></tr><tr><td>No baby (90%)</td><td>◯</td><td>5%&nbsp;⨯&nbsp;90%&nbsp;=&nbsp;<strong>4.5%</strong></td><td>95%&nbsp;⨯&nbsp;90%&nbsp;=&nbsp;<strong>85.5%</strong></td></tr></tbody></table>
 <p>It might not be immediately obvious, but the four numbers in bold add up to 100%. That makes sense: if you&rsquo;re taking a pregnancy test, you will obviously fall into one of these four categories.</p>
 <p>Note the difference:</p>
@@ -129,7 +132,7 @@ times</li>
 </ul>
 <p>Now replace <code>B</code> with &ldquo;pregnancy test says YES&rdquo; and <code>A</code> with &ldquo;you&rsquo;re pregnant&rdquo;.</p><!-- TODO: add the formula with annotations, e.g. P(A) is "probability a test-taking woman is pregnant" -->
 <h2><a href="#the-name" name="the-name"><small>15&#8202;.&#8202;5</small> The name</a></h2>
-<p>The theorem is named after Reverend Thomas Bayes, an English Presbyterian minister. His work was published in 1763. This math is well over 250 years old.</p>
+<p>The theorem is named after Reverend Thomas Bayes, an English Presbyterian minister. His work was published in 1763, so this math is well over 250 years old.</p>
 <p><img src="images/Thomas_Bayes.jpg" alt="Thomas Bayes" /></p>
 <aside>
 <p><strong>Aside:</strong> Whenever I get a bit lost in the probabilities of the theorem, I imagine Reverend Bayes looking at me exactly like in the picture above. &ldquo;Really, Filip? You can&rsquo;t multiply two numbers?&rdquo;</p>
@@ -253,6 +256,7 @@ $ bayes &quot;Boss called again.&quot; &quot;#baby&quot;
 <p>Another thing to look at is performance, which I chose to completely ignore here. Simple caching of results would take you a long way.</p>
 </aside>
 <p>The purpose of this article was to give you an intuitive understanding of something quite unintuitive. Bayes is used everywhere from spell checking to driverless cars. Maybe you&rsquo;ll find a use for it in your own work.</p>
+<p>If you can compute some ratio (the test), and that ratio is indicative of something interesting (the real event), think about Reverend Bayes.</p>
 
 
     <footer>
