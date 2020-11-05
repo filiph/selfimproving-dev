@@ -71,7 +71,7 @@ void _buildPages({bool skipUpToDate = false}) {
 }
 
 void _copyImages() {
-  for (var entry in Glob('book/images/**.{jpg,jpeg,png,gif}').listSync()) {
+  for (var entry in Glob('book/images/**.{jpg,jpeg,png,gif,svg}').listSync()) {
     if (entry is File) {
       var relative = p.relative(entry.path, from: 'book/images/');
 

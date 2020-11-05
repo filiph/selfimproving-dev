@@ -4,6 +4,7 @@
 /gen/
 *.class
 .idea/
+.DS_Store
 
 # XCode user-specific stuff.
 xcuserdata/
