@@ -2,7 +2,7 @@ This book is an attempt to bridge the gap between the *“I
 can write code”* level and the *“I understand reified types”* level of
 software development.
 
-The focus is on breath over depth. After reading this book, you'll have a good overview of the things that a good Software Engineer encounters in about the first 10 years of experience. You will have an intuitive understanding of these topics. You will not become an expert in fuzzy logic or backtracking, but you'll know what people mean when they say those words.
+The focus is on breadth over depth. After reading this book, you'll have a good overview of the things that a good Software Engineer encounters in about the first 10 years of experience. You will have an intuitive understanding of these topics. You will not become an expert in fuzzy logic or backtracking, but you'll know what people mean when they say those words.
 
 Basically, this is an intermediate developer's guide. Most content out
 there is either for beginners (because that’s the largest audience),
