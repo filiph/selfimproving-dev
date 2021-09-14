@@ -167,7 +167,7 @@ naming it.
 ### Step 4: Add webcam input
 
 Add your webcam input (“Video Capture Device”) as a source. It’s
-important that your webcome is close to where you’ll be looking when
+important that your webcam is close to where you’ll be looking when
 presenting. For example, if you have two monitors, place the webcam on
 top of the monitor that will be your primary when presenting.
 
