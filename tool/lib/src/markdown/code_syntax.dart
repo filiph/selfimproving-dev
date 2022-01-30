@@ -40,8 +40,8 @@ class HighlightedCodeBlockSyntax extends BlockSyntax {
 
   Node parse(BlockParser parser) {
     // Get the syntax identifier, if there is one.
-    var match = pattern.firstMatch(parser.current);
-    var indent = match[1].length;
+    var match = pattern.firstMatch(parser.current)!;
+    var indent = match[1]!.length;
     var language = match[2];
 
     var childLines = parseChildLines(parser);
@@ -63,7 +63,7 @@ class HighlightedCodeBlockSyntax extends BlockSyntax {
 
       code = buffer.toString();
     } else {
-      code = formatCode(language, childLines, indent: indent, xml: _isXml);
+      code = formatCode(language!, childLines, indent: indent, xml: _isXml);
     }
 
     // Don't wrap in a div for XML.
@@ -91,16 +91,16 @@ class CodeTagBlockSyntax extends BlockSyntax {
       pattern.firstMatch(parser.current) != null;
 
   Node parse(BlockParser parser) {
-    var match = pattern.firstMatch(parser.current);
-    var name = match[1];
+    var match = pattern.firstMatch(parser.current)!;
+    var name = match[1]!;
     parser.advance();
 
     var codeTag = _page.findCodeTag(name);
     String snippet;
     if (_isXml) {
-      snippet = _buildSnippetXml(codeTag, _book.findSnippet(codeTag));
+      snippet = _buildSnippetXml(codeTag, _book.findSnippet(codeTag)!);
     } else {
-      snippet = _buildSnippet(codeTag, _book.findSnippet(codeTag));
+      snippet = _buildSnippet(codeTag, _book.findSnippet(codeTag)!);
     }
     return Text(snippet);
   }
@@ -135,7 +135,7 @@ String _buildSnippet(CodeTag tag, Snippet snippet) {
   }
 
   if (snippet.addedComma != null) {
-    var commaLine = formatCode(snippet.file.language, [snippet.addedComma],
+    var commaLine = formatCode(snippet.file.language, [snippet.addedComma!],
         preClass: "insert-before");
     var comma = commaLine.lastIndexOf(",");
     buffer.write(commaLine.substring(0, comma));
@@ -148,11 +148,9 @@ String _buildSnippet(CodeTag tag, Snippet snippet) {
     buffer.writeln('<div class="source-file">$lines</div>');
   }
 
-  if (snippet.added != null) {
-    var added = formatCode(snippet.file.language, snippet.added,
-        preClass: tag.beforeCount > 0 || tag.afterCount > 0 ? "insert" : null);
-    buffer.write(added);
-  }
+  var added = formatCode(snippet.file.language, snippet.added,
+      preClass: tag.beforeCount > 0 || tag.afterCount > 0 ? "insert" : null);
+  buffer.write(added);
 
   if (snippet.contextAfter.isNotEmpty) {
     _writeContextHtml(buffer, snippet.contextAfter,
@@ -189,28 +187,26 @@ String _buildSnippetXml(CodeTag tag, Snippet snippet) {
 //    buffer.write(commaLine.substring(comma + 1));
   }
 
-  if (snippet.added != null) {
-    // Use different tags based on whether there is context before, after,
-    // neither, or both.
-    String insertTag;
-    if (tag.beforeCount > 0) {
-      if (tag.afterCount > 0) {
-        insertTag = "interpreter-between";
-      } else {
-        insertTag = "interpreter-after";
-      }
+  // Use different tags based on whether there is context before, after,
+  // neither, or both.
+  String insertTag;
+  if (tag.beforeCount > 0) {
+    if (tag.afterCount > 0) {
+      insertTag = "interpreter-between";
     } else {
-      if (tag.afterCount > 0) {
-        insertTag = "interpreter-before";
-      } else {
-        insertTag = "interpreter";
-      }
+      insertTag = "interpreter-after";
     }
-
-    buffer.write("<$insertTag>");
-    buffer.write(formatCode(snippet.file.language, snippet.added, xml: true));
-    buffer.write("</$insertTag>");
+  } else {
+    if (tag.afterCount > 0) {
+      insertTag = "interpreter-before";
+    } else {
+      insertTag = "interpreter";
+    }
   }
+
+  buffer.write("<$insertTag>");
+  buffer.write(formatCode(snippet.file.language, snippet.added, xml: true));
+  buffer.write("</$insertTag>");
 
   if (snippet.contextAfter.isNotEmpty) {
     _writeContextXml(buffer, snippet.contextAfter, "after");
@@ -220,7 +216,7 @@ String _buildSnippetXml(CodeTag tag, Snippet snippet) {
 }
 
 void _writeContextHtml(StringBuffer buffer, List<String> lines,
-    {String cssClass}) {
+    {String? cssClass}) {
   buffer.write("<pre");
   if (cssClass != null) buffer.write(' class="$cssClass"');
   buffer.writeln(">");

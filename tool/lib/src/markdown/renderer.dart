@@ -19,10 +19,10 @@ class HtmlRenderer implements NodeVisitor {
     "ul",
   };
 
-  StringBuffer buffer;
+  late StringBuffer buffer;
 
   final _elementStack = <Element>[];
-  String _lastVisitedTag;
+  String? _lastVisitedTag;
 
   String render(List<Node> nodes) {
     buffer = StringBuffer();
@@ -85,7 +85,7 @@ class HtmlRenderer implements NodeVisitor {
     assert(identical(_elementStack.last, element));
 
     if (element.children != null &&
-        element.children.isNotEmpty &&
+        element.children!.isNotEmpty &&
         _blockTags.contains(_lastVisitedTag) &&
         _blockTags.contains(element.tag)) {
       buffer.writeln();
@@ -109,9 +109,9 @@ class XmlRenderer implements NodeVisitor {
 
   bool _isPending = false;
 
-  String _paragraphTag;
-  String _lastParagraphTag;
-  String _lastSidebarTag;
+  String? _paragraphTag;
+  String? _lastParagraphTag;
+  String? _lastSidebarTag;
   bool _isNextParagraph = false;
 
   String render(List<Node> nodes) {
@@ -147,7 +147,7 @@ class XmlRenderer implements NodeVisitor {
       // after an image.
       if (!_isInContext("aside")) _resetParagraph();
 
-      var match = _imagePathPattern.firstMatch(text);
+      var match = _imagePathPattern.firstMatch(text)!;
       _buffer.writeln("<image>${match[1]}</image>");
     } else {
       if (_flushParagraph()) {
@@ -352,7 +352,7 @@ class XmlRenderer implements NodeVisitor {
   void _endParagraph() {
     if (!_isPending) {
       var tag = _paragraphTag;
-      if (_isNextParagraph) tag += "-next";
+      if (_isNextParagraph) tag = tag! + "-next";
       _buffer.writeln('</$tag>');
     }
     _isPending = false;
@@ -370,7 +370,7 @@ class XmlRenderer implements NodeVisitor {
     if (!_isPending) return false;
 
     var tag = _paragraphTag;
-    if (_isNextParagraph) tag += "-next";
+    if (_isNextParagraph) tag = tag! + "-next";
     _buffer.write('<$tag>');
 
     _isPending = false;
@@ -385,11 +385,11 @@ class XmlRenderer implements NodeVisitor {
 
   /// Whether [tag] is a paragraph tag that appears in the sidebar (like an
   /// aside) or in the main column.
-  bool _isSidebarTag(String tag) {
+  bool _isSidebarTag(String? tag) {
     return const {"aside"}.contains(tag);
   }
 
-  bool _isInContext(String tag1, [String tag2]) {
+  bool _isInContext(String tag1, [String? tag2]) {
     if (_tags.isEmpty) return false;
     if (_tags.last != tag1) return false;
     if (tag2 != null) {

@@ -304,7 +304,7 @@ Future<void> main(List<String> arguments) async {
     var chapter = book.findChapter(chapterName);
 
     var tags = chapter.codeTags;
-    var tagNames = _chapterTags[chapterName];
+    var tagNames = _chapterTags[chapterName]!;
     if (tagNames.isNotEmpty) {
       tags = tagNames.map((name) => book.findTag(chapter, name));
     } else {

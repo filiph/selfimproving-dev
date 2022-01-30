@@ -22,8 +22,8 @@ var _failed = 0;
 var _skipped = 0;
 var _expectations = 0;
 
-Interpreter _interpreter;
-String _filterPath;
+Interpreter? _interpreter;
+String? _filterPath;
 
 final _allSuites = <String, Interpreter>{};
 final _cSuites = <String>[];
@@ -108,7 +108,7 @@ void _runTest(String path) {
   // Check if we are just running a subset of the tests.
   if (_filterPath != null) {
     var thisTest = p.posix.relative(path, from: "test");
-    if (!thisTest.startsWith(_filterPath)) return;
+    if (!thisTest.startsWith(_filterPath!)) return;
   }
 
   // Update the status line.
@@ -143,13 +143,13 @@ class Test {
   final String _path;
 
   // TODO: Better type.
-  final _expectedOutput = <List<Object>>[];
+  final List<List<Object?>> _expectedOutput = <List<Object>>[];
 
   /// The set of expected compile error messages.
   final _expectedErrors = <String>{};
 
   /// The expected runtime error message or `null` if there should not be one.
-  String _expectedRuntimeError;
+  String? _expectedRuntimeError;
 
   /// If there is an expected runtime error, the line it should occur on.
   int _runtimeErrorLine = 0;
@@ -165,7 +165,7 @@ class Test {
     // Get the path components.
     var parts = _path.split("/");
     var subpath = "";
-    String state;
+    String? state;
 
     // Figure out the state of the test. We don't break out of this loop because
     // we want lines for more specific paths to override more general ones.
@@ -173,8 +173,8 @@ class Test {
       if (subpath.isNotEmpty) subpath += "/";
       subpath += part;
 
-      if (_interpreter.tests.containsKey(subpath)) {
-        state = _interpreter.tests[subpath];
+      if (_interpreter!.tests.containsKey(subpath)) {
+        state = _interpreter!.tests[subpath];
       }
     }
 
@@ -218,7 +218,7 @@ class Test {
         // the tests can indicate if an error line should only appear for a
         // certain interpreter.
         var language = match[2];
-        if (language == null || language == _interpreter.language) {
+        if (language == null || language == _interpreter!.language) {
           _expectedErrors.add("[${match[3]}] ${match[4]}");
 
           // If we expect a compile error, it should exit with EX_DATAERR.
@@ -251,8 +251,8 @@ class Test {
 
   /// Invoke the interpreter and run the test.
   List<String> run() {
-    var args = [..._interpreter.args, _path];
-    var result = Process.runSync(_interpreter.executable, args);
+    var args = [..._interpreter!.args, _path];
+    var result = Process.runSync(_interpreter!.executable, args);
 
     // Normalize Windows line endings.
     var outputLines = const LineSplitter().convert(result.stdout as String);
@@ -282,7 +282,7 @@ class Test {
     }
 
     // Make sure the stack trace has the right line.
-    RegExpMatch match;
+    RegExpMatch? match;
     var stackLines = errorLines.sublist(1);
     for (var line in stackLines) {
       match = _stackTracePattern.firstMatch(line);
@@ -292,7 +292,7 @@ class Test {
     if (match == null) {
       fail("Expected stack trace and got:", stackLines);
     } else {
-      var stackLine = int.parse(match[1]);
+      var stackLine = int.parse(match[1]!);
       if (stackLine != _runtimeErrorLine) {
         fail("Expected runtime error on line $_runtimeErrorLine "
             "but was on line $stackLine.");
@@ -357,11 +357,11 @@ class Test {
     var index = 0;
     for (; index < outputLines.length; index++) {
       var line = outputLines[index];
-      var output = _expectedOutput[index][0] as String;
+      var output = _expectedOutput[index][0] as String?;
       if (index >= _expectedOutput.length) {
         fail("Got output '$line' when none was expected.");
       } else if (output != line) {
-        var lineNum = _expectedOutput[index][1] as int;
+        var lineNum = _expectedOutput[index][1] as int?;
         fail("Expected output '$output' on line $lineNum and got '$line'.");
       }
     }
@@ -373,7 +373,7 @@ class Test {
     }
   }
 
-  void fail(String message, [List<String> lines]) {
+  void fail(String message, [List<String>? lines]) {
     _failures.add(message);
     if (lines != null) _failures.addAll(lines);
   }

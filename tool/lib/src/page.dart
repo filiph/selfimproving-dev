@@ -9,7 +9,7 @@ import 'text.dart';
 /// Each chapter, part introduction, and backmatter section is a page.
 class Page {
   /// The title of this page.
-  final String title;
+  final String? title;
 
   /// The chapter or part number, like "12", "II", or "".
   final String numberString;
@@ -23,14 +23,14 @@ class Page {
   final List<Page> chapters = [];
 
   /// If this page is a chapter page, the part that contains this page.
-  final Page part;
+  final Page? part;
 
-  PageFile _file;
+  PageFile? _file;
 
   Page(this.title, this.part, this.numberString, this.ordinal);
 
   /// The base file path and URI for the page, without any extension.
-  String get fileName => toFileName(title);
+  String get fileName => toFileName(title!);
 
   /// The path to this page's Markdown source file.
   String get markdownPath => p.join("book", "$fileName.md");
@@ -46,17 +46,17 @@ class Page {
 
   /// The code language used for this chapter page or `null` if this isn't one
   /// of the main chapter pages.
-  String get language {
+  String? get language {
     if (isPart) return null;
-    if (part.title == "A Tree-Walk Interpreter") return "java";
-    if (part.title == "A Bytecode Virtual Machine") return "c";
+    if (part!.title == "A Tree-Walk Interpreter") return "java";
+    if (part!.title == "A Bytecode Virtual Machine") return "c";
     return null;
   }
 
   String get shortName {
     var number = numberString.padLeft(2, "0");
 
-    var words = title.split(" ");
+    var words = title!.split(" ");
     var word = words.first.toLowerCase();
     if (word == "a" || word == "the") word = words[1].toLowerCase();
 
@@ -75,7 +75,7 @@ class Page {
 
   bool get hasChallenges => _ensureFile().hasChallenges;
 
-  String get designNote => _ensureFile().designNote;
+  String? get designNote => _ensureFile().designNote;
 
   Iterable<CodeTag> get codeTags => _ensureFile().codeTags.values;
 
@@ -90,7 +90,7 @@ class Page {
     throw ArgumentError("Could not find code tag '$name'.");
   }
 
-  String toString() => title;
+  String toString() => title!;
 
   /// Lazily parse the Markdown file for the page.
   PageFile _ensureFile() => _file ??= parsePage(this);
@@ -103,7 +103,7 @@ class PageFile {
   final bool hasChallenges;
 
   /// The name of the design note in this page, or `null` if there is none.
-  final String designNote;
+  final String? designNote;
 
   final Map<String, CodeTag> codeTags;
 
@@ -116,7 +116,7 @@ class Header {
   /// The header depth: 1 is the page title, 2 header, 3 subheader.
   final int level;
   final int headerIndex;
-  final int subheaderIndex;
+  final int? subheaderIndex;
   final String name;
 
   Header(this.level, this.headerIndex, this.subheaderIndex, this.name);

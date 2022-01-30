@@ -39,7 +39,7 @@ final _asideHighlightedWithCommentPattern =
 final _asideWithCommentPattern = RegExp(r' +// (.+) \[([-a-z0-9]+)\]');
 
 int _buildPage(Book book, Mustache mustache, Page page,
-    {DateTime dependenciesModified}) {
+    {DateTime? dependenciesModified}) {
   // See if the HTML is up to date.
   if (dependenciesModified != null &&
       _isUpToDate(page.htmlPath, page.markdownPath, dependenciesModified)) {
@@ -50,7 +50,7 @@ int _buildPage(Book book, Mustache mustache, Page page,
   for (var line in page.lines) wordCount += countWords(line);
 
   for (var tag in page.codeTags) {
-    var snippet = book.findSnippet(tag);
+    var snippet = book.findSnippet(tag)!;
     for (var line in snippet.added) wordCount += countWords(line);
     for (var line in snippet.contextBefore) wordCount += countWords(line);
     for (var line in snippet.contextAfter) wordCount += countWords(line);
@@ -99,7 +99,7 @@ void _buildPages({bool skipUpToDate = false}) {
   var book = Book();
   var mustache = Mustache();
 
-  DateTime dependenciesModified;
+  DateTime? dependenciesModified;
   if (skipUpToDate) {
     dependenciesModified = _mostRecentlyModified([
       "asset/mustache/*.html",
@@ -134,7 +134,7 @@ void _buildSass({bool skipUpToDate = false}) {
     var cssPath =
         p.join("site", p.basenameWithoutExtension(source.path) + ".css");
 
-    if (skipUpToDate && _isUpToDate(cssPath, scssPath, moduleModified)) {
+    if (skipUpToDate && _isUpToDate(cssPath, scssPath, moduleModified!)) {
       continue;
     }
 
@@ -177,8 +177,8 @@ bool _isUpToDate(
 }
 
 /// The most recently modified time of all files that match [globs].
-DateTime _mostRecentlyModified(List<String> globs) {
-  DateTime latest;
+DateTime? _mostRecentlyModified(List<String> globs) {
+  DateTime? latest;
   for (var glob in globs) {
     for (var entry in Glob(glob).listSync()) {
       if (entry is File) {
@@ -207,7 +207,7 @@ Future<void> _runServer() async {
     try {
       var contents = await File(p.join("site", filePath)).readAsBytes();
       return shelf.Response.ok(contents, headers: {
-        HttpHeaders.contentTypeHeader: mimeFromExtension(extension)
+        HttpHeaders.contentTypeHeader: mimeFromExtension(extension)!
       });
     } on FileSystemException {
       print(

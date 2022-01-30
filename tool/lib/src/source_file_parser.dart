@@ -34,10 +34,10 @@ class SourceFileParser {
   final List<String> _lines;
   final List<_ParseState> _states = [];
 
-  Location _unnamedTypedef;
+  Location? _unnamedTypedef;
 
-  Location _location;
-  Location _locationBeforeBlock;
+  Location? _location;
+  Location? _locationBeforeBlock;
 
   SourceFileParser(this._book, String path, String relative)
       : _file = SourceFile(relative),
@@ -175,32 +175,32 @@ class SourceFileParser {
       // Now we know the typedef name.
       _unnamedTypedef?.name = match[1];
       _unnamedTypedef = null;
-      _location = _location.parent;
+      _location = _location!.parent;
     }
 
     // Use "startsWith" to include lines like "} [aside-marker]".
     if (line.startsWith("}")) {
-      _location = _location.popToDepth(0);
+      _location = _location!.popToDepth(0);
     } else if (line.startsWith("  }")) {
-      _location = _location.popToDepth(1);
+      _location = _location!.popToDepth(1);
     } else if (line.startsWith("    }")) {
-      _location = _location.popToDepth(2);
+      _location = _location!.popToDepth(2);
     }
 
     // If we reached a function declaration, not a definition, then it's done
     // after one line.
-    if (_location.isFunctionDeclaration) {
-      _location = _location.parent;
+    if (_location!.isFunctionDeclaration) {
+      _location = _location!.parent;
     }
 
     // Module variables are only a single line.
-    if (_location.kind == "variable") {
-      _location = _location.parent;
+    if (_location!.kind == "variable") {
+      _location = _location!.parent;
     }
 
     // Hack. There is a one-line class in Parser.java.
     if (line.contains("class ParseError")) {
-      _location = _location.parent;
+      _location = _location!.parent;
     }
   }
 
@@ -211,9 +211,9 @@ class SourceFileParser {
     var match = _blockPattern.firstMatch(line);
     if (match != null) {
       _push(
-          startChapter: _book.findChapter(match[1]),
+          startChapter: _book.findChapter(match[1]!),
           startName: match[2],
-          endChapter: _book.findChapter(match[3]),
+          endChapter: _book.findChapter(match[3]!),
           endName: match[4]);
       _locationBeforeBlock = _location;
       return true;
@@ -257,7 +257,7 @@ class SourceFileParser {
 
     match = _beginChapterPattern.firstMatch(line);
     if (match != null) {
-      var chapter = _book.findChapter(match[1]);
+      var chapter = _book.findChapter(match[1]!);
       var name = match[2];
 
 //        if state.start != None:
@@ -294,7 +294,7 @@ class SourceFileParser {
   _ParseState get _currentState => _states.last;
 
   void _push(
-      {Page startChapter, String startName, Page endChapter, String endName}) {
+      {Page? startChapter, String? startName, Page? endChapter, String? endName}) {
     startChapter ??= _currentState.start.chapter;
 
     CodeTag start;
@@ -304,9 +304,9 @@ class SourceFileParser {
       start = _currentState.start;
     }
 
-    CodeTag end;
+    CodeTag? end;
     if (endChapter != null) {
-      end = endChapter.findCodeTag(endName);
+      end = endChapter.findCodeTag(endName!);
     }
 
     _states.add(_ParseState(start, end));
@@ -319,7 +319,7 @@ class SourceFileParser {
 
 class _ParseState {
   final CodeTag start;
-  final CodeTag end;
+  final CodeTag? end;
 
   _ParseState(this.start, [this.end]);
 

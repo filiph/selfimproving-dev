@@ -1,10 +1,10 @@
 /// The context in which a line of code appears. The chain of types and
 /// functions it's in.
 class Location {
-  final Location parent;
-  final String kind;
-  String _name;
-  final String signature;
+  final Location? parent;
+  final String? kind;
+  String? _name;
+  final String? signature;
 
   /// If [kind] is "method" or "function" then this tracks where we are
   /// declaring or defining the function.
@@ -13,9 +13,9 @@ class Location {
   Location(this.parent, this.kind, this._name,
       {this.signature, this.isFunctionDeclaration = false});
 
-  String get name => _name;
+  String? get name => _name;
 
-  set name(String value) {
+  set name(String? value) {
     // Can only set the name if it's an unnamed typedef.
     assert(_name == null);
     _name = value;
@@ -27,7 +27,7 @@ class Location {
       const {"constructor", "function", "method"}.contains(kind);
 
   int get depth {
-    var current = this;
+    Location? current = this;
     var result = 0;
     while (current != null) {
       result++;
@@ -45,13 +45,13 @@ class Location {
 
   /// Generates a string of HTML that describes a snippet at this location,
   /// when following the [preceding] location.
-  String toHtml(Location preceding, List<String> removed) {
+  String? toHtml(Location? preceding, List<String> removed) {
     if (kind == "new") return "create new file";
     if (kind == "top") return "add to top of file";
 
     // Note: The order of these is highly significant.
     if (kind == "class" && parent?.kind == "class") {
-      return "nest inside class <em>${parent.name}</em>";
+      return "nest inside class <em>${parent!.name}</em>";
     }
 
     if (isFunction && preceding == this) {
@@ -60,7 +60,7 @@ class Location {
       //  signature because there's another place where a change signature would
       //  confuse the build script. So just check for the one-off case here.
       if (name == "resolve" && signature == "Expr expr") {
-        return "add after <em>${preceding.name}</em>(${preceding.signature})";
+        return "add after <em>${preceding!.name}</em>(${preceding.signature})";
       }
 
       // We're still inside a function.
@@ -73,7 +73,7 @@ class Location {
       return "$kind <em>$name</em>()";
     }
 
-    if (parent == preceding && !preceding.isFile) {
+    if (parent == preceding && !preceding!.isFile) {
       // We're nested inside a type.
       return "in ${preceding.kind} <em>${preceding.name}</em>";
     }
@@ -83,7 +83,7 @@ class Location {
       return "in $kind <em>$name</em>";
     }
 
-    if (preceding.isFunction) {
+    if (preceding!.isFunction) {
       // We aren't inside a function, but we do know the preceding one.
       return "add after <em>${preceding.name}</em>()";
     }
@@ -104,13 +104,13 @@ class Location {
   ///
   /// This is similar to [toHtml] but uses different tags and places the
   /// signatures inside the tags instead of outside.
-  String toXml(Location preceding, List<String> removed) {
+  String? toXml(Location? preceding, List<String> removed) {
     if (kind == "new") return "create new file";
     if (kind == "top") return "add to top of file";
 
     // Note: The order of these is highly significant.
     if (kind == "class" && parent?.kind == "class") {
-      return "nest inside class <location-type>${parent.name}</location-type>";
+      return "nest inside class <location-type>${parent!.name}</location-type>";
     }
 
     if (isFunction && preceding == this) {
@@ -119,7 +119,7 @@ class Location {
       //  signature because there's another place where a change signature would
       //  confuse the build script. So just check for the one-off case here.
       if (name == "resolve" && signature == "Expr expr") {
-        return "add after <location-fn>${preceding.name}"
+        return "add after <location-fn>${preceding!.name}"
             "(${preceding.signature})</location-fn>";
       }
 
@@ -133,7 +133,7 @@ class Location {
       return "$kind <location-fn>$name()</location-fn>";
     }
 
-    if (parent == preceding && !preceding.isFile) {
+    if (parent == preceding && !preceding!.isFile) {
       // We're nested inside a type.
       return "in ${preceding.kind} "
           "<location-type>${preceding.name}</location-type>";
@@ -144,7 +144,7 @@ class Location {
       return "in $kind <location-type>$name</location-type>";
     }
 
-    if (preceding.isFunction) {
+    if (preceding!.isFunction) {
       // We aren't inside a function, but we do know the preceding one.
       return "add after <location-fn>${preceding.name}()</location-fn>";
     }
@@ -178,7 +178,7 @@ class Location {
 
   /// Discard as many children as needed to get to [depth] parents.
   Location popToDepth(int depth) {
-    var current = this;
+    Location? current = this;
     var locations = <Location>[];
     while (current != null) {
       locations.add(current);

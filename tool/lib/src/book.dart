@@ -37,14 +37,14 @@ class Book {
       }
 
       // There are no part pages for the front- and backmatter.
-      Page partPage;
+      Page? partPage;
       if (part != "") {
         partPage = Page(part, null, partNumber, pages.length);
         pages.add(partPage);
         parts.add(partPage);
       }
 
-      for (var chapter in _tableOfContents[part]) {
+      for (var chapter in _tableOfContents[part]!) {
         var chapterNumber = "";
         if (inMatter) {
           // Front- and backmatter chapters are specially numbered.
@@ -79,7 +79,7 @@ class Book {
 
           if (line.end != null) {
             var endSnippet = _snippets.putIfAbsent(
-                line.end, () => Snippet(sourceFile, line.end));
+                line.end!, () => Snippet(sourceFile, line.end));
             endSnippet.removeLine(lineIndex, line);
           }
 
@@ -89,14 +89,14 @@ class Book {
     }
 
     for (var snippet in _snippets.values) {
-      if (snippet.tag.name == "not-yet") continue;
-      if (snippet.tag.name == "omit") continue;
+      if (snippet.tag!.name == "not-yet") continue;
+      if (snippet.tag!.name == "omit") continue;
       snippet.calculateContext();
     }
   }
 
   /// Gets the [Page] [offset] pages before or after this one.
-  Page adjacentPage(Page start, int offset) {
+  Page? adjacentPage(Page start, int offset) {
     var index = pages.indexOf(start) + offset;
     if (index < 0 || index >= pages.length) return null;
     return pages[index];
@@ -110,7 +110,7 @@ class Book {
   Page findNumber(String number) =>
       pages.firstWhere((page) => page.numberString == number);
 
-  Snippet findSnippet(CodeTag tag) => _snippets[tag];
+  Snippet? findSnippet(CodeTag tag) => _snippets[tag];
 
   /// Find the [CodeTag] with [name] on [page].
   ///
@@ -127,11 +127,11 @@ class Book {
   /// Gets the last snippet that appears in [page].
   ///
   /// Note: Not very fast.
-  Snippet lastSnippet(Page page) {
-    Snippet last;
+  Snippet? lastSnippet(Page page) {
+    Snippet? last;
     for (var snippet in _snippets.values) {
-      if (snippet.tag.chapter != page) continue;
-      if (last == null || snippet.tag > last.tag) last = snippet;
+      if (snippet.tag!.chapter != page) continue;
+      if (last == null || snippet.tag! > last.tag!) last = snippet;
     }
 
     return last;
@@ -153,14 +153,14 @@ class SourceFile {
 /// A line of code in a [SourceFile] and the metadata for it.
 class SourceLine {
   final String text;
-  final Location location;
+  final Location? location;
 
   /// The first snippet where this line appears in the book.
   final CodeTag start;
 
   /// The last snippet where this line is removed, or null if the line reaches
   /// the end of the book.
-  final CodeTag end;
+  final CodeTag? end;
 
   SourceLine(this.text, this.location, this.start, this.end);
 
@@ -170,7 +170,7 @@ class SourceLine {
     if (tag < start) return false;
 
     // If we are past the snippet where it is removed.
-    if (end != null && tag >= end) return false;
+    if (end != null && tag >= end!) return false;
 
     return true;
   }

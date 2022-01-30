@@ -6,20 +6,20 @@ import 'text.dart';
 /// A snippet of source code that is inserted in the book.
 class Snippet {
   final SourceFile file;
-  final CodeTag tag;
+  final CodeTag? tag;
 
-  Location _location;
+  Location? _location;
 
-  int _firstLine;
-  int _lastLine;
+  late int _firstLine;
+  late int _lastLine;
 
-  Location get precedingLocation => _precedingLocation;
-  Location _precedingLocation;
+  Location? get precedingLocation => _precedingLocation;
+  Location? _precedingLocation;
 
   /// If the snippet replaces a line with the same line but with a trailing
   /// comma, this is that line (with the comma).
-  String get addedComma => _addedComma;
-  String _addedComma;
+  String? get addedComma => _addedComma;
+  String? _addedComma;
 
   final List<String> added = [];
   final List<String> removed = [];
@@ -52,7 +52,7 @@ class Snippet {
   List<String> get locationHtmlLines {
     var result = ["<em>${file.nicePath}</em>"];
 
-    var html = _location.toHtml(precedingLocation, removed);
+    var html = _location!.toHtml(precedingLocation, removed);
     if (html != null) result.add(html);
 
     if (removed.isNotEmpty && added.isNotEmpty) {
@@ -73,7 +73,7 @@ class Snippet {
     var result = StringBuffer();
     result.writeln("<location-file>${file.nicePath}</location-file>");
 
-    var xml = _location.toXml(precedingLocation, removed);
+    var xml = _location!.toXml(precedingLocation, removed);
     var changes = [
       if (xml != null) xml,
       if (removed.isNotEmpty && added.isNotEmpty)
@@ -88,25 +88,25 @@ class Snippet {
     return result.toString();
   }
 
-  String toString() => "${file.nicePath} ${tag.name}";
+  String toString() => "${file.nicePath} ${tag!.name}";
 
   /// Calculate the surrounding context information for this snippet.
   void calculateContext() {
     // Get the preceding lines.
     for (var i = _firstLine - 1;
-        i >= 0 && contextBefore.length < tag.beforeCount;
+        i >= 0 && contextBefore.length < tag!.beforeCount;
         i--) {
       var line = file.lines[i];
-      if (!line.isPresent(tag)) continue;
+      if (!line.isPresent(tag!)) continue;
       contextBefore.insert(0, line.text);
     }
 
     // Get the following lines.
     for (var i = _lastLine + 1;
-        i < file.lines.length && contextAfter.length < tag.afterCount;
+        i < file.lines.length && contextAfter.length < tag!.afterCount;
         i++) {
       var line = file.lines[i];
-      if (line.isPresent(tag)) contextAfter.add(line.text);
+      if (line.isPresent(tag!)) contextAfter.add(line.text);
     }
 
     // Get the preceding location.
@@ -115,12 +115,12 @@ class Snippet {
     int checkedLines = 0;
     for (var i = _firstLine - 1; i >= 0 && checkedLines <= 4; i--) {
       var line = file.lines[i];
-      if (!line.isPresent(tag)) continue;
+      if (!line.isPresent(tag!)) continue;
       checkedLines++;
 
       // Store the most precise preceding location we find.
       if (_precedingLocation == null ||
-          line.location.depth > _precedingLocation.depth) {
+          line.location!.depth > _precedingLocation!.depth) {
         _precedingLocation = line.location;
       }
     }
@@ -129,11 +129,11 @@ class Snippet {
     var hasCodeBefore = contextBefore.isNotEmpty;
     var hasCodeAfter = contextAfter.isNotEmpty;
     for (var i = _firstLine - 1; !hasCodeBefore && i >= 0; i--) {
-      hasCodeBefore = file.lines[i].isPresent(tag);
+      hasCodeBefore = file.lines[i].isPresent(tag!);
     }
 
     for (var i = _lastLine + 1; !hasCodeAfter && i < file.lines.length; i++) {
-      hasCodeAfter = file.lines[i].isPresent(tag);
+      hasCodeAfter = file.lines[i].isPresent(tag!);
     }
 
     if (!hasCodeBefore) {

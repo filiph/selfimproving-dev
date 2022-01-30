@@ -12,7 +12,7 @@ import 'text.dart';
 class Mustache {
   final Map<String, Template> _templates = {};
 
-  String render(Book book, Page page, String body, {String template}) {
+  String render(Book book, Page page, String body, {String? template}) {
     var part = page.part?.title;
 
     var up = "Table of Contents";
@@ -24,14 +24,14 @@ class Mustache {
 
     var previousPage = book.adjacentPage(page, -1);
     var nextPage = book.adjacentPage(page, 1);
-    String nextType;
+    String? nextType;
     if (nextPage != null && nextPage.isChapter) {
       nextType = "Chapter";
     } else if (nextPage != null && nextPage.isPart) {
       nextType = "Part";
     }
 
-    List<Map<String, dynamic>> chapters;
+    List<Map<String, dynamic>>? chapters;
     if (page.isPart) {
       chapters = _makeChapterList(page);
     }
@@ -62,9 +62,9 @@ class Mustache {
       "next": nextPage?.title,
       "next_file": nextPage?.fileName,
       "next_type": nextType,
-      "has_up": up != null,
+      "has_up": true /* There's always at least "Table of Contents" */,
       "up": up,
-      "up_file": up != null ? toFileName(up) : null,
+      "up_file": toFileName(up),
       // TODO: Only need this for contents page.
       "part_1": _makePartData(book, 0),
       "part_2": _makePartData(book, 1),

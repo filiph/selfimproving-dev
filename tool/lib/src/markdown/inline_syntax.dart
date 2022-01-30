@@ -60,7 +60,7 @@ class SmartQuoteSyntax extends InlineSyntax {
       before = parser.charAt(parser.pos - 1);
     }
     var after = -1;
-    if (parser.pos < parser.source.length - 1) {
+    if (parser.pos < parser.source!.length - 1) {
       after = parser.charAt(parser.pos + 1);
     }
 

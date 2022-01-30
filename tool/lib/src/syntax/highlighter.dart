@@ -12,7 +12,7 @@ const _maxLineLength = 67;
 ///
 /// Wraps the result in a <pre> tag with the given [preClass].
 String formatCode(String language, List<String> lines,
-    {String preClass, int indent = 0, bool xml = false}) {
+    {String? preClass, int indent = 0, bool xml = false}) {
   return Highlighter(language, xml: xml)._highlight(lines, preClass, indent);
 }
 
@@ -32,7 +32,7 @@ void checkLineLength(String line) {
 class Highlighter {
   final bool _isXml;
   final StringBuffer _buffer = StringBuffer();
-  StringScanner scanner;
+  late StringScanner scanner;
   final Language language;
 
   /// Whether we are in a multi-line macro started on a previous line.
@@ -43,7 +43,7 @@ class Highlighter {
             (throw "Unknown language '$language'."),
         _isXml = xml;
 
-  String _highlight(List<String> lines, String preClass, int indent) {
+  String _highlight(List<String> lines, String? preClass, int indent) {
     if (!_isXml) {
       _buffer.write("<pre");
       if (preClass != null) _buffer.write(' class="$preClass"');
@@ -97,19 +97,19 @@ class Highlighter {
     _buffer.writeln();
   }
 
-  void writeToken(String type, [String text]) {
-    text ??= scanner.lastMatch[0];
+  void writeToken(String type, [String? text]) {
+    text ??= scanner.lastMatch![0];
 
     if (_isXml) {
       // Only highlight keywords and comments in XML.
       var tag = {"k": "keyword", "c": "comment"}[type];
 
       if (tag != null) _buffer.write("<$tag>");
-      writeText(text);
+      writeText(text!);
       if (tag != null) _buffer.write("</$tag>");
     } else {
       _buffer.write('<span class="$type">');
-      writeText(text);
+      writeText(text!);
       _buffer.write('</span>');
     }
   }
