@@ -115,7 +115,7 @@ is equal to</li>
 <ul>
 <li>the probability that event B occurs given event A<br />
 times</li>
-<li>the probability that event A occurs  </li>
+<li>the probability that event A occurs</li>
 </ul>
 </li>
 <li>divided by the denominator, which is:
@@ -139,7 +139,7 @@ times</li>
 </aside>
 <p>When we hear &ldquo;Bayes&rdquo; these days, it&rsquo;s either because of the theorem above, or because of a related idea of Bayesian probability. In this approach, probabilities aren&rsquo;t just frequencies (e.g. &ldquo;how many people are over 60 years old?&rdquo;) but can also be strengths of beliefs (e.g. &ldquo;how much do I believe we&rsquo;ll finish the project in time?&rdquo;).</p>
 <h2><a href="#automatic-tagging" name="automatic-tagging"><small>15&#8202;.&#8202;6</small> Automatic tagging</a></h2>
-<p>Which brings us back to our original problem. We have a note-taking app with 1000 notes that are already tagged by the user. We want a system that automatically suggests tags (like <code>#baby</code>) for new notes based on what&rsquo;s written in them (like <code>"Bought a crib today!"</code>). </p>
+<p>Which brings us back to our original problem. We have a note-taking app with 1000 notes that are already tagged by the user. We want a system that automatically suggests tags (like <code>#baby</code>) for new notes based on what&rsquo;s written in them (like <code>"Bought a crib today!"</code>).</p>
 <p>We&rsquo;ll take words in the text, and we&rsquo;ll use Bayes to see how probable it is that, given those words, a tag applies. For example, when there&rsquo;s <code>"crib"</code> in the text, how probable is it that the tag <code>#baby</code> applies?</p><table><thead><tr><th style="text-align: center;">Test</th><th style="text-align: center;"></th><th style="text-align: center;">Real event</th></tr></thead><tbody><tr><td style="text-align: center;">Pregnancy test says YES</td><td style="text-align: center;">?&rarr;</td><td style="text-align: center;">Pregnancy</td></tr><tr><td style="text-align: center;">One of the words in the text is <code>"crib"</code></td><td style="text-align: center;">?&rarr;</td><td style="text-align: center;">Tag <code>#baby</code> applies</td></tr></tbody></table><!-- TODO: rebuilt into a drawing with arrows, so that it doesn't look like a table -->
 <p>It might not seem like it at first but this is essentially the same problem as above. We have a test, and we want to see how indicative it is of a real event.</p>
 <p>Once again, if you&rsquo;re up for it, you can try to figure it out yourself. Try to apply Bayes&rsquo; theorem to solve auto-tagging. To scope this down, don&rsquo;t try to solve the whole algorithm at once. Just try to figure out a single pair of word &amp; tag. In other words, find out what&rsquo;s the probability of the tag <code>#baby</code> given the word <code>"crib"</code> in the text. You might want to write things down.</p>
@@ -153,7 +153,7 @@ is equal to</li>
 <ul>
 <li>the probability that a note contains the word <code>"crib"</code>  <em>given that</em> it&rsquo;s tagged with <code>#baby</code><br />
 times</li>
-<li>the probability that a note is tagged with <code>#baby</code>  </li>
+<li>the probability that a note is tagged with <code>#baby</code></li>
 </ul>
 </li>
 <li>divided by the denominator, which is:
@@ -168,7 +168,7 @@ times</li>
 </ul>
 </li>
 </ul><!-- TODO: replace with an annotation of the formula -->
-<p>In a note-taking app, we know all those values on the right side of the equation. </p>
+<p>In a note-taking app, we know all those values on the right side of the equation.</p>
 <p>The following code is just a transcript of the steps above into a programming language. It&rsquo;s here in case you prefer reading code. No need to read through it otherwise.</p>
 <div class="codehilite"><pre>
 <span class="c">// All of the user&#39;s notes.</span>
@@ -249,7 +249,7 @@ $ bayes &quot;Boss called again.&quot; &quot;#baby&quot;
 0.00%
 </pre></div>
 <h2><a href="#what-next" name="what-next"><small>15&#8202;.&#8202;8</small> What next?</a></h2>
-<p>Our system might want to go through all existing tags, and rank them. The tags that are most probable should be suggested to the user. </p>
+<p>Our system might want to go through all existing tags, and rank them. The tags that are most probable should be suggested to the user.</p>
 <p>I&rsquo;ve left out some details, of course, but you should have no trouble filling in the blanks if you decide to implement Bayes&rsquo; theorem yourself.</p>
 <aside>
 <p><strong>Aside:</strong> If you&rsquo;re serious about this particular use of Bayes (auto-tagging), you can read Wikipedia&rsquo;s article on <a href="https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering">Bayes spam filtering</a>, which is basically the same thing as tagging (except you only have one tag: <code>#spam</code>).</p>

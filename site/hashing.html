@@ -63,7 +63,7 @@
 <aside name="only-unordered">
 <p><strong>Aside:</strong> Okay, okay, if the list of other strings is ordered in any way, then there&rsquo;s a lot less comparing to be done. Let&rsquo;s pretend that&rsquo;s not an option.</p>
 </aside>
-<p>To compare two strings without hashing, you have to go character by character. Only if each character is the same can we say the two strings are identical. </p>
+<p>To compare two strings without hashing, you have to go character by character. Only if each character is the same can we say the two strings are identical.</p>
 <div class="codehilite"><pre>
 <span class="c">/// Naive string comparison.</span>
 <span class="t">bool</span> <span class="i">checkIdentical</span>(<span class="t">String</span> <span class="i">a</span>, <span class="t">String</span> <span class="i">b</span>) {
@@ -81,7 +81,7 @@
 <p><strong>Aside:</strong> Comparing strings in most languages is as simple as <code>a == b</code>. The code here is therefore completely gratuitous, and only useful for explanation.</p>
 </aside>
 <h2><a href="#the-idea" name="the-idea"><small>14&#8202;.&#8202;1</small> The idea</a></h2>
-<p>You know what&rsquo;s easy to compare? Numbers. In fact, comparing whether two numbers are identical is a single instruction for the CPU. That is to say, it&rsquo;s very fast. </p>
+<p>You know what&rsquo;s easy to compare? Numbers. In fact, comparing whether two numbers are identical is a single instruction for the CPU. That is to say, it&rsquo;s very fast.</p>
 <p>Could we represent these strings as numbers?</p>
 <p>Well, each character is a number, right? For the computer, <code>A</code> is 65, <code>B</code> is 66, <code>C</code> is 67, and <span name="unicode-numbers">so on</span>. That&rsquo;s called the &ldquo;char code&rdquo;—the internal representation of a character in the computer&rsquo;s memory.</p>
 <aside name="unicode-numbers">
@@ -106,7 +106,7 @@
 <p>Let&rsquo;s come back to our original example of checking if a long list of strings contains <code>"SPAM"</code> in it. We can hash each of the thousand strings, and so now we have a list of numbers. A list of <em>hash codes</em>. This new list of numbers takes a lot less space in memory, is easier to sort, and faster to work with.</p>
 <p>Success!</p>
 <h2><a href="#a-small-problem" name="a-small-problem"><small>14&#8202;.&#8202;2</small> A small problem</a></h2>
-<p>Not so fast. Isn&rsquo;t it possible to have two different strings with the same hash? After all, a string can be arbitrarily long, while a simple integer cannot. </p>
+<p>Not so fast. Isn&rsquo;t it possible to have two different strings with the same hash? After all, a string can be arbitrarily long, while a simple integer cannot.</p>
 <p>In fact, with our naive hashing function above, the probability that there will be a <em>hash collision</em> is high:</p>
 <div class="codehilite"><pre>
 <span class="k">if</span> (<span class="i">hashString</span>(<span class="s">&quot;SPAM&quot;</span>) == <span class="i">hashString</span>(<span class="s">&quot;MAPS&quot;</span>)) {
@@ -114,7 +114,7 @@
 }
 </pre></div>
 <p>Remember, we&rsquo;re just adding numbers together. Two plus three is the same as three plus two, which is the same as one plus four. Our program will not work as intended. It will insist that different strings are identical. Things will break.</p>
-<p>This is why real hashing functions are a lot more involved than the naive one above. Even the simple CRC32 &ldquo;checksum&rdquo; is quite a few lines of bitwise operations and table lookups. The pseudocode for the popular SHA-1 hashing function is 46 lines long. </p>
+<p>This is why real hashing functions are a lot more involved than the naive one above. Even the simple CRC32 &ldquo;checksum&rdquo; is quite a few lines of bitwise operations and table lookups. The pseudocode for the popular SHA-1 hashing function is 46 lines long.</p>
 <p>Using <em>real</em> hashing functions, the hash code of <code>"SPAM"</code> definitely isn&rsquo;t equal to the hash code of <code>"MAPS"</code>. Problem solved, right?</p><!-- source: http://home.thep.lu.se/~bjorn/crc/ --><!-- source: https://en.wikipedia.org/wiki/SHA-1#SHA-1_pseudocode -->
 <p>Not so fast. Even with non-trivial hashing functions, there can be collisions. The probability is small, but it&rsquo;s there. Look at this table from Jeff Preshing&rsquo;s <a href="https://preshing.com/20110504/hash-collision-probabilities/">blog</a>:</p>
 <p><img src="images/hash-probabilities.png" alt="A table of hash probabilities" /></p>
