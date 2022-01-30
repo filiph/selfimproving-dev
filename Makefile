@@ -6,7 +6,7 @@ default: book
 
 # Run pub get on tool directory.
 get:
-	@ cd ./tool; pub get
+	@ cd ./tool; dart pub get
 
 # Remove all build outputs and intermediate files.
 clean:

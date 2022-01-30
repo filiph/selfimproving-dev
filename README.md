@@ -86,6 +86,11 @@ changed, including Markdown files, interpreter source files, templates, and
 assets. Just let that keep running, edit files locally, and refresh your
 browser to see the changes.
 
+#### Chapter ordering
+
+You specify which chapters get published and in what order by modifying
+the `tool/lib/src/book_contents.dart` file.
+
 ## Repository Layout
 
 *   `asset/` – Sass files and mustache templates used to generate the site.
