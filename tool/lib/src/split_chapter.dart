@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:glob/glob.dart';
+import 'package:glob/list_local_fs.dart';
 import 'package:path/path.dart' as p;
 import 'package:pool/pool.dart';
-
 import 'package:tool/src/book.dart';
 import 'package:tool/src/code_tag.dart';
 import 'package:tool/src/page.dart';
@@ -21,6 +21,33 @@ Future<void> splitChapter(Book book, Page chapter, [CodeTag tag]) async {
   }
 
   await Future.wait(futures);
+}
+
+/// Gets the code for [sourceFilePath] as it appears at [tag] of [chapter].
+String _generateSourceFile(
+    Book book, Page chapter, String sourcePath, CodeTag tag) {
+  var shortPath = p.relative(sourcePath, from: chapter.language);
+  var sourceFile = SourceFileParser(book, sourcePath, shortPath).parse();
+
+  var buffer = StringBuffer();
+  for (var line in sourceFile.lines) {
+    if (line.isPresent(tag)) {
+      // Hack. In generate_ast.java, we split up a parameter list among
+      // multiple chapters, which leads to hanging commas in some cases.
+      // Remove them.
+      if (line.text.trim().startsWith(")")) {
+        var text = buffer.toString();
+        if (text.endsWith(",\n")) {
+          buffer.clear();
+          buffer.writeln(text.substring(0, text.length - 2));
+        }
+      }
+
+      buffer.writeln(line.text);
+    }
+  }
+
+  return buffer.toString();
 }
 
 Future<void> _splitSourceFile(Book book, Page chapter, String sourcePath,
@@ -63,31 +90,4 @@ Future<void> _splitSourceFile(Book book, Page chapter, String sourcePath,
   } finally {
     resource.release();
   }
-}
-
-/// Gets the code for [sourceFilePath] as it appears at [tag] of [chapter].
-String _generateSourceFile(
-    Book book, Page chapter, String sourcePath, CodeTag tag) {
-  var shortPath = p.relative(sourcePath, from: chapter.language);
-  var sourceFile = SourceFileParser(book, sourcePath, shortPath).parse();
-
-  var buffer = StringBuffer();
-  for (var line in sourceFile.lines) {
-    if (line.isPresent(tag)) {
-      // Hack. In generate_ast.java, we split up a parameter list among
-      // multiple chapters, which leads to hanging commas in some cases.
-      // Remove them.
-      if (line.text.trim().startsWith(")")) {
-        var text = buffer.toString();
-        if (text.endsWith(",\n")) {
-          buffer.clear();
-          buffer.writeln(text.substring(0, text.length - 2));
-        }
-      }
-
-      buffer.writeln(line.text);
-    }
-  }
-
-  return buffer.toString();
 }

@@ -1,14 +1,15 @@
 library book;
 
+import 'package:glob/glob.dart';
+import 'package:glob/list_local_fs.dart';
+import 'package:path/path.dart' as p;
+
 import 'code_tag.dart';
 import 'location.dart';
 import 'page.dart';
 import 'snippet.dart';
 import 'source_file_parser.dart';
 import 'text.dart';
-
-import 'package:glob/glob.dart';
-import 'package:path/path.dart' as p;
 
 part 'book_contents.dart';
 
@@ -94,6 +95,13 @@ class Book {
     }
   }
 
+  /// Gets the [Page] [offset] pages before or after this one.
+  Page adjacentPage(Page start, int offset) {
+    var index = pages.indexOf(start) + offset;
+    if (index < 0 || index >= pages.length) return null;
+    return pages[index];
+  }
+
   /// Looks for a page with [title].
   Page findChapter(String title) =>
       pages.firstWhere((page) => page.title == title);
@@ -102,14 +110,19 @@ class Book {
   Page findNumber(String number) =>
       pages.firstWhere((page) => page.numberString == number);
 
-  /// Gets the [Page] [offset] pages before or after this one.
-  Page adjacentPage(Page start, int offset) {
-    var index = pages.indexOf(start) + offset;
-    if (index < 0 || index >= pages.length) return null;
-    return pages[index];
-  }
-
   Snippet findSnippet(CodeTag tag) => _snippets[tag];
+
+  /// Find the [CodeTag] with [name] on [page].
+  ///
+  /// Note: Not very fast.
+  CodeTag findTag(Page page, String name) {
+    for (var tag in _snippets.keys) {
+      if (tag.chapter != page) continue;
+      if (tag.name == name) return tag;
+    }
+
+    throw ArgumentError("Could not find tag '$name' in '${page.title}'.");
+  }
 
   /// Gets the last snippet that appears in [page].
   ///
@@ -122,18 +135,6 @@ class Book {
     }
 
     return last;
-  }
-
-  /// Find the [CodeTag] with [name] on [page].
-  ///
-  /// Note: Not very fast.
-  CodeTag findTag(Page page, String name) {
-    for (var tag in _snippets.keys) {
-      if (tag.chapter != page) continue;
-      if (tag.name == name) return tag;
-    }
-
-    throw ArgumentError("Could not find tag '$name' in '${page.title}'.");
   }
 }
 
