@@ -29,6 +29,7 @@ framework ([AngularDart](https://webdev.dartlang.org/angular)) in this
 context.
 
 <img src="images/google-frameworks/1_42xyxKFKI9a0j0BWuHGIHg-1.jpg" title="1_42xyxKFKI9a0j0BWuHGIHg.jpg" width="598" height="351" alt="1 42xyxKFKI9a0j0BWuHGIHg" />
+
 *(‘Human users’ means software engineers committing code at Google. (As
 opposed to source generation
 tools.) [Source](http://cacm.acm.org/magazines/2016/7/204032-why-google-stores-billions-of-lines-of-code-in-a-single-repository/fulltext).)*
