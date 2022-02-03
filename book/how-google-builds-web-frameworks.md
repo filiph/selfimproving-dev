@@ -211,6 +211,7 @@ output. You don’t need to make clean. You can therefore send your
 builds/tests to build servers and parallelize them.
 
 <img src="images/google-frameworks/1_sq_8UFpeBsxSIpBXpmWiSg.png" title="1_sq_8UFpeBsxSIpBXpmWiSg.png" width="446" height="284" alt="1 sq 8UFpeBsxSIpBXpmWiSg" />
+
 Google has spent years developing such a build tool. It was open sourced
 last year as [Bazel](https://bazel.build/).
 
