@@ -1,0 +1,3 @@
+Or maybe "contract".
+
+Abstract classes help devs generalize their code. They're also called "interfaces" in other languages. If a part of your code needs to interoperate with some other part of your code, but that other part of your code could actually be two different things (a local file store or a firebase store), you make an abstract class (a store) that can't do anything yet. This abstract class is then implemented by the concrete (normal) classes. (Something like `class LocalFileStorage implements Storage`.)
