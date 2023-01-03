@@ -61,7 +61,7 @@ plot twist ahead.
 ----------------------------
 
 AngularDart defines 1601 tests
-([here](https://github.com/dart-lang/angular2/tree/master/test)). But
+([here](https://github.com/angulardart/angular/tree/master/_tests)). But
 when you’re committing a change to AngularDart code in the Google
 repository, it also runs tests for *everyone at Google who depends on
 the framework*. At the moment, that’s about 74 thousand tests (depending
@@ -75,7 +75,7 @@ I just made a change that only manifests itself 5% of the time,
 simulating something like a race condition in the change detection
 reinsertion verification algorithm (I
 added `&& random.nextDouble() > .05` to [this if
-statement](https://github.com/dart-lang/angular2/blob/v2.1.0/lib/src/core/change_detection/differs/default_iterable_differ.dart#L386)).
+statement](https://github.com/angulardart/angular/blob/v2.1.0/lib/src/core/change_detection/differs/default_iterable_differ.dart#L386)).
 It did not manifest in any of the 1601 tests when I ran them (once). But
 it did break a bunch of client tests.
 

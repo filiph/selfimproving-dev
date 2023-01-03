@@ -100,7 +100,7 @@ a library with your production code sure sounds dangerous. But there’s a
 plot twist ahead.</p>
 <h2>74 thousand tests per commit</h2>
 <p>AngularDart defines 1601 tests
-(<a href="https://github.com/dart-lang/angular2/tree/master/test">here</a>). But
+(<a href="https://github.com/angulardart/angular/tree/master/_tests">here</a>). But
 when you’re committing a change to AngularDart code in the Google
 repository, it also runs tests for <em>everyone at Google who depends on
 the framework</em>. At the moment, that’s about 74 thousand tests (depending
@@ -110,7 +110,7 @@ It’s good to have more tests.
 <p>I just made a change that only manifests itself 5% of the time,
 simulating something like a race condition in the change detection
 reinsertion verification algorithm (I
-added <code>&amp;&amp; random.nextDouble() &gt; .05</code> to <a href="https://github.com/dart-lang/angular2/blob/v2.1.0/lib/src/core/change_detection/differs/default_iterable_differ.dart#L386">this if
+added <code>&amp;&amp; random.nextDouble() &gt; .05</code> to <a href="https://github.com/angulardart/angular/blob/v2.1.0/lib/src/core/change_detection/differs/default_iterable_differ.dart#L386">this if
 statement</a>).
 It did not manifest in any of the 1601 tests when I ran them (once). But
 it did break a bunch of client tests.</p>

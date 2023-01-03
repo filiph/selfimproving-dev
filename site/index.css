@@ -31,12 +31,10 @@ body {
     background-color: transparent;
     color: black;
   }
-
   p, h2, h3 {
     orphans: 3;
     widows: 3;
   }
-
   h2, h3, h4 {
     page-break-after: avoid;
   }
@@ -192,7 +190,6 @@ pre.sourceCode {
   pre > code.sourceCode {
     white-space: pre-wrap;
   }
-
   pre > code.sourceCode > span {
     text-indent: -5em;
     padding-left: 5em;
