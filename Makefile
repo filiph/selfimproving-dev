@@ -6,7 +6,7 @@ default: book
 
 # Run pub get on tool directory.
 get:
-	@ cd ./tool; dart pub get
+	@ cd ./tool; fvm dart pub get
 
 # Remove all build outputs and intermediate files.
 clean:
@@ -15,16 +15,16 @@ clean:
 
 # Build the site.
 book: $(BUILD_SNAPSHOT)
-	@ dart $(BUILD_SNAPSHOT)
+	@ fvm dart $(BUILD_SNAPSHOT)
 
 # Run a local development server for the site that rebuilds automatically.
 serve: $(BUILD_SNAPSHOT)
-	@ dart $(BUILD_SNAPSHOT) --serve
+	@ fvm dart $(BUILD_SNAPSHOT) --serve
 
 $(BUILD_SNAPSHOT): $(TOOL_SOURCES)
 	@ mkdir -p build
 	@ echo "Compiling Dart snapshot..."
-	@ dart --snapshot=$@ --snapshot-kind=app-jit tool/bin/build.dart >/dev/null
+	@ fvm dart --snapshot=$@ --snapshot-kind=app-jit tool/bin/build.dart >/dev/null
 
 deploy: book
 	@ firebase deploy --only hosting
